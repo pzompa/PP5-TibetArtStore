@@ -33,6 +33,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '8000-pzompa-pp5-tibet-art-sto-o7rba25jeg.us2.codeanyapp.com',
     'tibetartstore-0faa2ebe064c.herokuapp.com',
+    '8002-pzompa-pp5-tibet-art-sto-o7rba25jeg.us2.codeanyapp.com'
 ]
 
 
@@ -90,6 +91,15 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'tibet_art_store.wsgi.application'
 
