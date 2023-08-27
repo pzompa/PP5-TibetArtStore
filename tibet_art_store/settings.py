@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8000-pzompa-pp5-tibet-art-sto-o7rba25jeg.us2.codeanyapp.com',
-    '8000-pzompa-pp5-tibet-art-sto-o7rba25jeg.us2.codeanyapp.com'
+    'tibetartstore-0faa2ebe064c.herokuapp.com',
 ]
 
 
