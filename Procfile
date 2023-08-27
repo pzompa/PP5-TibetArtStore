@@ -1,0 +1,1 @@
+web: gunicorn tibet_art_store.wsgi:application
