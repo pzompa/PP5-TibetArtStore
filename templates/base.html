@@ -50,8 +50,8 @@
             </div>
             <div class="col-12 col-lg-4 my-aut py-1 py-lg-0 ">
                 <form method="GET" action="">
-                    <div class="input-group w-100">
-                        <input type="text" class="form-control border border-black rounded-0" name="q" placeholder="Search our site">
+                    <div class="input-group w-70">
+                        <input type="text" class="form-control border border-black rounded-0" name="q" placeholder="Search our store">
                         <div class="inpput-group-append">
                             <button class="form-control btn btn-black border border-black rounded-0" type="submit">
                                 <span class="icon">
@@ -72,6 +72,18 @@
                                 <p class="my-0">Account</p>
                             </div>
                         </a>
+                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                            {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                                <a href="" class="dropdown-item">Manage Products</a>
+                            {% endif %}
+                                <a href="" class="dropdown-item">User Profile</a>
+                                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                            {% else %}
+                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                            {% endif %}
+                        </div>
                     </li>
                     <li class="list-inline-item">
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
