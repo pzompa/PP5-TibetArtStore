@@ -18,6 +18,27 @@ body {
     color: #000 !important;
 }
 
+/*--- Info banner--- */
+
+.new-products-banner {
+    background-color: #9b770d;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.new-products-banner a {
+    color: black;
+
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.new-products-banner a:hover {
+    color: white
+}
+
+/*--- Search Bar--- */
 input.form-control {
     background-color: rgba(242, 238, 238, 0.619);
     color: white;
@@ -46,6 +67,7 @@ Bulma **** */
     text-transform: capitalize;
     color: black;
 }
+
 /* Button smooth transition for hover effects */
 button,
 .btn {
