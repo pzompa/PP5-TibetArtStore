@@ -1,0 +1,42 @@
+<div class="collapse navbar-collapse" id="main-nav">
+    <ul class="navbar-nav w-auto mx-auto">
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'home' %}" id="home-link">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link mr-3 ml-3 dropdown-toggle" href="#" id="paintings-link" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Paintings
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="paintings-link">
+                <a href="?category=thangka" class="dropdown-item">Thangka</a>
+                <a href="?category=mandala" class="dropdown-item">Mandala</a>
+                <a href="?category=deities" class="dropdown-item">Deities</a>
+                <a href="?category=contemporary" class="dropdown-item">Contemporary</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link mr-3 ml-3 dropdown-toggle" href="#" id="ritual-items-link" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Ritual Items
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="ritual-items-link">
+                <a href="?category=singing_bowl" class="dropdown-item">Singing Bowl</a>
+                <a href="?category=crafts" class="dropdown-item">Crafts</a>
+                <a href="?category=accessories" class="dropdown-item">Accessories</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link mr-3 ml-3 dropdown-toggle" href="#" id="statues-link" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Statues
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="statues-link">
+                <a href="?category=bronze" class="dropdown-item">Bronze Statues</a>
+                <a href="?category=gold" class="dropdown-item">Golden Statues</a>
+            
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="" id="home-link">Contact Us</a>
+        </li>
