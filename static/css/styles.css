@@ -1,0 +1,63 @@
+
+html {
+    height: 100%;
+}
+body {
+    background: url('/media/jambhala-mh-2882_002.png') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh + 100px);
+    color: white;
+    font-family: Lato;
+}
+/*
+.main-logo-link img {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+}*/
+.text-black {
+    color: #000 !important;
+}
+
+input.form-control {
+    background-color: rgba(242, 238, 238, 0.619);
+    color: white;
+
+}
+
+input.form-control::placeholder {
+    color: #aaa;
+}
+
+input.form-control:hover,
+input.form-control:focus {
+    background-color: rgba(155, 129, 129, 0.2);
+}
+/* **** Icon styles from Code Institute's 'Boutique Ado' code-along project/
+Bulma **** */
+
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+.logo-font {
+    text-transform: capitalize;
+    color: black;
+}
+/* Button smooth transition for hover effects */
+button,
+.btn {
+    background-color: black;
+    color: antiquewhite;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    
+}
+
+button:hover,
+.btn:hover {
+    background-color: rgb(81, 79, 79);
+    color: white;
+}

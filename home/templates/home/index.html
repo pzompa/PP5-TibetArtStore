@@ -1,26 +1,26 @@
-{% extends "base.html" %}
-{% load static %}
-
+{% extends "base.html" %} 
+{% load static %} 
 {% block page_header %}
 <div class="container header-container">
-    <div class="row">
-        <div class="col">
-           
-        </div>
-    </div>
+  <div class="row">
+    <div class="col"></div>
+  </div>
 </div>
 {% endblock %}
-    <!-- Hero Images and Links -->
+
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-                <a href="{% url 'home %}" class="nav-link main-logo-link"></a>
+    <div class="container d-flex flex-column justify-content-center align-items-center mt-5" style="min-height: 100vh;">
+        <div class="row text-center">
+            <div class="col-12">
+                <h1 class="display-4 logo-font">
+                    Mystic Arts and Crafts from Tibet
+                </h1>
+                <div class="my-5">
+                    <h4>
+                        <a href="" class="shop-now-button btn btn-lg text-uppercase py-3">Shop Now</a>
+                    </h4>
+                </div>
             </div>
-            <div class="col-12 col-log-4 my-auto py-1 py-lg-0">
-                
-            </div>
-            <div class="col"></div>
         </div>
     </div>
 {% endblock %}
