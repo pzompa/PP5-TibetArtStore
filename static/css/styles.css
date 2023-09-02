@@ -17,7 +17,26 @@ body {
 .text-black {
     color: #000 !important;
 }
+/*--- Forms--- */
 
+.form {
+    margin: 3% auto;
+    width: 60%;
+    border-radius: 5px;
+}
+
+.form-text {
+    margin-top: 30px;
+}
+
+#form-lg {
+    margin-top: 100px;
+}
+
+.linebreak {
+    border-bottom: 1px solid rgb(177, 166, 179);
+    box-shadow: 1px 1px 5px 0 #d4c1c361;
+}
 /*--- Info banner--- */
 
 .new-products-banner {

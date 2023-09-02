@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load crispy_forms_tags %}
 <!doctype html>
 <html lang="en">
 
@@ -44,7 +44,7 @@
 </head>
 
 <body>
-    <header class="container-fluid fixed-top">
+    <header class="container-fluid">
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
         
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 tesx">
@@ -125,20 +125,22 @@
             <a class="logo-font my-1"href="">🎉 Check out our latest products in store! 🎉</a>
         </div>
     </header>
+    <main>
     
 
-    {% if messages %}
-        <div class="message-container"></div>
-    {% endif %}
+        {% if messages %}
+            <div class="message-container"></div>
+        {% endif %}
 
-    {% block page_header %}
-    {% endblock %}
+        {% block page_header %}
+        {% endblock %}
 
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
 
-    {% block postloadjs %}
-    {% endblock %}
+        {% block postloadjs %}
+        {% endblock %}
+    </main>
 
 
 </body>
