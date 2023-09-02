@@ -33,7 +33,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '8000-pzompa-pp5-tibet-art-sto-o7rba25jeg.us2.codeanyapp.com',
     'tibetartstore-0faa2ebe064c.herokuapp.com',
-    '8002-pzompa-pp5-tibet-art-sto-o7rba25jeg.us2.codeanyapp.com'
+    '8002-pzompa-pp5-tibet-art-sto-o7rba25jeg.us2.codeanyapp.com',
+    '8000-pzompa-pp5tibetartstore-zz9u3ctg3dl.ws-eu104.gitpod.io'
 ]
 
 
@@ -47,10 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'products',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'home',
+    'crispy_bootstrap4',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -66,6 +70,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'tibet_art_store.urls'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -80,7 +88,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',  # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+               
             ],
+            
         },
     },
 ]
@@ -167,5 +177,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
