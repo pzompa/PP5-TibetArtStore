@@ -47,7 +47,7 @@
     <header class="container-fluid">
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
         
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 tesx">
+            <div class="col-12 col-ml-6 col-lg-4 my-auto py-1 py-lg-0">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link text-center text-lg-left">
                     <img src="https://res.cloudinary.com/dript5k0k/image/upload/v1693344481/lH_4_ohw1ma.png" alt="Tibet Art Store Logo">
                 </a>
@@ -95,7 +95,7 @@
                     </li>
                     <li class="list-inline-item">
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
-                            href="">
+                            href="{% url 'view_cart' %}">
                             <div class="text-center">
                                 <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                                 <p class="my-0">
@@ -122,7 +122,7 @@
             </nav>
         </div>
         <div class="container-fluid new-products-banner">
-            <a class="logo-font my-1"href="">🎉 Check out our latest products in store! 🎉</a>
+            <a class="logo-font my-1"href="">🎉 If you need customised articles, contact us 🎉</a>
         </div>
     </header>
     <main>
