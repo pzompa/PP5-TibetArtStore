@@ -77,3 +77,21 @@ def thanka_paintings_view(request):
     }
 
     return render(request, 'products/thanka_paintings_list.html', context)
+
+
+def product_detail(request, product_id):
+    """ view to display all products"""
+
+    product = get_object_or_404(Product, id=product_id)
+
+    image_name = str(product.productImageName)
+
+    if image_name.startswith('full/'):
+        image_name = image_name[5:]
+
+    context = {
+        'product': product,
+        'product_image_name': image_name
+    }
+
+    return render(request, 'products/product_detail.html', context)

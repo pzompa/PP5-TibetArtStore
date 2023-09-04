@@ -23,8 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('home.urls')),
-    path('products/', views.products_list, name='products_list'),
-    path('products/', views.products_list, name='products'),
+    path('products/', views.products_list_filter, name='products_list'),
+    path('products/', views.products_list_filter, name='products'),
     path('product/', include('products.urls')),
     path('cart/', include('cart.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

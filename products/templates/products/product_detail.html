@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} - Products {% endblock %}
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+<div></div>
+
+{% block content %}
+<div class="filter-products"></div>
+<div class="overlay"></div>
+
+
+<img src="{{ MEDIA_URL }}full/{{ product_image_name }}" alt="Product Image" width="500px">
+
+<div>
+    <h2 class="mb-0">{{ product.title }}</h2>
+    <h3 class="lead mb-0 text-left font-weight-bold">Price: USD$ {{ product.price }}</h3>
+    <button>Add to card</button>
+    <button>Buy it now</button>
+    <button>Add to Wishlist</button>
+    <p>Comments(0)     Likes(0)     Wishlist(no)</p>
+    <h4 class="lead mb-0 text-left font-weight-bold">SKU: {{ product.sku }}</h4>
+    <p>{{ product.description }}</p>
+    <p>{{ product.liquid }}</p>
+</div>
+{% endblock %}
