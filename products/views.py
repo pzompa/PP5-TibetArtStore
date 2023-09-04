@@ -192,3 +192,27 @@ def crafts_view(request):
     }
 
     return render(request, 'products/crafts_list.html', context)
+
+
+def specials_view(request):
+    category = Category.objects.get(name="specials")
+
+    products = Product.objects.filter(productCategory=category)
+
+    modified_products = []
+    
+    for product in products:
+        image_name = str(product.productImageName)
+        if image_name.startswith('full/'):
+            image_name = image_name[5:]
+
+        modified_products.append({
+            'product': product,
+            'image_name': image_name
+        })
+
+    context = {
+        'products': modified_products,
+    }
+
+    return render(request, 'products/specials_list.html', context)
