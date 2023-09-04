@@ -216,3 +216,39 @@ def specials_view(request):
     }
 
     return render(request, 'products/specials_list.html', context)
+
+
+def search_view(request):
+    query = request.GET.get('q')
+    if query:
+        query_set = (
+            Q(title__icontains=query) |
+            Q(price__icontains=query) |
+            Q(sku__icontains=query) |
+            Q(description__icontains=query) |
+            Q(liquid__icontains=query) |
+            Q(productImageLink__icontains=query) |
+            Q(productImageLinks__icontains=query) |
+            Q(productKey__icontains=query) |
+            Q(productCategory__name__icontains=query)
+        )
+        results = Product.objects.filter(query_set)
+    else:
+        results = Product.objects.all()
+    
+    modified_products = []
+    for product in results:
+        image_name = str(product.productImageName)
+        if image_name.startswith('full/'):
+            image_name = image_name[5:]
+        
+        modified_products.append({
+            'product': product,
+            'image_name': image_name
+        })
+
+    context = {
+        'results': modified_products,
+    }
+
+    return render(request, 'products/search_results.html', context)
