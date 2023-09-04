@@ -54,3 +54,26 @@ def products_list_filter(request):
     }
 
     return render(request, 'products/products_list.html', context)
+
+
+def thanka_paintings_view(request):
+    category = Category.objects.get(name="thangka-paintings")
+    products = Product.objects.filter(productCategory=category)
+
+    modified_products = []
+    
+    for product in products:
+        image_name = str(product.productImageName)
+        if image_name.startswith('full/'):
+            image_name = image_name[5:]
+
+        modified_products.append({
+            'product': product,
+            'image_name': image_name
+        })
+
+    context = {
+        'products': modified_products,
+    }
+
+    return render(request, 'products/thanka_paintings_list.html', context)
