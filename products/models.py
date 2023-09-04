@@ -1,5 +1,5 @@
 from django.db import models
-
+from decimal import Decimal
 
 class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)
@@ -7,16 +7,17 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
-    productImageName = models.CharField(max_length=200)
+    productImageName = models.ImageField(upload_to='full/')
     title = models.CharField(max_length=200)
-    price = models.CharField(max_length=200)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
     sku = models.CharField(max_length=200)
     description = models.TextField()
     liquid = models.TextField(blank=True)
-    productImageLink = models.TextField()  # Primary image link
-    productImageLinks = models.TextField()  # Serialized list for additional images
-    productKey = models.CharField(max_length=250)
+    productImageLink = models.TextField(blank=True, null=True)  # Primary image link
+    productImageLinks = models.TextField(blank=True, null=True)  # Serialized list for additional images
+    productKey = models.CharField(max_length=250, blank=True, null=True)
     productCategory = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products")
 
     def __str__(self):
