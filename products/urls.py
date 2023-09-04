@@ -10,4 +10,5 @@ urlpatterns = [
     path('mandala-list/', views.mandala_view, name='mandala_list'),
     path('gods-goddesses-list/', views.gods_goddesses_view, name='gods_goddesses_list'),
     path('singing-bowls-list/', views.singing_bowls_view, name='singing_bowls_list'),
+    path('crafts-list/', views.crafts_view, name='crafts_list'),
 ]
