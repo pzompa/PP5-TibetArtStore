@@ -16,8 +16,8 @@
 <div class="overlay"></div>
 <!-- sorting functionality -->
 <form method="get" action="{% url 'products' %}">
-    <div class="row mt-1 ml-1">
-        <div class="col-12 col-md-6 col-lg-4 py-1">
+    <div class="row justify-content-center mt-2 ml-4 mx-1">
+        <div class="col-12 col-md-3 col-lg-3 py-1 ">
             <div class="sort-select-wrapper">
                 <select name="category" class="custom-select-md p-1 custom-select-sm rounded-2">
                     <option value="all" {% if category == 'all' %}selected{% endif %}>All Categories</option>
@@ -30,21 +30,7 @@
                 </select>
             </div>
         </div>
-    </div>
-    <div class="row mt-1 ml-1">
-        <div class="col-12 col-md-6 col-lg-4 py-1">
-            <div class="sort-select-wrapper">
-                <select name="price_range" class="custom-select-md p-1 custom-select-sm rounded-2">
-                    <option value="all" {% if price_range == 'all' %}selected{% endif %}>All Prices</option>
-                    <option value="<100" {% if price_range == '<100' %}selected{% endif %}>< $100</option>
-                    <option value="<1000" {% if price_range == '<1000' %}selected{% endif %}>< $1000</option>
-                    <option value="<5000" {% if price_range == '<5000' %}selected{% endif %}>< $5000</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-1 ml-1">
-        <div class="col-12 col-md-6 col-lg-4 py-1">
+        <div class="col-12 col-md-3 col-lg-3 py-1 mx-1">
             <div class="sort-select-wrapper">
                 <select name="sorting" class="custom-select-md p-1 custom-select-sm rounded-2">
                     <option value="name_asc" {% if sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
@@ -54,16 +40,23 @@
                 </select>
             </div>
         </div>
+        <div class="col-12 col-md-1 col-lg-1 d-flex align-items-center justify-content-center py-1 mx-1">
+            <button class="btn btn-lg rounded" type="submit">Filter</button>
+        </div>
     </div>
-    <button type="submit">Filter</button>
 </form>
 
-    <div class="row">
+
+    <div class="row justify-content-center">
         {% for entry in products %}
-        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-            <div class="card h-100 border-0">
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 column-padding">
+            <div class="card h-100 border-0 card-padding">
                 <a href="{% url 'product_detail' entry.product.id %}">
-                    <img src="{{ MEDIA_URL }}small/{{ entry.image_name }}" alt="Product Image" width="200px" onerror="this.onerror=null; this.src='{{ MEDIA_URL }}noimage.png';">
+                    <img src="{{ MEDIA_URL }}small/{{ entry.image_name }}" 
+                        alt="Product Image" 
+                        
+                        class="centered-image" 
+                        onerror="this.onerror=null; this.src='{{ MEDIA_URL }}noimage.png';">
                 </a>
                 <div class="card-body pb-0">
                     <p class="mb-0">{{ entry.product.title }}</p>
