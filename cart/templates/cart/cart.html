@@ -28,7 +28,7 @@
             {% if cart_items %}
                 <div class="table-responsive rounded shadow p-3 mb-5 bg-white rounded">
                     <table class="table table-hover">
-                        <thead class="thead-dark">
+                        <thead class="table-bg">
                             <tr>
                                 <th scope="col">Product Info</th>
                                 <th scope="col">Details</th>
@@ -41,10 +41,11 @@
                             {% for item in cart_items %}
                                 <tr>
                                     <td class="p-3">
-                                        <img class="img-fluid rounded" src="{{ item.product.image.url }}" style="max-width: 100px;">
+                                        <img class="img-fluid rounded" src="/media/small/{{ item.product.productImageName }}" style="max-width: 100px;">
+                                                                            
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0 font-weight-bold">{{ item.product.name }}</p>
+                                        <p class="my-0 font-weight-bold">{{ item.product.title }}</p>
                                         <p class="my-0 text-secondary">SKU: {{ item.product.sku|upper }}</p>
                                     </td>
                                     <td class="py-3">
