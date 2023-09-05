@@ -32,7 +32,7 @@
                                 <th scope="col">Product Info</th>
                                 <th scope="col">Details</th>
                                 <th scope="col">Price</th>
-                                <th scope="col">Qty</th>
+                                <th scope="col" class="text-center">Quantity</th>
                                 <th scope="col">Subtotal</th>
                             </tr>
                         </thead>
@@ -52,7 +52,7 @@
                                     </td>
                                     
                                     <td class="py-3">
-                                        <form class="form update-form" method="POST" action="">
+                                        <form class="form update-form" method="POST" action="{% url 'update_cart' item.item_id %}">
                                             {% csrf_token %}
                                             <div class="form-group">
                                                 <input class="form-control form-control-sm qty_input" type="number"
@@ -62,6 +62,9 @@
 
                                             </div>
                                         </form>
+                                            <a class="update-link text-info"><small>Update</small></a>
+                                            <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Delete</small></a>
+                                        
                                     </td> 
                                     <td class="py-3">
                                         <p class="my-0">${{ item.product.price|multiply:item.quantity }}</p>
@@ -100,7 +103,7 @@
             {% else %}
                 <div class="alert alert-info" role="alert">
                     Your cart is empty. 
-                    <a href="{% url 'products' %}" class="btn btn-outline-primary rounded-0 btn-lg ml-3">
+                    <a href="{% url 'products' %}" class="btn btn-outline-primary rounded btn-lg ml-3">
                         <i class="fas fa-chevron-left"></i>
                         Keep Shopping
                     </a>
@@ -111,6 +114,28 @@
     {% block postloadjs %}
     {{ block.super }}
     {% include 'products/includes/quantity_input_script.html' %}
-    {% endblock %}
+
+    <script type="text/javascript">
+        $(document).on('click', '.update-link', function() {
+            $(this).siblings('.update-form').submit();
+        });
+ 
+        $('.remove-item').click(function(e) {
+            var csrfToken = "{{ csrf_token }}";
+            console.log(csrfToken)
+            var itemId = $(this).attr('id').split('remove_')[1];
+            
+            var url = `/cart/delete/${itemId}/`;
+            var data = {'csrfmiddlewaretoken': csrfToken};
+
+            $.post(url, data)
+            .done(function() {
+                location.reload();
+            });
+        })
+    </script>
+    
+    
+{% endblock %}
 
 {% endblock %}
