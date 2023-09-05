@@ -29,3 +29,19 @@ def add_to_cart(request, product_id):
     return redirect(redirect_url)
 
 
+
+def update_cart(request):
+    """ Update quantities in the cart """
+
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        quantity = int(request.POST.get('quantity'))
+        
+        cart = request.session.get('cart', {})
+        
+        if product_id in cart:
+            cart[product_id] = quantity
+        
+        request.session['cart'] = cart
+
+    return redirect('view_cart')

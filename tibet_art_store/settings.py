@@ -55,6 +55,9 @@ INSTALLED_APPS = [
     'home',
     'products',
     'cart',
+    'blogpost',
+    'comment',
+    'aboutus',
     'crispy_bootstrap4',
     'crispy_forms'
 ]
@@ -88,8 +91,10 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',  # required by allauth
+                'django.template.context_processors.media',    # make MEDIA_URL available in templates
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.contexts.cart_contents'
                
             ],
             
@@ -176,6 +181,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Media files (Uploaded files)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+FREE_DELIVERY_THRESHOLD = 150
+STANDARD_DELIVERY_PERCENTAGE = 10
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
