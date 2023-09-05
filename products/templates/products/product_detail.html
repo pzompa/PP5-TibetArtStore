@@ -24,33 +24,10 @@
         <p>{{ product.liquid }}</p>
         <form class="product-form" action="{% url 'add_to_cart' product.id %}" method="POST">
             {% csrf_token %}
-        <div class="product-form-row">
-            <div class="col-full">
-                <label for="id_qty_{{ product.id }}" class="mt-3 label-strong">Quantity:</label>
-                    <div class="text-center">
-                        <div class="form-group w-50">
-                            <div class="input-group-selector rounded">
-                                <select class="form-control custom-select" name="quantity">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
-                                </select>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                
-                    </div>
+            <div class="product-form-row">
+                <div class="col-full">
                 </div>
-            </div>
-        
+            
                 <div class="col-full w-50 mx-auto">
                     <a href="{% url 'products' %}" class="btn btn-lg rounded mt-5">
                         <span class="icon">
@@ -63,8 +40,6 @@
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </div>
         </form>
-            
     </div>
 </div>
-
 {% endblock %}
