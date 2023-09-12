@@ -43,7 +43,6 @@
 
     <title>Tibet Art Store {% block extra_title %}{% endblock %}</title>
 </head>
-
 <body>
     <header class="container-fluid">
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
@@ -122,15 +121,14 @@
                 {% include 'includes/main-nav.html' %}
             </nav>
         </div>
-       
+    
         <div class="row text-center">
             <div class="delivery-banner col">
-                <h4 class="logo-font text-white my-1"> Free delivery on orders over ${{ free_delivery_threshold }}!</h4>
+                <p class="text-white my-1"> Free delivery on orders over ${{ free_delivery_threshold }}!</p>
             </div>
         </div>
     </header>
     <main>
-  
         {% if messages %}
         <div class="message-container">
             {% for message in messages %}
@@ -154,15 +152,15 @@
 
         {% block content %}
         {% endblock %}
-
-        {% block postloadjs %}
-        <script type="text/javascript">
-            $('.toast').toast('show');
-        </script>
-        {% endblock %}
     </main>
+    <!-- Footer -->
 
-
+    {% include 'includes/footer.html' %}
+    {% block postloadjs %}
+    <script type="text/javascript">
+        $('.toast').toast('show');
+    </script>
+    {% endblock %}
 </body>
 
 </html>

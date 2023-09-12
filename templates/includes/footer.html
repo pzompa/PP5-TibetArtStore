@@ -1,0 +1,66 @@
+
+<!--  Footer -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row justify-content-center gap-3">
+
+        <div class="col-lg-3 col-md-6 mx-auto">
+          <h5 class="text-uppercase">Tibet Art Store</h5>
+          <p>
+            Potsdamer Platz <br>
+            Berlin, Berlin<br>
+            Germany <br><br>
+            <strong>Phone:</strong> +49 178 55488 55<br>
+            <strong>Email:</strong> info@example.com<br>
+          </p>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mx-auto">
+          <h5 class="text-uppercase">Join Our Newsletter</h5>
+          <p>GET 10% OFF when you sign up to our newsletter</p>
+          <p>Plus stay up to date with new arrivals, offers events and lots more!</p>
+          <form action="" method="post">
+              {% csrf_token %}
+            <input type="email" name="email"><input type="submit" class="btn btn-sm rounded ml-2 " value="Subscribe">
+          </form>
+        </div>
+
+        <div class="col-lg-2 col-md-6 mx-auto">
+          <h5 class="text-uppercase">Quick Links</h5>
+          <u>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="">About us</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-4">
+
+    <div class="d-flex justify-content-center px-2">
+      <div class="copyright">
+        &copy;<strong><span>pzompa 2023</span></strong>.
+      </div>
+      <div class="px-2">
+        Created for Code Institute assessment purposes only! 
+      </div>
+    </div>
+
+    <div class="social-links text-center text-md-right py-5 pt-md-0">
+      <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="link to facebook- opens in a new tab">
+        <img src=https://res.cloudinary.com/dript5k0k/image/upload/v1688732514/facebook-app-icon-_3__lyymdz.webp alt=" facebook icon" class="social-icon">
+    </a>
+    <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="link to youtube- opens in a new tab">
+        <img src=https://res.cloudinary.com/dript5k0k/image/upload/v1688732499/youtube-square-color-icon-_3__gkrkvf.webp alt=" youtube icon" class="social-icon">
+    </a>
+    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="link to instagram- opens in a new tab">
+        <img src=https://res.cloudinary.com/dript5k0k/image/upload/v1688732502/instagram-color-icon-_4__sgszee.webp alt=" instagram icon" class="social-icon">
+    </a>
+  </div>
+  
+</footer>
