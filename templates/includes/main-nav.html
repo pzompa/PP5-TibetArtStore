@@ -12,7 +12,7 @@
         Paintings
       </a>
       <div class="dropdown-menu border-0" aria-labelledby="paintings-link">
-        <a href="{% url 'thanka_paintings_list' %}" class="dropdown-item">Thangka</a>
+        <a href="{% url 'thangka_paintings_list' %}" class="dropdown-item">Thangka</a>
         <a href="{% url 'mandala_list' %}" class="dropdown-item">Mandala</a>
         <a href="{% url 'gods_goddesses_list' %}" class="dropdown-item">Gods and Goddesses</a>
       </div>
@@ -31,7 +31,7 @@
     </li>
     
     <li class="nav-item dropdown">
-      <a class="logo-font nav-link text-black mr-3" href="" id="home-link">Blog Post</a>
+      <a class="logo-font nav-link text-black mr-3" href="{% url 'article_list' %}" id="home-link">Blog Post</a>
     </li>
     
     <!-- Contact Us -->

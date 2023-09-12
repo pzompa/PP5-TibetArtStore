@@ -27,18 +27,19 @@
                 <div class="col-full">
                 </div>
             
-                <div class="col-full w-50 mx-auto">
-                    <a href="{% url 'products' %}" class="btn btn-lg rounded mt-5">
+                <div class="col-full w-30 mx-auto">
+                    <a href="{% url 'products' %}" class="btn btn rounded mt-3">
                         <span class="icon">
                             <i class="fas fa-arrow-left"></i>
                         </span>
                         <span class="text">Continue Shopping</span>
                     </a>
-                    <button type="submit" class="btn btn-lg rounded text mt-5">Add to Cart</button>
+                    <button type="submit" class="btn btn rounded text mt-3">Add to Cart</button>
                 </div>
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </div>
         </form>
+        <hr>
     </div>
 </div>
 {% endblock %}
