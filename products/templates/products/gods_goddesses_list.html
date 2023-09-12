@@ -2,25 +2,44 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block extra_title %} - Products {% endblock %}
+{% block extra_title %}Products{% endblock %}
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
-        <div class="col"></div>
+        <div class="col-12 text-center text-uppercase logo-font pb-2 my-3">
+            <div class="header-text">Gods and Goddesses</div>
+        </div>
     </div>
 </div>
 {% endblock %}
 <div></div>
 {% block content %}
-<div class="filter-products"></div>
 <div class="overlay"></div>
 <!-- sorting functionality -->
-    <div class="row">
+<div class="container">
+    <form method="get" action="{% url 'gods_goddesses_list' %}">
+        <div class="row justify-content-left mx-1 mb-3">
+            <div class="col-12 col-md-3 col-lg-3 py-1 pr-1">
+                <div class="sort-select-wrapper">
+                    <select name="sorting" class="custom-select-md p-0 custom-select-sm rounded-2">
+                        <option value="" disabled selected>Sort by</option>
+                        <option value="name_asc" {% if sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                        <option value="name_desc" {% if sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                        <option value="price_asc" {% if sorting == 'price_asc' %}selected{% endif %}>Price low-high</option>
+                        <option value="price_desc" {% if sorting == 'price_desc' %}selected{% endif %}>Price high-low</option>
+                    </select>
+                    <button class="btn btn-sm rounded ml-2" type="submit">Filter</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+    <div class="row mx-3">
         {% for entry in products %}
-        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
             <div class="card h-100 border-0">
                 <a href="{% url 'product_detail' entry.product.id %}">
-                    <img src="{{ MEDIA_URL }}small/{{ entry.image_name }}" alt="Product Image" width="200px" onerror="this.onerror=null; this.src='{{ MEDIA_URL }}noimage.png';">
+                    <img src="{{ MEDIA_URL }}small/{{ entry.image_name }}" alt="Product Image" width="300px" onerror="this.onerror=null; this.src='{{ MEDIA_URL }}noimage.png';">
                 </a>
                 <div class="card-body pb-0">
                     <p class="mb-0">{{ entry.product.title }}</p>
@@ -79,7 +98,7 @@
     </div>
     </div>
     </div>
-    <div class="btt-button shadow-sm rounded-0 border border-black">
+    <div class="btt-button shadow-sm rounded border border-black">
     <a class="btt-link d-flex h-100">
     <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
     </a>

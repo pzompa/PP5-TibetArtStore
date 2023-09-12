@@ -1,4 +1,4 @@
-
+ 
 {% extends 'base.html' %}
 {% load static %}
 
@@ -6,8 +6,8 @@
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
-        <div class="col-12 text-center text-uppercase logo-font pb-2 my-5">
-            <div class="header-text">Specials</div>
+        <div class="col-12 text-center text-uppercase logo-font my-3">
+            <div class="header-text">Thangka Paintings</div>
         </div>
     </div>
 </div>
@@ -15,13 +15,14 @@
 <div></div>
 {% block content %}
 <div class="overlay"></div>
+
 <!-- sorting functionality -->
 <div class="container">
-    <form method="get" action="{% url 'specials_list' %}">
+    <form method="get" action="{% url 'thangka_paintings_list' %}">
         <div class="row justify-content-left my-2 mx-1 mb-3">
             <div class="col-12 col-md-3 col-lg-3 py-1 pr-1">
-                <div class="sort-select-wrapper">
-                    <select name="sorting" class="custom-select-md p-0 custom-select-sm rounded-2">
+                <div class="sort-select-wrapper d-flex align-items-center">
+                    <select name="sorting" class="custom-select-md p-1 custom-select-sm rounded-2">
                         <option value="" disabled selected>Sort by</option>
                         <option value="name_asc" {% if sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
                         <option value="name_desc" {% if sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
@@ -34,6 +35,7 @@
         </div>
     </form>
 </div>
+    
     <div class="row mx-3">
         {% for entry in products %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
