@@ -6,6 +6,8 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['title', 'sku']
     list_filter = ['productCategory']
 
+    ordering = ('sku',)
+    
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
