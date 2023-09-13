@@ -86,6 +86,9 @@ main {
 }
 
 /*----Footers----*/
+.quick-link {
+    color: black;
+}
 
 .social-icon {
     width: 25px;
