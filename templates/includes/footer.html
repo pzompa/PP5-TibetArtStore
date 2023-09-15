@@ -1,9 +1,8 @@
-
 <!--  Footer -->
 <footer id="footer">
   <div class="footer-top">
-    <div class="container">
-      <div class="row justify-content-center">
+    <div class="container mt-3">
+      <div class="row justify-content-center text-center text-lg-left">
 
         <div class="col-lg-4 col-md-6 mx-auto">
           <h5 class="text-uppercase">Tibet Art Store</h5>
@@ -20,7 +19,7 @@
           <h5 class="text-uppercase">Join Our Newsletter</h5>
           <p>GET 10% OFF when you sign up to our newsletter</p>
           <p>Plus stay up to date with new arrivals, offers events and lots more!</p>
-          <form action="" method="post">
+          <form action="" method="post" class="text-center text-lg-left">
               {% csrf_token %}
             <input type="email" name="email"placeholder="Your email address"><input type="submit" class="btn btn-sm rounded ml-2 " value="Subscribe">
           </form>
@@ -28,7 +27,7 @@
 
         <div class="col-lg-4 col-md-6 mx-auto">
           <h5 class="text-uppercase">Quick Links</h5>
-          <ul>
+          <ul class="text-center text-lg-left">
             <li><a class="quick-link" href="{% url 'home' %}">Home</a></li>
             <li><a class="quick-link" href="">About us</a></li>
             <li><a class="quick-link" href="#">Blog</a></li>
@@ -41,8 +40,7 @@
   </div>
 
   <div class="container py-4">
-
-    <div class="d-flex justify-content-center px-2">
+    <div class="d-flex justify-content-center px-2 text-center">
       <div class="copyright">
         &copy;<strong><span>pzompa 2023</span></strong>.
       </div>
@@ -51,16 +49,18 @@
       </div>
     </div>
 
-    <div class="social-links text-center text-md-right py-5 pt-md-0">
+    <div class="social-links text-center py-5 pt-md-0">
       <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="link to facebook- opens in a new tab">
         <img src=https://res.cloudinary.com/dript5k0k/image/upload/v1688732514/facebook-app-icon-_3__lyymdz.webp alt=" facebook icon" class="social-icon">
-    </a>
-    <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="link to youtube- opens in a new tab">
+      </a>
+      <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="link to youtube- opens in a new tab">
         <img src=https://res.cloudinary.com/dript5k0k/image/upload/v1688732499/youtube-square-color-icon-_3__gkrkvf.webp alt=" youtube icon" class="social-icon">
-    </a>
-    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="link to instagram- opens in a new tab">
+      </a>
+      <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="link to instagram- opens in a new tab">
         <img src=https://res.cloudinary.com/dript5k0k/image/upload/v1688732502/instagram-color-icon-_4__sgszee.webp alt=" instagram icon" class="social-icon">
-    </a>
+      </a>
+    </div>
+    
   </div>
   
 </footer>

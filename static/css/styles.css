@@ -89,6 +89,9 @@ main {
 .quick-link {
     color: black;
 }
+.footer-top {
+    border-top : 0.5px solid #b4963c;
+}
 
 .social-icon {
     width: 25px;

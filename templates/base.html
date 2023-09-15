@@ -45,14 +45,14 @@
 </head>
 <body>
     <header class="container-fluid">
-        <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
+        <div id="topnav" class="row bg-white pt-lg-2 d-flex">
         
-            <div class="col-12 col-ml-6 col-lg-4 my-auto py-1 py-lg-0">
+            <div class="col-12 col-sm-6 col-md-4 my-auto py-1 py-lg-0">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link text-center text-lg-left">
                     <img src="https://res.cloudinary.com/dript5k0k/image/upload/v1693344481/lH_4_ohw1ma.png" alt="Tibet Art Store Logo">
                 </a>
             </div>
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-flex">
                 <form method="GET" action="/search/">
                     <div class="input-group w-100">
                         <input type="text" class="form-control border border-black" name="q" placeholder="Search our store">
@@ -69,7 +69,7 @@
                 </form>
             </div>
             
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-flex">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <li class="list-inline-item dropdown">
                         <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true"
