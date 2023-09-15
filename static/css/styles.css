@@ -92,7 +92,9 @@ main {
 .footer-top {
     border-top : 0.5px solid #b4963c;
 }
-
+#footer {
+    background-color:  #ede8dc;;
+}
 .social-icon {
     width: 25px;
     height: auto;
@@ -218,7 +220,8 @@ button:hover,
 }
 
 .table-bg {
-    background-color: #f1e5c0;
+    background-color:  #ede8dc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .product-form {
     max-width: 600px;
