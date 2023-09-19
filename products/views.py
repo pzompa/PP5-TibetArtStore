@@ -2,8 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, Category
 from .forms import ProductForm
 from django.db.models import Q
-
-
+from django.contrib.auth.decorators import login_required
 
 
 def products_list_filter(request):
@@ -12,6 +11,10 @@ def products_list_filter(request):
     category = request.GET.get('category')
     sorting = request.GET.get('sorting')
     products = Product.objects.all()
+
+    # Filter DATA
+    if category and category != 'all':
+        products = products.filter(productCategory_id=category)
 
     # Sort DATA
     sort_map = {
@@ -45,7 +48,6 @@ def products_list_filter(request):
     return render(request, 'products/products_list.html', context)
 
 
-
 def product_detail(request, product_id):
     """ view to display details of a particular product"""
 
@@ -69,6 +71,18 @@ def thangka_paintings_view(request):
     """ view to display only Thangka paintings"""
     category = Category.objects.get(name="thangka-paintings")
     products = Product.objects.filter(productCategory=category)
+    
+
+    # Sort DATA
+    sorting = request.GET.get('sorting')
+    sort_map = {
+        'name_asc': 'title',
+        'name_desc': '-title',
+        'price_asc': 'price',
+        'price_desc': '-price',
+    }
+    sort_key = sort_map.get(sorting, 'title') 
+    products = products.order_by(sort_key)
 
     modified_products = []
     
@@ -89,12 +103,21 @@ def thangka_paintings_view(request):
     return render(request, 'products/thangka_paintings_list.html', context)
 
 
-
 def mandala_view(request):
     """ view to display all mandala Paintings"""
     category = Category.objects.get(name="mandalas")
-
     products = Product.objects.filter(productCategory=category)
+
+        # Sort DATA
+    sorting = request.GET.get('sorting')
+    sort_map = {
+        'name_asc': 'title',
+        'name_desc': '-title',
+        'price_asc': 'price',
+        'price_desc': '-price',
+    }
+    sort_key = sort_map.get(sorting, 'title') 
+    products = products.order_by(sort_key)
 
     modified_products = []
     
@@ -114,11 +137,20 @@ def mandala_view(request):
 
     return render(request, 'products/mandala_list.html', context)
 
-
 def gods_goddesses_view(request):
     category = Category.objects.get(name="gods-goddesses")
-
     products = Product.objects.filter(productCategory=category)
+
+        # Sort DATA
+    sorting = request.GET.get('sorting')
+    sort_map = {
+        'name_asc': 'title',
+        'name_desc': '-title',
+        'price_asc': 'price',
+        'price_desc': '-price',
+    }
+    sort_key = sort_map.get(sorting, 'title') 
+    products = products.order_by(sort_key)
 
     modified_products = []
     
@@ -145,6 +177,17 @@ def singing_bowls_view(request):
 
     products = Product.objects.filter(productCategory=category)
 
+        # Sort DATA
+    sorting = request.GET.get('sorting')
+    sort_map = {
+        'name_asc': 'title',
+        'name_desc': '-title',
+        'price_asc': 'price',
+        'price_desc': '-price',
+    }
+    sort_key = sort_map.get(sorting, 'title') 
+    products = products.order_by(sort_key)
+
     modified_products = []
     
     for product in products:
@@ -169,6 +212,17 @@ def crafts_view(request):
     category = Category.objects.get(name="crafts")
 
     products = Product.objects.filter(productCategory=category)
+
+        # Sort DATA
+    sorting = request.GET.get('sorting')
+    sort_map = {
+        'name_asc': 'title',
+        'name_desc': '-title',
+        'price_asc': 'price',
+        'price_desc': '-price',
+    }
+    sort_key = sort_map.get(sorting, 'title') 
+    products = products.order_by(sort_key)
 
     modified_products = []
     
@@ -196,6 +250,17 @@ def specials_view(request):
     category = Category.objects.get(name="specials")
 
     products = Product.objects.filter(productCategory=category)
+
+        # Sort DATA
+    sorting = request.GET.get('sorting')
+    sort_map = {
+        'name_asc': 'title',
+        'name_desc': '-title',
+        'price_asc': 'price',
+        'price_desc': '-price',
+    }
+    sort_key = sort_map.get(sorting, 'title') 
+    products = products.order_by(sort_key)
 
     modified_products = []
     
@@ -299,3 +364,4 @@ def delete_product(request, product_id):
 
 def product_management(request):
     return render(request, 'products/product_management.html')
+

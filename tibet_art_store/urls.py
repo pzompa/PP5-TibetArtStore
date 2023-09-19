@@ -27,7 +27,7 @@ urlpatterns = [
     path('products/', views.products_list_filter, name='products'),
     path('product/', include('products.urls')),
     path('cart/', include('cart.urls')),
-     path('checkout/', include('checkout.urls')),
+    path('checkout/', include('checkout.urls')),
     path('search/', views.search_view, name='search_view'),
-    path('aboutus/', include('aboutus.urls')),
+    path('favorite/', include('favorite.urls', namespace='favorite')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
