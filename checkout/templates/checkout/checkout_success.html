@@ -21,7 +21,10 @@
         <div class="col text-center">
             <h2 class="logo-font text-uppercase mt-4">Order Complete</h2>
             <hr>
-            <p>A confirmation email has been sent to <strong>{{ order.email }}</strong></p>
+            <p>Your order number is <strong>{{ order.order_number }}</strong>.
+                <br>A confirmation email has been sent to <strong>{{ order.email }}</strong></p>
+            
+            </p>
         </div>
     </div>
     <div class="row justify-content-center">
