@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load template_tag %}
+
+{% block extra_title %}Favorite Products{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col-12 text-center text-uppercase logo-font my-3">
+            <div class="header-text">Your Favorite Products</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mx-3">
+        {% if favorite_products %}
+            {% for product in favorite_products %}
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="card h-100 border-0">
+                    <a href="{% url 'product_detail' product.id %}">
+                        <img src="{{ MEDIA_URL }}small/{{ product.productImageName }}" 
+                            alt="Product Image" width="300px"
+                            class="centered-image" 
+                            onerror="this.onerror=null; this.src='{{ MEDIA_URL }}noimage.png';">
+                    </a>
+                    <div class="card-body pb-0">
+                        <p class="mb-0">{{ product.title }}</p>
+                    </div>
+                    <div class="card-footer bg-white pt-0 border-0 text-left">
+                        <div class="row">
+                            <div class="col">
+                                <p class="lead mb-0 text-left font-weight-bold">USD$ {{ product.price }}</p>
+                                {% if product.productCategory %}
+                                <p class="small mt-1 mb-0">
+                                    <a class="text-muted" 
+                                    href="{% url 'products' %}?category={{ product.productCategory.id }}">
+                                        <i class="fas fa-tag mr-1"></i>Category: {{ product.productCategory.name }}
+                                    </a>
+                                </p>
+                                {% endif %}
+                                {% if product.favorited_by.filter(id=request.user.id).exists %}
+                                    <form method="POST" action="{% url 'products:remove_from_favorites' product_id=product.id %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-secondary btn-sm">Remove from Favorites</button>
+                                    </form>
+                                {% else %}
+                                    <form method="POST" action="{% url 'products:add_to_favorites' product_id=product.id %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-secondary btn-sm">Add to Favorites</button>
+                                    </form>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <p>You have no favorite products yet.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -31,7 +31,6 @@ def products_list_filter(request):
     for product in products:
         image_name = str(product.productImageName)
         if image_name.startswith('full/'):
-            print(f"Stripping 'full/' from {image_name}")
             image_name = image_name[5:]
 
         modified_products.append({
@@ -50,7 +49,7 @@ def products_list_filter(request):
 
 def product_detail(request, product_id):
     """ view to display details of a particular product"""
-
+    print(product_id)
     product = get_object_or_404(Product, id=product_id)
 
     image_name = str(product.productImageName)
@@ -60,7 +59,8 @@ def product_detail(request, product_id):
 
     context = {
         'product': product,
-        'product_image_name': image_name
+        'product_image_name': image_name,
+        'product_id': product_id
     }
 
     return render(request, 'products/product_detail.html', context)
