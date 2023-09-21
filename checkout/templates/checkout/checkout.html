@@ -17,23 +17,22 @@
 {% block content %}
     <div class="overlay"></div>    
     <div class="container">
+        <!-- Order Summary -->
         <div class="row">
-            <div class="col">
-                <h2 class="logo-font text-center py-1 text-uppercase mt-4">Checkout</h2>
+            <div class="col-12 text-center py-3">
+                <h2 class="logo-font text-center text-uppercase mt-4">Checkout</h2>
             </div>
             <div class="col-12 text-center mb-4">
                 <p class="mb-4">Order Summary: {{ item_count }} items in your Cart
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-md-6">
                     <div class="row">
                         <div class="col-7">
                             <p class="my-0"><strong>{{ item.product.title }}</strong></p>
-                            <p class="my-0 small">Qty: {{ item.quantity }}</p>
                         </div>
-                        
-                    
+                                            
                         <div class="col-3 text-right">
                             <p class="mb-1 mt-0">Subtotal</p>
                         </div>
@@ -49,18 +48,24 @@
                                         <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name  }}">
                                     {% endif %}
                                 </a>
-                            <p class="my-0 font-weight-bold small font-italic">{{ item.product.title }}</p>
+                                <p class="my-0 font-weight-bold small font-italic">{{ item.product.title }}</p>
                             </div>
+                            <div class="col-7 text-right">
+                                <p class="my-1 ">€{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                <p class="my-1">Qty:{{ item.quantity }}</p>
+                            </div>
+                            
                         </div>
                     {% endfor %}
                     <hr class="my-1">
                     <div class="row text-black text-right">
+                        
                         <div class="col-7 offset-2">
                             <p class="my-1">Order Total:</p>
                             <p class="my-1">Delivery:</p>
                             <p class="my-1">Grand Total:</p>
                         </div>
-                        <div class="col-3">
+                        <div class="col-2 text-right">
                             <p class="my-1">${{ total | floatformat:2 }}</p>
                             <p class="my-1">${{ delivery | floatformat:2 }}</p>
                             <p class="my-1"><strong>${{ grand_total | floatformat:2 }}</strong></p>
@@ -104,6 +109,7 @@
 
                         <!-- Used to display form errors -->
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                        <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset>
 
                     <div class="submit-button text-right mt-5 mb-2">                    
