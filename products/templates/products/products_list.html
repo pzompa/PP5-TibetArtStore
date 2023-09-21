@@ -95,22 +95,24 @@
                                     <a class="text-danger" href="{% url 'delete_product' entry.product.id %}">Delete</a>
                                 </small>
                             {% endif %}
-                            <form method="POST" action="{% url 'add_to_cart' entry.product.id %}" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="product_id" value="{{ entry.product.id }}">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="btn btn-primary btn-sm">Add to Cart</button>
-                            </form>
-                            {% is_favorited_by_user entry.product request.user as is_favorited %}
-                            <form method="POST" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="product_id" value="{{ entry.product.id }}">
-                                {% if is_favorited %}
-                                    <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'products:remove_from_favorites' entry.product.id %}">Remove from Favorites</button>
-                                {% else %}
-                                    <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'products:add_to_favorites' entry.product.id %}">Add to Favorites</button>
-                                {% endif %}
-                            </form>
+                            <div class="d-flex">
+                                <form method="POST" action="{% url 'add_to_cart' entry.product.id %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_id" value="{{ entry.product.id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn btn-primary btn-sm mr-2">Add to Cart</button>
+                                </form>
+                                {% is_favorited_by_user entry.product request.user as is_favorited %}
+                                <form method="POST" style="display: inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_id" value="{{ entry.product.id }}">
+                                    {% if is_favorited %}
+                                        <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'remove_from_favorites' entry.product.id %}">Remove from Favorites</button>
+                                    {% else %}
+                                        <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'add_to_favorites' entry.product.id %}">Add to Favorites</button>
+                                    {% endif %}
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
