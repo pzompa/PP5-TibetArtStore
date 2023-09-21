@@ -6,7 +6,6 @@ from .forms import OrderForm
 from .models import Order, OrderLineItem
 from cart.contexts import cart_contents
 from products.models import Product
-from cart.contexts import cart_contents
 import stripe
 import json
 
@@ -16,7 +15,7 @@ def cache_checkout_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            'bag': json.dumps(request.session.get('bag', {})),
+            'cart': json.dumps(request.session.get('cart', {})),
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
@@ -24,6 +23,7 @@ def cache_checkout_data(request):
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be processed right now.Please try again later.')
         return HttpResponse(content=e, status=400)
+
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -44,7 +44,11 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_cart = json.dumps(cart)
+            order.save()
             for item_id, quantity in cart.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -62,7 +66,7 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_cart'))
 
-                order.update_total()
+                # order.update_total()
 
 
             request.session['save_info'] = 'save-info' in request.POST
@@ -88,11 +92,10 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
         
-
         order_form = OrderForm()
 
     if not stripe_public_key:
-        message.warnings(request, 'Stripe public key is missing. Did you forget to set it in your environment')
+        messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment')
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
@@ -103,7 +106,7 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """
-    Handel successful checkout process
+    Handle successful checkout process
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
