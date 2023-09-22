@@ -15,7 +15,7 @@ def add_to_favorites(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     Favorite.objects.get_or_create(user=request.user, product=product)
     messages.success(request, f'Added to Favorite')
-    return redirect(reverse('products_list'))
+    return redirect(reverse('product_detail', args=[product_id]))
 
 @login_required
 def remove_from_favorites(request, product_id):

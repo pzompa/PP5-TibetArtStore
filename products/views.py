@@ -25,6 +25,7 @@ def products_list_filter(request):
     }
     sort_key = sort_map.get(sorting, 'title') 
     products = products.order_by(sort_key)
+    
 
     modified_products = []
      # remove full/ string

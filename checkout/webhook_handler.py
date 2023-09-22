@@ -117,4 +117,3 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'payment failed!  Webhook received: {event["type"]}',
             status=200)
-        
