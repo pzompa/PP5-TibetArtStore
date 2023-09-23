@@ -36,6 +36,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+
     <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
@@ -46,7 +48,7 @@
     <title>Tibet Art Store {% block extra_title %}{% endblock %}</title>
 </head>
 <body>
-    <header class="container-fluid">
+    <header class="container-fluid fix-top">
         <div id="topnav" class="row bg-white pt-lg-2 d-flex">
         
             <div class="col-12 col-sm-6 col-md-4 my-auto py-1 py-lg-0">
@@ -156,13 +158,22 @@
         {% endblock %}
         {% include 'includes/footer.html' %}
     </main>
-    <!-- Footer -->
-
+  
     {% block postloadjs %}
     <script type="text/javascript">
         $('.toast').toast('show');
     </script>
     {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        // scrip to close image when clicked
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.lightbox')) {
+                lightbox.close();
+            }
+        }, false);
+    </script>
+    
 </body>
 
 </html>

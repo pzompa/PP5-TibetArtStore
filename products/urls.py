@@ -11,6 +11,7 @@ urlpatterns = [
     path('gods-goddesses-list/', views.gods_goddesses_view, name='gods_goddesses_list'),
     path('singing-bowls-list/', views.singing_bowls_view, name='singing_bowls_list'),
     path('crafts-list/', views.crafts_view, name='crafts_list'),
+    path('search_results/', views.crafts_view, name='search_results'),
     path('specials-list/', views.specials_view, name='specials_list'),
     path('add/', views.create_product, name='create_product'),
     path('<int:product_id>/edit/', views.update_product, name='update_product'),
