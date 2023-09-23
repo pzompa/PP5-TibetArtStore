@@ -3,6 +3,8 @@ from .models import Product, Category
 from .forms import ProductForm
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+
 
 
 def products_list_filter(request):
@@ -25,7 +27,8 @@ def products_list_filter(request):
     }
     sort_key = sort_map.get(sorting, 'title') 
     products = products.order_by(sort_key)
-    
+
+        
 
     modified_products = []
      # remove full/ string
@@ -38,11 +41,15 @@ def products_list_filter(request):
             'product': product,
             'image_name': image_name
         })
+        paginator = Paginator(modified_products, 20) 
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
 
     context = {
-        'products': modified_products,
+        'products': page_obj,
         'category': category,
-        'sorting': sorting
+        'sorting': sorting,
+        'page_obj': page_obj
     }
 
     return render(request, 'products/products_list.html', context)

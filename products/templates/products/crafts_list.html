@@ -114,5 +114,49 @@
         {% endfor %}
        
     </div>
+    <div class="pagination-container adjusted-pag">
+        <div class="pagination">
+            <span class="step-links">
+                {% if products.has_previous %}
+                    <a href="?page=1{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">First</a>
+                    <a href="?page={{ products.previous_page_number }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">Previous</a>
+                {% endif %}
+    
+                <!-- Display limited number of  pages -->
+                {% if products.number != 1 %}
+                    <a href="?page=1{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">1</a>
+                {% endif %}
+    
+                {% if products.number|add:"-2" > 1 %}
+                    <span>...</span>
+                {% endif %}
+    
+                {% if products.number|add:"-1" > 1 %}
+                    <a href="?page={{ products.number|add:"-1" }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">{{ products.number|add:"-1" }}</a>
+                {% endif %}
+    
+                <span class="current">{{ products.number }}</span>
+    
+                {% if products.number|add:"1" < products.paginator.num_pages %}
+                    <a href="?page={{ products.number|add:"1" }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">{{ products.number|add:"1" }}</a>
+                {% endif %}
+    
+                {% if products.number|add:"2" < products.paginator.num_pages %}
+                    <span>...</span>
+                {% endif %}
+    
+                {% if products.number != products.paginator.num_pages %}
+                    <a href="?page={{ products.paginator.num_pages }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">{{ products.paginator.num_pages }}</a>
+                {% endif %}
+    
+                {% if products.has_next %}
+                    <a href="?page={{ products.next_page_number }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">Next</a>
+                    <a href="?page={{ products.paginator.num_pages }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">Last</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    {% endblock %}
+    </div>
 
 {% endblock %}
