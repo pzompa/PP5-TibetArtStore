@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'checkout',
     'django_countries',
     'favorite',
+    'contact',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -114,9 +116,10 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1
 
+SITE_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'berlinertibeter@gmail.com'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -186,15 +189,55 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
+FREE_DELIVERY_THRESHOLD = 50
+STANDARD_DELIVERY_PERCENTAGE = 10
+
 #Stripe
-FREE_DELIVERY_THRESHOLD = 150
+FREE_DELIVERY_THRESHOLD = 350
 STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'usd'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET','')
 
+# if 'DEVELOPMENT' in os.environ:
+#    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#    DEFAULT_FROM_EMAIL ='berlinertibet.gmail.com'
+# else:
+#     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#     EMAIL_HOST = 'smtp.gmail.com'
+#     EMAIL_PORT = 587
+#     EMAIL_USE_TLS = True
+#     EMAIL_USE_SSL = False
+#     EMAIL_HOST_USER = 'berlinertibeter@gmail.com'
+#     EMAIL_HOST_PASSWORD = 'wdsgswvichewghcz'
+    # EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+    # DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
