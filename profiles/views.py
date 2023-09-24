@@ -9,7 +9,7 @@ from .forms import UserProfileForm
 def profile(request):
     """Display the user's profile."""
     profile = request.user.userprofile
-    return render(request, 'profile/display_profile.html', {'profile': profile})
+    return render(request, 'profiles/display_profile.html', {'profile': profile})
 
 @login_required
 def update_profile(request):
@@ -24,4 +24,4 @@ def update_profile(request):
     else:
         form = UserProfileForm(instance=profile)
 
-    return render(request, 'profile/update_profile.html', {'form': form})
+    return render(request, 'profiles/update_profile.html', {'form': form})
