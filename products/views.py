@@ -28,8 +28,6 @@ def products_list_filter(request):
     sort_key = sort_map.get(sorting, 'title') 
     products = products.order_by(sort_key)
 
-        
-
     modified_products = []
      # remove full/ string
     for product in products:
@@ -77,7 +75,7 @@ def product_detail(request, product_id):
 
 def thangka_paintings_view(request):
     """ view to display only Thangka paintings"""
-    category = Category.objects.get(name="thangka-paintings")
+    category = get_object_or_404(Category, name="thangka-paintings")
     products = Product.objects.filter(productCategory=category)
     
 
@@ -93,7 +91,6 @@ def thangka_paintings_view(request):
     products = products.order_by(sort_key)
 
     modified_products = []
-    
     for product in products:
         image_name = str(product.productImageName)
         if image_name.startswith('full/'):
@@ -104,8 +101,12 @@ def thangka_paintings_view(request):
             'image_name': image_name
         })
 
+    paginator = Paginator(modified_products, 20) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+        
     context = {
-        'products': modified_products,
+        'products': page_obj,
     }
 
     return render(request, 'products/thangka_paintings_list.html', context)
@@ -139,8 +140,12 @@ def mandala_view(request):
             'image_name': image_name
         })
 
+    paginator = Paginator(modified_products, 20) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'products': modified_products,
+        'products': page_obj,
     }
 
     return render(request, 'products/mandala_list.html', context)
@@ -172,8 +177,12 @@ def gods_goddesses_view(request):
             'image_name': image_name
         })
 
+    paginator = Paginator(modified_products, 20) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'products': modified_products,
+        'products': page_obj,
     }
 
     return render(request, 'products/gods_goddesses_list.html', context)
@@ -208,8 +217,12 @@ def singing_bowls_view(request):
             'image_name': image_name
         })
 
+    paginator = Paginator(modified_products, 20) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'products': modified_products,
+        'products': page_obj,
     }
 
     return render(request, 'products/singing_bowls_list.html', context)
@@ -246,8 +259,12 @@ def crafts_view(request):
             'image_name': image_name
         })
 
+    paginator = Paginator(modified_products, 20) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'products': modified_products,
+        'products': page_obj,
     }
 
     return render(request, 'products/crafts_list.html', context)
@@ -282,8 +299,12 @@ def specials_view(request):
             'image_name': image_name
         })
 
+    paginator = Paginator(modified_products, 20) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'products': modified_products,
+        'products': page_obj,
     }
 
     return render(request, 'products/specials_list.html', context)
