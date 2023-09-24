@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'favorite',
     'contact',
     'profiles',
+    'django_ses',
 ]
 
 MIDDLEWARE = [
@@ -118,8 +119,8 @@ AUTHENTICATION_BACKENDS = (
 
 
 SITE_ID = 1
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'berlinertibeter@gmail.com'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -196,9 +197,22 @@ STANDARD_DELIVERY_PERCENTAGE = 10
 FREE_DELIVERY_THRESHOLD = 350
 STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'usd'
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
-STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET','')
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET')
+
+# Email configuration
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+
+EMAIL_BACKEND = 'django_ses.SESBackend'
+AWS_SES_REGION_NAME = 'eu-central-1'
+AWS_SES_REGION_ENDPOINT = 'email.eu-central-1.amazonaws.com'
+DEFAULT_FROM_EMAIL = 'info@tibetartberlin.com'
+
+
+
+
 
 
 
