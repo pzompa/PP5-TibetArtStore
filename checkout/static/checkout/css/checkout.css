@@ -63,8 +63,9 @@ select option[value=''] {
     margin: 0;
     height: 100%;
 }
-.order-confirmation-wrapper {
+/* .order-confirmation-wrapper {
   display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 100%;
-}
+} */

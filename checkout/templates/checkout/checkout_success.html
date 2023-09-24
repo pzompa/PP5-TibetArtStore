@@ -5,7 +5,7 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
-
+{% block extra_title %} - Order Complete {% endblock %}
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -20,18 +20,18 @@
 <div class="container w-100">
     <div class="row justify-content-center">
         <div class="col text-center">
-            <h2 class="logo-font text-uppercase mt-4">Order Complete</h2>
+            <h2 class="logo-font text-uppercase mt-4">Order Complete!</h2>
             <hr>
             <p>Your order number is <strong>{{ order.order_number }}</strong>.
                 <br>A confirmation email has been sent to <strong>{{ order.email }}</strong></p>
             </p>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-lg-7 mt-3">
-            <div class="order-confirmation-wrapper p-2 border">
+    </div>    
+    <div class="row w-100"> 
+        <div class="col-12 order-confirmation-wrapper mt-3">
+            <div class="p-2">
                 <div class="row">
-                    <div class="col my-3">
+                    <div class="col-12 col-md-4 mb-3">
                         <small class="text-muted font-italic mb-3">Order Info:</small>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col my-3">
+                    <div class="col-12 col-md-4 my-3">
                         <small class="text-muted font-italic">Order Details:</small>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                 {% endfor %}
 
                 <div class="row">
-                    <div class="col my-3">
+                    <div class="col-12 col-md-4 my-3">
                         <small class="text-muted font-italic">Delivering To:</small>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col my-3">
+                    <div class="col-12 col-md-4 my-3">
                         <small class="text-muted font-italic">Billing Info:</small>
                     </div>
                 </div>
@@ -191,12 +191,13 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-7 text-center my-3">
-            <a href="{% url 'products' %}" class="btn btn-black my-2">
-                <span class="text-uppercase">Keep Shopping</span>
-            </a>
-        </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-7 text-center my-3">
+        <a href="{% url 'products' %}" class="btn btn-black my-2">
+            <span class="text-uppercase">Keep Shopping</span>
+        </a>
     </div>
 </div>
+
 {% endblock %}
