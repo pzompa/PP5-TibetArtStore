@@ -8,7 +8,7 @@
 <div class="container header-container">
     <div class="row">
         <div class="col-12 text-center text-uppercase logo-font my-3">
-            <div class="header-text">Your Favorite Products</div>
+            <div class="header-text">My Favorite Products</div>
         </div>
     </div>
 </div>
@@ -43,12 +43,12 @@
                                 </p>
                                 {% endif %}
                                 {% if product.favorited_by.filter(id=request.user.id).exists %}
-                                    <form method="POST" action="{% url 'products:remove_from_favorites' product_id=product.id %}" style="display: inline;">
+                                    <form method="POST" action="{% url 'remove_from_favorites' product_id=product.id %}" style="display: inline;">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-secondary btn-sm">Remove from Favorites</button>
                                     </form>
                                 {% else %}
-                                    <form method="POST" action="{% url 'products:add_to_favorites' product_id=product.id %}" style="display: inline;">
+                                    <form method="POST" action="{% url 'add_to_favorites' product_id=product.id %}" style="display: inline;">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-secondary btn-sm">Add to Favorites</button>
                                     </form>
