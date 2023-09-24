@@ -17,7 +17,7 @@ def cache_checkout_data(request):
         stripe.PaymentIntent.modify(pid, metadata={
             'cart': json.dumps(request.session.get('cart', {})),
             'save_info': request.POST.get('save_info'),
-            'username': request.user,
+            'username': request.user.username,
         })
         return HttpResponse(status=200)
     except Exception as e:
@@ -30,7 +30,6 @@ def checkout(request):
 
     if request.method == 'POST':
         cart = request.session.get('cart', {})
-
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -66,7 +65,7 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_cart'))
 
-                # order.update_total()
+            order.update_total()
 
 
             request.session['save_info'] = 'save-info' in request.POST
@@ -111,7 +110,7 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, f'Order successfully processed!')
-        
+    
 
     if 'cart' in request.session:
         del request.session['cart']

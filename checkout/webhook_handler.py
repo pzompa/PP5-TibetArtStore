@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 from .models import Order, OrderLineItem
 from products.models import Product
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+from django.conf import settings
 
 import json
 import time
@@ -14,6 +17,24 @@ class StripeWH_Handler:
     def __init__(self, request):
         self.request = request
 
+    def send_confirmation_email(self, order):
+        """
+        Send a confirmation email upon successful order.
+        """
+        subject = f"Confirmation for order {order.order_number}"
+        body = render_to_string(
+            'checkout/confirmation_email.html',
+            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
+        )
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [order.email],
+            fail_silently=False,
+        )
+
+            
     def handle_event(self, event):
         """
         Handle unknown, unexpected, or generic webhook events.
@@ -23,10 +44,12 @@ class StripeWH_Handler:
             content=f'Unhandled Webhook received: {event["type"]}',
             status=200)
         
+
     def handle_payment_intent_succeeded(self, event):
         """
         Handle the payment_intent.succeeded event from Stripe.
         """
+        print('now we entered the def zone')
         intent = event.data.object
         pid = intent.id
         cart = intent.metadata.cart
@@ -55,7 +78,7 @@ class StripeWH_Handler:
                     email__iexact=billing_details.email,
                     phone_number__iexact=shipping_details.phone,
                     country__iexact=shipping_details.address.country,
-                    postcode__iexact=shipping_details.address.postalcode,
+                    postcode__iexact=shipping_details.address.postal_code,
                     town_or_city__iexact=shipping_details.address.city,
                     street_address1__iexact=shipping_details.address.line1,
                     street_address2__iexact=shipping_details.address.line2,
@@ -104,7 +127,7 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
-        # self._send_confirmation_email(order)
+        self.send_confirmation_email(order)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200) 
