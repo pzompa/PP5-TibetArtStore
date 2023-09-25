@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="post" action="{% url 'send_email' %}">
-        {% csrf_token %} 
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Receipt email address</label>
-            <input type="text" class="form-control" name="email" id="exampleFormControlInput1" placeholder="Receipt email address">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputSubject" class="form-label">Subject</label>
-            <input type="text" class="form-control" name="subject" id="exampleInputSubject">
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="3"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send</button>
-        </form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% load template_tag %}
+{% load crispy_forms_tags %}
+<!-- Load the crispy_forms_tags -->
+
+{% block extra_title %}Products{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col-12 text-center text-uppercase logo-font my-5">
+            <div class="header-text">Contact Us Form</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<div></div>
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <form method="post" action="{% url 'contact_view' %}">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <!-- Use the |crispy filter to style the form -->
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

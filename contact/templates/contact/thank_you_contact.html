@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load template_tag %}
+{% load crispy_forms_tags %}
+<!-- Load the crispy_forms_tags -->
+
+{% block extra_title %}Products{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col-12 text-center text-uppercase logo-font my-5">
+            <div class="header-text">Thank You</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+<div></div>
+
+{% block content %}
+<style>
+    .centered-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+    }
+</style>
+<div class="centered-container">
+    <h2 class="logo-font mt-4">Hi {{ name }},</h2>
+    <p>Thank you for taking the time to share your thoughts with us!</p>
+    <p>Your comment has been <strong>successfully submitted</strong>.</p>
+    <p>A copy has been sent to your <strong>Email</strong> address.</p>
+    <small class="text-muted font-italic">Your comment:</small>
+    <p class="mb-0 text-black">{{ comment }}</p>
+</div>
+{% endblock %}
