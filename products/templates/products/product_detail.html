@@ -30,9 +30,9 @@
             <h3 class="lead mb-2 font-weight-bold">Price: USD$ {{ product.price }}</h3>
             <h4 class="lead mb-2 text-left font-weight-bold">SKU: {{ product.sku }}</h4>
             <br>
-            <p>{{ product.description|safe }}</p>
+            <p>{{ product.descriptionHTML|safe }}</p>
             <br>
-            <p>{{ product.liquid|safe }}</p>
+            <p>{{ product.liquidHTML|safe }}</p>
             <div class="d-flex justify-content-center flex-wrap">
                 <div class="action-btn row w-100 my-3 mx-auto">
                     <!-- Add to Cart Button -->

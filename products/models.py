@@ -11,10 +11,17 @@ class Category(models.Model):
 
 class Product(models.Model):
     productImageName = models.ImageField(upload_to='full/')
+    productImageNameFull = models.ImageField(upload_to='full/')
+    productImageNameSmall = models.ImageField(upload_to='small/')
+    titleHTML = models.CharField(max_length=2000)
     title = models.CharField(max_length=200)
+    priceHTML = models.CharField(max_length=2000)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
+    skuHTML = models.CharField(max_length=2000)
     sku = models.CharField(max_length=200)
+    descriptionHTML = models.TextField()
     description = models.TextField()
+    liquidHTML = models.TextField(blank=True)
     liquid = models.TextField(blank=True)
     productImageLink = models.TextField(blank=True, null=True)  # Primary image link
     productImageLinks = models.TextField(blank=True, null=True)  # Serialized list for additional images
