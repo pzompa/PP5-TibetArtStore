@@ -16,8 +16,8 @@ body {
 main {
     flex-grow: 1; 
     /* adjusted footer at bottom and at footer id also*/
-    padding-bottom: 310px;
-    height: 200%;
+    padding-bottom: 150px; 
+    /* height: 200%; footer showing in the middle of page and  pb change from 310 to 150*/
     /*  */
 }
 .header-container {
@@ -122,8 +122,8 @@ footer a {
     flex-shrink: 0;
     /* adjusted footer at bottom */
     position: relative;
-    margin-top: -310px;
-    height: 310px;
+    margin-top: -150px;
+    /* height: 310px; */
     /*  */
 }
 
@@ -285,7 +285,7 @@ button:hover,
 }
 .adjusted-pag {
     color: #000;
-    margin-top: -60px;
+    /* margin-top: -60px; removed to show paginator*/
     margin-bottom: 20px;
 }
 
