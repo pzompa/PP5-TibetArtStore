@@ -63,9 +63,11 @@ select option[value=''] {
     margin: 0;
     height: 100%;
 }
-/* .order-confirmation-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100%;
-} */
+
+.container-order-info {
+  margin-left: 100px;
+  margin-right: 150px;
+  padding-left: 100px;
+  padding-right: 100px;
+  height: auto;
+}

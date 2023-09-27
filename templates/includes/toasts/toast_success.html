@@ -13,7 +13,7 @@
         </div>       
     </div>
 
-    {% if grand_total %}
+    {% if grand_total and not on_profile_page %}
     <div class="cart-summary bg-white text-black py-2">
         <h2 class="logo-font">Your Bag:</h2>
         <div class="bag-notification-wrapper">

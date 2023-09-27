@@ -217,9 +217,12 @@ button:hover,
     background-color: rgb(81, 79, 79);
     color: white;
 }
+.message-container-parent {
+    position: relative;
+}
 
- .message-container {
-    /* position: fixed; */
+.message-container {
+   position: fixed;
     top: 72px;
     right: 15px;
     z-index: 99999999;
