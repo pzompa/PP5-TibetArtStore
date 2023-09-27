@@ -2,8 +2,8 @@ from django.contrib import admin
 from .models import Product, Category
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'price', 'sku', 'productCategory']
-    search_fields = ['title', 'sku']
+    list_display = ['id','title', 'price', 'sku', 'productCategory']
+    search_fields = ['id','title', 'sku']
     list_filter = ['productCategory']
 
     ordering = ('sku',)
