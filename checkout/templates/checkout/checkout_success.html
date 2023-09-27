@@ -27,14 +27,28 @@
             </p>
         </div>
     </div>    
-    <div class="row w-100"> 
-        <div class="col-12 order-confirmation-wrapper mt-3">
-            <div class="p-2">
-                <div class="row">
-                    <div class="col-12 col-md-4 mb-3">
-                        <small class="text-muted font-italic mb-3">Order Info:</small>
-                    </div>
-                </div>
+        <div class="row w-100 justify-content-center my-3">
+                <!-- Toggle Order Info button -->
+            <div class="col-auto mb-3">
+                <button class="btn btn-black" type="button" data-toggle="collapse" data-target="#orderInfo" aria-expanded="false" aria-controls="orderInfo">
+                    Order Info
+                </button>
+            </div>
+            
+            <div class="col-auto">
+            {% if from_profile %}
+                <a href="{% url 'profile' %}" class="btn btn-black">
+                    <span>Back to profile</span>
+                </a>
+            {% else %}
+                <a href="{% url 'products' %}" class="btn btn-black">
+                    <span>Keep Shopping</span>
+                </a>
+            {% endif %}
+            </div>
+        </div>
+        <div class="container-order-info pb-3">
+            <div class="collapse" id="orderInfo">
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <p class="mb-0 text-black">Order Number</p>
@@ -167,7 +181,7 @@
                         <p class="mb-0 text-black">Order Total</p>
                     </div>
                     <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">{{ order.order_total }}</p>
+                        <p class="mb-0">${{ order.order_total }}</p>
                     </div>
                 </div>
 
@@ -176,7 +190,7 @@
                         <p class="mb-0 text-black">Delivery</p>
                     </div>
                     <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">{{ order.delivery_cost }}</p>
+                        <p class="mb-0">${{ order.delivery_cost }}</p>
                     </div>
                 </div>
 
@@ -185,19 +199,11 @@
                         <p class="mb-0 text-black">Grand Total</p>
                     </div>
                     <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">{{ order.grand_total }}</p>
+                        <p class="mb-0">${{ order.grand_total }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-12 col-lg-7 text-center my-3">
-        <a href="{% url 'products' %}" class="btn btn-black my-2">
-            <span class="text-uppercase">Keep Shopping</span>
-        </a>
     </div>
-</div>
-
 {% endblock %}
