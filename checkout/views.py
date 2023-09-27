@@ -13,6 +13,9 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
+    """
+    Cache checkout data for the payment intent in Stripe.
+    """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -27,6 +30,9 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 def checkout(request):
+    """
+    Handle the checkout process including the form submission and Stripe payment intent creation.
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -44,6 +50,7 @@ def checkout(request):
             'county': request.POST['county'],
         }
         order_form = OrderForm(form_data)
+        # Process the valid order form
         if order_form.is_valid():
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
@@ -84,6 +91,7 @@ def checkout(request):
             messages.error(request, 'Your Cart is empty')
             return redirect(reverse('products'))
 
+        # Create Stripe payment intent for current cart
         current_cart = cart_contents(request)
         total = current_cart['grand_total']
         stripe_total = round(total * 100)
@@ -108,16 +116,19 @@ def checkout(request):
 def checkout_success(request, order_number):
     """
     Handle successful checkout process
+    Updates user profile and clears cart from session.
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
     if request.user.is_authenticated:
-        profile: UserProfile.objects.get(user=request.user)
+        # Get user profile and update with order details
+        profile = UserProfile.objects.get(user=request.user)
         order.user_profile = profile
         order.save()
 
         if save_info:
+            # Update user profile defaults with order details
             profile_data = {
             'default_phone_number': order.phone_number,
             'default_country': order.country,
@@ -127,13 +138,11 @@ def checkout_success(request, order_number):
             'default_street_address2':order.street_address2,
             'default_county': order.county,
             }
-            user_profile_form = UserProfileForm(profile-data, instance=profile)
-            if user_profile_form is valid():
+            user_profile_form = UserProfileForm(profile_data, instance=profile)
+            if user_profile_form.is_valid():
                 user_profile_form.save()
     
-        messages.success(request, f'Order successfully processed! Your order number is {order_number}.A confirmation email will be sent to {order.email}.')
-
-    
+        messages.success(request, f'Order successfully processed!\n A confirmation email will be sent to {order.email}.')
 
     if 'cart' in request.session:
         del request.session['cart']
