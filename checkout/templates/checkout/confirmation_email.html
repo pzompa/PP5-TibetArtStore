@@ -25,12 +25,12 @@
 
 <h3>Items Purchased:</h3>
 <ul>
-    {% for item in order.orderlineitem_set.all %} <!-- Updated the loop to access order line items correctly -->
-        <li>{{ item.product.name }} (Quantity: {{ item.quantity }})</li>
+    {% for item in order.orderlineitem.all %} <!-- Updated the loop to access order line items correctly -->
+        <li>{{ item.product.title }} (Quantity: {{ item.quantity }})</li>
     {% endfor %}
 </ul>
 
-<p>If you have any questions, please contact us at <a href="mailto:customer_service@example.com">customer_service@example.com</a>.</p>
+<p>If you have any questions, please contact us at <a href="info@tibetartberlin">Customer Service</a>.</p>
 
 <p>Thank you for shopping with us!</p>
 <p>Best regards,</p>
