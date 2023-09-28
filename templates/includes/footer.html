@@ -29,10 +29,9 @@
           <h5>Quick Links</h5>
           <ul class="text-center text-lg-left">
             <li><a class="quick-link" href="{% url 'home' %}">Home</a></li>
-            <li class="d-none d-md-inline-block"><a class="quick-link" href="">About us</a></li>
-            <li class="d-none d-md-inline-block"><a class="quick-link" href="#">Blog</a></li>
-            <li><a class="quick-link" href="#">Terms of service</a></li>
-            <li><a class="quick-link" href="#">Privacy policy</a></li>
+            <li class="d-none d-md-inline-block"><a class="quick-link" href="{% url 'about_us' %}">About us</a></li>
+            <li><a class="quick-link" href="{% url 'service_policy' %} ">Terms of service</a></li>
+            <li><a class="quick-link" href="{% url 'privacy_policy' %}">Privacy policy</a></li>
           </ul>
         </div>
       </div>
