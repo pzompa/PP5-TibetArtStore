@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %} - About us {% endblock %}
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+<div></div>
+{% block content %}
+<!-- Main Content -->
+    <div class="overlay"></div>
+    <div class="container my-5">
+        <h1 class="text-center mb-5">Our Refund and Refund Policy</h1>
+        <div>
+            <h2>1. Introduction</h2>
+            <p>Thank you for shopping with Tibet Art Store. If you are not entirely satisfied with your purchase, we're here to help. Please read the following Return and Refund Policy to understand how we address concerns related to returns and refunds.</p>
+        </div>
+
+        <div>
+            <h2>2. Returns</h2>
+            <ul>
+                <li>You have <strong>30 days</strong> from the date you received your item to return it.</li>
+                <li>To be eligible for a return, the item must be unused and in the same condition that you received it.</li>
+                <li>The item must be in its original packaging.</li>
+                <li>You must have the receipt or proof of purchase.</li>
+            </ul>
+        </div>
+
+        <div>
+            <h2>3. Refunds</h2>
+            <p>Once we receive the item, our team will inspect it and notify you of the status of your refund. If your return is approved, we will initiate a refund to your original method of payment. You will receive the refund within a certain number of days, depending on your card issuer's policies.</p>
+        </div>
+
+        <div>
+            <h2>4. Shipping</h2>
+            <p>You will be responsible for paying your own shipping costs for returning the item. Shipping costs are non-refundable. If you receive a refund, the cost of return shipping will be deducted from your refund.</p>
+        </div>
+
+        <div>
+            <h2>6. Exchanges</h2>
+            <p>If your item is defective or damaged, you may want to exchange it for the same item. Please contact us at <a href="mailto:info@tibetartberlin.com">support@tibetartberlin.com</a> for further instructions.</p>
+        </div>
+
+        <div>
+            <h2>7. Cancellation</h2>
+            <p>If you wish to cancel your order before it is shipped, please contact us as soon as possible. If the order has already been shipped, you will need to follow our returns procedure.</p>
+        </div>
+
+        <div>
+            <h2>8. Contact Us</h2>
+            <p>If you have any questions about our Returns and Refunds Policy, please contact us:</p>
+            <ul>
+                <li>By email: <a href="mailto:info@tibetartberlin.com">support@tibetartberlin.com</a></li>
+                <li>By phone: 0049-30304455664</li>
+                <li>By visiting our page: <a href="{% url 'contact_view' %}">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
