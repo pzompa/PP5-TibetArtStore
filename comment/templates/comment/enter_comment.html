@@ -1,0 +1,40 @@
+{% extends "base.html" %}  
+{% load crispy_forms_tags %}
+{% block content %}
+<div style="display: flex;">
+    <!-- Product Info -->
+    <div style="flex: 1;">
+        <img src="{{ product.productImageNameFull.url }}" alt="{{ product.title }}">
+        <h2>{{ product.title }}</h2>
+        <p>Price: {{ product.price }}</p>
+        <p>Category: {{ product.productCategory.name }}</p>
+    </div>
+
+    <!-- Comments & Form -->
+    <div style="flex: 2;">
+        <!-- Existing Comments -->
+        <div>
+            {% for comment in comments %}
+                <p>
+                    <strong>{{ comment.id }}. {{ comment.user.username }} - {{ comment.date_time }}
+                        {% if request.user == comment.user %}
+                            <a href="{% url 'edit_comment' product.id comment.id %}"><i class="fa fa-edit"></i> Edit</a>
+                            <a href="{% url 'delete_comment' comment.id %}"><i class="fa fa-trash"></i> Delete</a>
+                        {% endif %}
+                    </strong><br>
+                    {{ comment.comment_text }}
+                </p>
+            {% endfor %}
+        </div>
+
+        <!-- Comment Form -->
+        <div>
+            <form method="post" action="{% if edit_mode %}{% url 'save_comment_edit' product.id comment_id %}{% else %}{% url 'save_comment_new' product.id %}{% endif %}">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

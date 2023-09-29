@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, reverse, get_object_or_404, redirect
 from .models import Product, Category
 from .forms import ProductForm
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-
+from django.contrib import messages
+from django.db.models import Count
 
 
 def products_list_filter(request):
@@ -12,7 +13,7 @@ def products_list_filter(request):
     # GET DATA from DB
     category = request.GET.get('category')
     sorting = request.GET.get('sorting')
-    products = Product.objects.all()
+    products = Product.objects.annotate(comment_count=Count('productcomment'))
 
     # Filter DATA
     if category and category != 'all':
@@ -37,7 +38,8 @@ def products_list_filter(request):
 
         modified_products.append({
             'product': product,
-            'image_name': image_name
+            'image_name': image_name,
+            'comment_count': product.comment_count
         })
         paginator = Paginator(modified_products, 20) 
         page_number = request.GET.get('page')
@@ -76,7 +78,7 @@ def product_detail(request, product_id):
 def thangka_paintings_view(request):
     """ view to display only Thangka paintings"""
     category = get_object_or_404(Category, name="thangka-paintings")
-    products = Product.objects.filter(productCategory=category)
+    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
     
 
     # Sort DATA
@@ -98,7 +100,8 @@ def thangka_paintings_view(request):
 
         modified_products.append({
             'product': product,
-            'image_name': image_name
+            'image_name': image_name,
+            'comment_count': product.comment_count
         })
 
     paginator = Paginator(modified_products, 20) 
@@ -115,7 +118,7 @@ def thangka_paintings_view(request):
 def mandala_view(request):
     """ view to display all mandala Paintings"""
     category = Category.objects.get(name="mandalas")
-    products = Product.objects.filter(productCategory=category)
+    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
 
         # Sort DATA
     sorting = request.GET.get('sorting')
@@ -137,7 +140,8 @@ def mandala_view(request):
 
         modified_products.append({
             'product': product,
-            'image_name': image_name
+            'image_name': image_name,
+            'comment_count': product.comment_count
         })
 
     paginator = Paginator(modified_products, 20) 
@@ -152,7 +156,7 @@ def mandala_view(request):
 
 def gods_goddesses_view(request):
     category = Category.objects.get(name="gods-goddesses")
-    products = Product.objects.filter(productCategory=category)
+    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
 
         # Sort DATA
     sorting = request.GET.get('sorting')
@@ -174,7 +178,8 @@ def gods_goddesses_view(request):
 
         modified_products.append({
             'product': product,
-            'image_name': image_name
+            'image_name': image_name,
+            'comment_count': product.comment_count
         })
 
     paginator = Paginator(modified_products, 20) 
@@ -191,8 +196,7 @@ def gods_goddesses_view(request):
 def singing_bowls_view(request):
     """ view to display all singing bowls"""
     category = Category.objects.get(name="singing-bowls")
-
-    products = Product.objects.filter(productCategory=category)
+    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
 
         # Sort DATA
     sorting = request.GET.get('sorting')
@@ -214,7 +218,8 @@ def singing_bowls_view(request):
 
         modified_products.append({
             'product': product,
-            'image_name': image_name
+            'image_name': image_name,
+            'comment_count': product.comment_count
         })
 
     paginator = Paginator(modified_products, 20) 
@@ -231,8 +236,7 @@ def singing_bowls_view(request):
 def crafts_view(request):
     """ view to display all the crafts products"""
     category = Category.objects.get(name="crafts")
-
-    products = Product.objects.filter(productCategory=category)
+    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
 
         # Sort DATA
     sorting = request.GET.get('sorting')
@@ -256,7 +260,8 @@ def crafts_view(request):
 
         modified_products.append({
             'product': product,
-            'image_name': image_name
+            'image_name': image_name,
+            'comment_count': product.comment_count
         })
 
     paginator = Paginator(modified_products, 20) 
@@ -273,8 +278,7 @@ def crafts_view(request):
 def specials_view(request):
     """ view to display all special products"""
     category = Category.objects.get(name="specials")
-
-    products = Product.objects.filter(productCategory=category)
+    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
 
         # Sort DATA
     sorting = request.GET.get('sorting')
@@ -296,7 +300,8 @@ def specials_view(request):
 
         modified_products.append({
             'product': product,
-            'image_name': image_name
+            'image_name': image_name,
+            'comment_count': product.comment_count
         })
 
     paginator = Paginator(modified_products, 20) 
@@ -349,12 +354,14 @@ def create_product(request):
     """ view to add a product """
 
     if request.method == "POST":
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            product = form.save()
-            return redirect('product_detail', product_id=product.id)
+            form.save()
+            messages.success(request, 'Successfully added product!',)
+            return redirect('create_product')
     else:
         form = ProductForm()
+
     context = {
         'form': form
     }
@@ -366,10 +373,13 @@ def update_product(request, product_id):
 
     product = get_object_or_404(Product, id=product_id)
     if request.method == "POST":
-        form = ProductForm(request.POST, instance=product)
+        form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Updated successfully!')
             return redirect('product_detail', product_id=product.id)
+        else:
+            messages.error(request, 'Failed to update the product. Please try again.')
     else:
         form = ProductForm(instance=product)
     context = {
@@ -384,6 +394,7 @@ def delete_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     if request.method == "POST":
         product.delete()
+        messages.success(request, 'Product successfully deleted!')
         return redirect('products_list')
     context = {
         'product': product
