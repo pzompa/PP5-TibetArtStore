@@ -171,6 +171,20 @@ def edit_comment(request, product_id, comment_id=None):
             messages.success(request, 'Comment updated successfully!')
             return redirect('enter_comment', product_id=comment.product.id)
 
+    else:
+        form = ProductCommentForm(instance=comment)
+
+    product = comment.product 
+    comments = ProductComment.objects.filter(product=product)
+
+    return render(request, 'comment/enter_comment.html', {
+        'product': product,
+        'comments': comments,
+        'form': form,
+        'edit_mode': True,
+        'comment_id': comment_id
+    })
+
 @login_required
 def edit_blogpost_comment(request, blogpost_id, comment_id=None):
     """
