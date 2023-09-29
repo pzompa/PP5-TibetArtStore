@@ -162,8 +162,8 @@ def checkout_success(request, order_number):
             user_profile_form = UserProfileForm(profile_data, instance=profile)
             if user_profile_form.is_valid():
                 user_profile_form.save()
-            # email_content = render_to_string('checkout/confirmation_email.html', {'order': order})
-            # send_mail('Order Confirmation','','info@tibetartberlin.com',[order.email],html_message=email_content)
+            email_content = render_to_string('checkout/confirmation_email.html', {'order': order})
+            send_mail('Order Confirmation','','info@tibetartberlin.com',[order.email],html_message=email_content)
         messages.success(request, f'Order successfully processed!\n A confirmation email will be sent to {order.email}.')
 
     if 'cart' in request.session:

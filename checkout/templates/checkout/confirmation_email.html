@@ -11,7 +11,7 @@
 
 <p>Thank you for your purchase! We have received your order (#{{ order.order_number }}) and it's being processed.</p>
 
-<h3>Order Details:</h3>
+<h3>Deliver Details:</h3>
 <ul>
     <li><strong>Full Name:</strong> {{ order.full_name }}</li>
     <li><strong>Email:</strong> {{ order.email }}</li>
@@ -25,9 +25,12 @@
 
 <h3>Items Purchased:</h3>
 <ul>
-    {% for item in order.orderlineitem.all %} <!-- Updated the loop to access order line items correctly -->
-        <li>{{ item.product.title }} (Quantity: {{ item.quantity }})</li>
+    {% for item in order.lineitems.all %}
+        <li>{{ item.product.title }} (Quantity: {{ item.quantity }}@ ${{ item.product.price }} each)</li>
     {% endfor %}
+</ul>
+<ul>
+    <li><strong>Grand-Total:</strong>${{ order.grand_total }}</p>
 </ul>
 
 <p>If you have any questions, please contact us at <a href="info@tibetartberlin">Customer Service</a>.</p>
