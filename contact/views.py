@@ -18,15 +18,14 @@ def contact_view(request):
         if form.is_valid():
             instance = form.save()
             # Send email
-            subject = "Thank you for your Comment on TibetArtShop"
+            subject = "Thank you for contacting us."
             message = """
-            <h1 style="font-weight: bold; text-decoration: underline;">Thanks for your Comment on our website TibetArtShop</h1>
-            <p style="text-decoration: underline; font-style: italic;">Your comment details:</p>
             <p>Your name: {name}</p>
             <p>Your email: {email}</p>
+            <p style="text-decoration: underline; font-style: italic;">Your comment details:</p>
             <p>Your comment: {comment}</p>
             <p>Date and Time: {date_time}</p>
-            <p>(Thank you for taking the time to share your thoughts with us!)</p>
+            <p>(We usually respond within 24 hours. If you need urgent assistance, please call us at 0049-17344050594)</p>
             """.format(
                 name=instance.name,
                 email=instance.email,
