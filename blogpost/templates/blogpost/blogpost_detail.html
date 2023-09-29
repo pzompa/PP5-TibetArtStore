@@ -23,8 +23,11 @@
             <p class="mb-2">Written by: <span class="font-weight-bold">{{ article.writer_name }}</span></p>
             <p class="mb-2">Published on: <span class="font-italic">{{ article.published_date }}</span></p>
             <p class="mb-1">{{ article.article_text|safe }}</p>
-            <a href="{% url 'article_list' %}">Blog Article List</a>
-            <a href="">Comment()</a>
+            <a href="{% url 'blogpost_list' %}">Blog Article List</a>
+            <small class="text-muted">
+                <i class="fas fa-comment mr-1"></i>
+                <a href="{% url 'new_blogpost_comment' blogpost_id=article.pk %}">Comments ({{ article.comment_count }})</a>
+            </small>
         </div>
     </div>
 </div>

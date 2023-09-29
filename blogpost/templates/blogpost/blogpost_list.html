@@ -6,8 +6,9 @@
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
-        <div class="col text-center">
-            <h1 class="display-4">Blog Post - Tibet Art Shop</h1>
+        <div class="col text-center" style="background-color: white;">
+            <h1 class="display-4">Blog Post</h1>
+            <p></p>
         </div>
     </div>
 </div>
@@ -21,14 +22,20 @@
     <div class="row">
         <div class="col">
             <ul class="list-group">
+                <!-- for loop -->
                 {% for article in articles %}
                     <li class="list-group-item">
                         <h2 class="h4">{{ article.title }}</h2>
                         <p class="mb-1">Written by: <span class="font-weight-bold">{{ article.writer_name }}</span></p>
                         <p class="mb-1">Published on: <span class="font-italic">{{ article.published_date }}</span></p>
-                        <p class="mb-1">{{ article.article_text_short }}</p>
-                        <a href="{% url 'article_detail' pk=article.pk %}">...continue reading</a>
+                        <p class="mb-1">{{ article.article_text_short|safe }}</p>
+                        <a href="{% url 'blogpost_detail' pk=article.pk %}">...continue reading</a>
+                        <small class="text-muted">
+                            <i class="fas fa-comment mr-1"></i>
+                            <a href="{% url 'new_blogpost_comment' blogpost_id=article.pk %}">Comments ({{ article.comment_count }})</a>
+                        </small>
                     </li>
+                    <br>
                 {% endfor %}
             </ul>
         </div>
