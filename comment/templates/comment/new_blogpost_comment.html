@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block extra_title %} - Blogpost {% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col text-center">
+            <h1 class="display-4 mb-4">Blog Post</h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container">
+     <div class="row mb-2 mx-auto mb-5 d-block">
+        <div class="col 12">
+            <h2 class="mb-3">{{ blogpost.title }}</h2>
+            <img class="mx-auto mb-5 d-block" src="{{ MEDIA_URL }}{{ article.article_image_name }}" alt="" width="500px">
+            <p class="mb-2">Written by: <span class="font-weight-bold">{{ blogpost.writer_name }}</span></p>
+            <p class="mb-2">Published on: <span class="font-italic">{{ blogpost.published_date }}</span></p>
+            <p class="mb-1">{{ blogpost.article_text|safe }}</p>
+            <br>
+            <br>
+        </div>
+        <div>
+            {% for comment in comments %}
+                <p>
+                    <strong>ID: {{ comment.id }}. | User: "{{ comment.user.username }}" | Date: {{ comment.date_time }}
+                    {% if request.user == comment.user %}
+                        <a href="{% url 'edit_blogpost_comment' blogpost.id comment.id %}"><i class="fa fa-edit"></i> Edit</a>
+                        <a href="{% url 'delete_blogpost_comment' comment.id %}"><i class="fa fa-trash"></i> Delete</a>
+                    {% endif %}
+                        </strong><br>
+                    {{ comment.comment_text|safe }}
+                </p>
+                <br>
+            {% endfor %}
+        </div>
+        <div>
+            <form method="post" action="{% if edit_mode %}{% url 'save_blogpost_comment_edit' blogpost.id comment_id %}{% else %}{% url 'save_blogpost_comment_new' blogpost.id %}{% endif %}">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
