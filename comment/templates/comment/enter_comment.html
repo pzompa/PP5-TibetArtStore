@@ -1,39 +1,75 @@
-{% extends "base.html" %}  
+
+
+{% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
+
+{% block extra_title %} Product Comment{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'comment/css/comment.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <!-- <div class="col text-center header-text my-3">Comments</div>
+    </div> -->
+        <div class="col-12 text-center text-uppercase logo-font pb-2 my-5">
+            <div class="header-text">Comments</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
-<div style="display: flex;">
-    <!-- Product Info -->
-    <div style="flex: 1;">
-        <img src="{{ product.productImageNameFull.url }}" alt="{{ product.title }}">
-        <h2>{{ product.title }}</h2>
-        <p>Price: {{ product.price }}</p>
-        <p>Category: {{ product.productCategory.name }}</p>
+<div class="overlay"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ product.productImageNameFull.url }}" style="width: 100%; max-width: 300px;" alt="{{ product.title }}">
+        </div>
+        <div class="col-md-6">
+            <h2 class="mb-2">{{ product.title }}</h2>
+            <p>Category: {{ product.productCategory.name }}</p>
+            <h3 class="lead mb-2 font-weight-bold">Price: $ {{ product.price }}</h3>
+            <h4 class="lead mb-2 text-left font-weight-bold">SKU: {{ product.sku }}</h4>
+        </div>
     </div>
 
-    <!-- Comments & Form -->
-    <div style="flex: 2;">
-        <!-- Existing Comments -->
-        <div>
-            {% for comment in comments %}
-                <p>
-                    <strong>{{ comment.id }}. {{ comment.user.username }} - {{ comment.date_time }}
-                        {% if request.user == comment.user %}
-                            <a href="{% url 'edit_comment' product.id comment.id %}"><i class="fa fa-edit"></i> Edit</a>
-                            <a href="{% url 'delete_comment' comment.id %}"><i class="fa fa-trash"></i> Delete</a>
-                        {% endif %}
-                    </strong><br>
-                    {{ comment.comment_text }}
-                </p>
-            {% endfor %}
-        </div>
-
-        <!-- Comment Form -->
-        <div>
-            <form method="post" action="{% if edit_mode %}{% url 'save_comment_edit' product.id comment_id %}{% else %}{% url 'save_comment_new' product.id %}{% endif %}">
-                {% csrf_token %}
-                {{ form | crispy }}
-                <input type="submit" value="Submit">
-            </form>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="comment-detail-card">
+                <h5 class="comment-detail-background m-3">Comments: {{ comments.count }}</h5>
+                <button class="btn btn-outline-dark m-2" type="button" data-bs-toggle="collapse" data-bs-target="#commentsCollapse" aria-expanded="false" aria-controls="commentsCollapse">
+                    Show/Hide Comments
+                </button>
+                <a href="{% url 'products_list' %}" class="btn btn-black">To product List</a>
+                
+                <div class="collapse" id="commentsCollapse">
+                    <div class="comment-detail-card">
+                        {% for comment in comments %}
+                            <p><strong class="comment-detail-background"><i class="fa fa-user"></i></strong> {{ comment.user.username }}</p>
+                            <p><strong class="comment-detail-background font-italic">Comment:</strong> {{ comment.comment_text }}</p>
+                            <p><strong class="comment-detail-background font-italic">Posted on:</strong> {{ comment.date_time }}</p>
+                            
+                            {% if request.user == comment.user %}
+                                <a href="{% url 'delete_comment' comment.id %}"><i class="fa fa-trash"></i>Delete</a>
+                            {% endif %}
+                            <hr>
+                        {% empty %}
+                            <p>No comments yet.</p>
+                        {% endfor %}
+                        <div class="container mt-4">
+                            <h5>Leave a Comment:</h5>
+                            <form method="post" action="{% if edit_mode %}{% url 'save_comment_edit' product.id comment.id %}{% else %}{% url 'save_comment_new' product.id %}{% endif %}">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <input type="submit" value="Submit Comment" class="btn btn-primary mt-2">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
