@@ -20,6 +20,10 @@ def blogpost_detail(request, pk):
 
 # Create BlogPost
 def create_blogpost(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store Admin can do this action.')
+        return redirect('home')
+    
     if request.method == 'POST':
         form = BlogPostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -33,6 +37,10 @@ def create_blogpost(request):
 
 # Edit BlogPost
 def edit_list_blogpost(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store Admin can do this action.')
+        return redirect('home')
+
     blogposts = BlogPost.objects.all()
     context = {
         'blogposts': blogposts,
@@ -40,6 +48,10 @@ def edit_list_blogpost(request):
     return render(request, 'blogpost/edit_list_blogpost.html', context)
 
 def edit_blogpost(request, blogpost_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store Admin can do this action.')
+        return redirect('home')
+
     blogpost = get_object_or_404(BlogPost, pk=blogpost_id)
     if request.method == "post":
         form = BlogPostForm(request.POST, request.FILES, instance=blogpost)
@@ -55,6 +67,10 @@ def edit_blogpost(request, blogpost_id):
 
 # Delete BlogPost
 def delete_list_blogpost(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store Admin can do this action.')
+        return redirect('home')
+
     blogposts = BlogPost.objects.all()
     context = {
         'blogposts': blogposts,
@@ -62,23 +78,21 @@ def delete_list_blogpost(request):
     return render(request, 'blogpost/delete_list_blogpost.html', context)
 
 def delete_blogpost(request, blogpost_id):
-    # Fetch the BlogPost instance or raise a 404 if not found
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store Admin can do this action.')
+        return redirect('home')
+
     blogpost = get_object_or_404(BlogPost, pk=blogpost_id)
-
-    # Delete the blogpost
     blogpost.delete()
-
-    # Display a success message
     messages.success(request, 'Blog post deleted successfully!')
 
-    # Redirect back to 'product_management'
     return redirect('product_management')
     
 
 
 # List BlogPost
-def list_blogposts(request):
-    pass
+# def list_blogposts(request):
+#     pass
 
 # List BlogPost
 def save_blogpost(request, blogpost_id=None):

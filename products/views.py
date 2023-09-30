@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.db.models import Count
 
 
+
 def products_list_filter(request):
     """ view to display all products"""
     # GET DATA from DB
@@ -350,15 +351,19 @@ def search_view(request):
 
     return render(request, 'products/search_results.html', context)
 
+@login_required
 def create_product(request):
     """ view to add a product """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store Admin can do this action.')
+        return redirect('home')
 
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
             messages.success(request, 'Successfully added product!',)
-            return redirect('product_detail', args=[product.id])
+            return redirect('product_detail', product_id=product.id)
     else:
         form = ProductForm()
 
@@ -367,9 +372,13 @@ def create_product(request):
     }
     return render(request, 'products/create_product.html', context)
 
-
+@login_required
 def update_product(request, product_id):
     """ view to update a product """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store Admin can do this action.')
+        return redirect('home')
+
 
     product = get_object_or_404(Product, id=product_id)
     if request.method == "POST":
@@ -388,27 +397,44 @@ def update_product(request, product_id):
     }
     return render(request, 'products/update_product.html', context)
 
-
+@login_required
 def delete_product(request, product_id):
     """ View to delete a product from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store Admin can do this action.')
+        return redirect('home')
+
     product = get_object_or_404(Product, id=product_id)
     product.delete()
     messages.success(request, 'Product successfully deleted!')
     return redirect('products_list')
 
-
+@login_required
 def product_management(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store Admin can do this action.')
+        return redirect('home')
+
     return render(request, 'products/product_management.html')
 
+@login_required
 def order_list(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store Admin can do this action.')
+        return redirect('home')
     orders = Order.objects.all()
     context = {
         'orders': orders,
     }
     return render(request, 'products/order_list.html', context)
 
+@login_required
 def delete_order(request, order_id):
     """ delete order """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store Admin can do this action.')
+        return redirect('home')
+
     order = get_object_or_404(Order, id=order_id)
     order.delete()
     messages.success(request, 'Order successfully deleted!')
