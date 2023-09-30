@@ -7,7 +7,7 @@
 <div class="container header-container">
     <div class="row">
         <div class="col text-center" style="background-color: white;">
-            <h1 class="display-4">Blog Post</h1>
+            <h1 class="display-4 my-3">Blog Post</h1>
             <p></p>
         </div>
     </div>
@@ -15,6 +15,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="overlay"></div>
 <div class="container">
     <div class="row filter-products mb-3">
     </div>
@@ -26,7 +27,7 @@
                 {% for article in articles %}
                     <li class="list-group-item">
                         <h2 class="h4">{{ article.title }}</h2>
-                        <p class="mb-1">Written by: <span class="font-weight-bold">{{ article.writer_name }}</span></p>
+                        <p class="mb-1">By: <span class="font-weight-bold">{{ article.writer_name }}</span></p>
                         <p class="mb-1">Published on: <span class="font-italic">{{ article.published_date }}</span></p>
                         <p class="mb-1">{{ article.article_text_short|safe }}</p>
                         <a href="{% url 'blogpost_detail' pk=article.pk %}">...continue reading</a>
