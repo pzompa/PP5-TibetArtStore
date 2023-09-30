@@ -1,5 +1,6 @@
 from django.shortcuts import render, reverse, get_object_or_404, redirect
 from .models import Product, Category
+from checkout.models import Order
 from .forms import ProductForm
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
@@ -57,7 +58,6 @@ def products_list_filter(request):
 
 def product_detail(request, product_id):
     """ view to display details of a particular product"""
-    print(product_id)
     product = get_object_or_404(Product, id=product_id)
 
     image_name = str(product.productImageName)
@@ -356,9 +356,9 @@ def create_product(request):
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            product = form.save()
             messages.success(request, 'Successfully added product!',)
-            return redirect('create_product')
+            return redirect('product_detail', args=[product.id])
     else:
         form = ProductForm()
 
@@ -390,18 +390,26 @@ def update_product(request, product_id):
 
 
 def delete_product(request, product_id):
-    """ view to delete a product """
+    """ View to delete a product from the store """
     product = get_object_or_404(Product, id=product_id)
-    if request.method == "POST":
-        product.delete()
-        messages.success(request, 'Product successfully deleted!')
-        return redirect('products_list')
-    context = {
-        'product': product
-    }
-    return render(request, 'products/delete_product_confirm.html', context)
+    product.delete()
+    messages.success(request, 'Product successfully deleted!')
+    return redirect('products_list')
 
 
 def product_management(request):
     return render(request, 'products/product_management.html')
 
+def order_list(request):
+    orders = Order.objects.all()
+    context = {
+        'orders': orders,
+    }
+    return render(request, 'products/order_list.html', context)
+
+def delete_order(request, order_id):
+    """ delete order """
+    order = get_object_or_404(Order, id=order_id)
+    order.delete()
+    messages.success(request, 'Order successfully deleted!')
+    return redirect('product_management')
