@@ -6,8 +6,8 @@
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
-        <div class="col text-center">
-            <h1 class="display-4 mb-4">Blog Post</h1>
+        <div class="col-12 text-center text-uppercase logo-font pb-2 my-5">
+            <div class="header-text">Blog</div>
         </div>
     </div>
 </div>
@@ -16,9 +16,9 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container">
-     <div class="row mb-2 mx-auto mb-5 d-block">
+     <div class="row mb-2 mx-auto d-block">
         <div class="col 12">
-            <h2 class="mb-3">{{ article.title }}</h2>
+            <h2 class="mb-5">{{ article.title }}</h2>
             <img class="mx-auto mb-5 d-block" src="{{ MEDIA_URL }}{{ article.article_image_name }}" alt="" width="500px">
             <p class="mb-2">Written by: <span class="font-weight-bold">{{ article.writer_name }}</span></p>
             <p class="mb-2">Published on: <span class="font-italic">{{ article.published_date }}</span></p>

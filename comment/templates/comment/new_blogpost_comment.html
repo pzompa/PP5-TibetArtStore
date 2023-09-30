@@ -1,5 +1,3 @@
-
-
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
@@ -11,10 +9,11 @@
 {% endblock %}
 
 {% block page_header %}
+
 <div class="container header-container">
     <div class="row">
-        <div class="col text-center">
-            <h1 class="display-4 mb-4">Blog Post</h1>
+        <div class="col-12 text-center text-uppercase logo-font pb-2 my-5">
+            <div class="header-text">Blog</div>
         </div>
     </div>
 </div>
@@ -23,9 +22,9 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container">
-    <div class="row mx-auto mb-5 d-block">
+    <div class="row mx-auto d-block">
         <div class="col-12">
-            <h2>{{ blogpost.title }}</h2>
+            <h2 class="mb-5">{{ blogpost.title }}</h2>
             <img class="mx-auto mb-5 d-block" src="{{ MEDIA_URL }}{{ blogpost.article_image_name }}" alt="" width="500px">
             <p class="mb-2">Written by: <span class="font-weight-bold">{{ blogpost.writer_name }}</span></p>
             <p class="mb-2">Published on: <span class="font-italic">{{ blogpost.published_date }}</span></p>
@@ -33,11 +32,12 @@
         </div>
     </div>
 
-    <div class="comment-detail-card">
+    <div class="comment-detail-card mb-5">
         <h5 class="comment-detail-background m-3">Comments: {{ comments.count }}</h5>
         <button class="btn btn-outline-dark m-2" type="button" data-bs-toggle="collapse" data-bs-target="#commentsCollapse" aria-expanded="false" aria-controls="commentsCollapse">
             Show/Hide Comments
         </button>
+        <a href="{% url 'blogpost_list' %}" class="btn btn-black">Back to Bloglist</a>
     
         <div class="collapse" id="commentsCollapse">
             <div class="comment-detail-card">
@@ -46,9 +46,7 @@
                     <p><strong class="comment-detail-background font-italic">Comment:</strong> {{ comment.comment_text }}</p>
                     <p><strong class="comment-detail-background font-italic">Posted on:</strong> {{ comment.date_time }}</p>
                     
-
                     {% if request.user == comment.user %}
-                        <a href="{% url 'edit_blogpost_comment' blogpost.id comment.id %}"><i class="fa fa-edit"></i>Edit</a>
                         <a href="{% url 'delete_blogpost_comment' comment.id %}"><i class="fa fa-trash"></i>Delete</a>
                     {% endif %}
                     <hr>
