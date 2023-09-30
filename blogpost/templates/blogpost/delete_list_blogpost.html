@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} 
+{% block extra_title %} - Blogpost {% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'comment/css/comment.css' %}" />
+{% endblock %} {% block page_header %}
+<div>
+  <div>
+    <div>
+      <h1 class="text-center mx-5">Delete Blog Post</h1>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block content %}
+<div class="overlay"></div>
+<h4 class="text-center">(click on TRASH CAN to delete BlogPost)</h4>
+<div class="mx-5">
+  <table class="table-bordered table-striped mx-auto">
+    <thead>
+      <tr>
+        <th>Delete</th>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Writer Name</th>
+        <th>Published Date</th>
+        <th>Active</th>
+        <th>Article Image</th>
+      </tr>
+    </thead>
+    <tbody> 
+      {% for blogpost in blogposts %}
+      <tr class="mx-5 ml-5">
+        <td style="text-align: center"><a href="{% url 'delete_blogpost' blogpost.id %}"><i class="fas fa-trash mr-1"></i></a></td>
+        <td class="px-3">{{ blogpost.id }} </td>
+        <td class="px-3">{{ blogpost.title }}</td>
+        <td class="px-3">{{ blogpost.writer_name }}</td>
+        <td class="px-3">{{ blogpost.published_date }}</td>
+        <td class="px-3">{{ blogpost.active }}</td>
+        <td>
+          {% if blogpost.article_image_name %}
+          <img
+            src="{{ blogpost.article_image_name.url }}"
+            alt="{{ blogpost.title }}"
+            width="50"
+          />
+          {% else %} No Image {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

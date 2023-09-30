@@ -12,40 +12,74 @@
 {% endblock %}
 
 {% block content %}
-   <!--  <div class="overlay"></div>
-    <div class="container p-3">
-        <div class="row">
-            <h2 class="text-center">Product Management</h2>
-            <div class="col-12">
-                <form enctype="multipart/form-data" method="POST" action="{% url 'create_product' %}" class="form mb-2">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <div class="text-right">
-                        <a class="btn btn-outline-black rounded" href="{% url 'products_list' %}">Cancel</a>
-                        <button class="btn btn-black rounded" type="submit" >Create Product</button>
-                        
-                    </div>
-                </form>
-                
-            </div>
-        </div>
-    </div> -->
-
-    <!-- <div class="overlay"></div> -->
+   
 <div class="container p-3">
     <div class="row justify-content-center">
         <div class="col-12 text-center">
-            <h2 class="mb-4">Product Management</h2>
+            <h2 class="mb-3">Product Management</h2>
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-12">
-            <form enctype="multipart/form-data" method="POST" action="{% url 'create_product' %}" class="form mb-2">
+        <div class="col-12 ">
+            <form enctype="multipart/form-data" method="POST" action="{% url 'create_product' %}" class="form">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <div class="text-center">
-                    <a class="btn btn-outline-black rounded" href="{% url 'products_list' %}">Cancel</a>
-                    <button class="btn btn-black rounded" type="submit">Create Product</button>
+                   <button class="btn btn-black rounded" type="submit">Create Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container p-3">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <h2 class="mb-4">BlogPost Management</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="d-flex col-12 text-center col-md-6">
+            <!-- Create Blog -->
+            <form action="{% url 'create_blogpost' %}" method="POST" enctype="multipart/form-data" class="form mb-2">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-center">
+                    <button class="btn btn-black rounded mb-4" type="submit">Create BlogPost</button>
+                </div>
+            </form>
+            <!-- Edit a Blog -->
+            <form action="{% url 'edit_list_blogpost' %}" method="POST" enctype="multipart/form-data" class="form mb-2">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-center">
+                    <button class="btn btn-black rounded mb-4" type="submit">Edit BlogPost</button>
+                </div>
+            </form>
+            <!-- Delete a Blog-->
+            <form action="{% url 'delete_list_blogpost' %}" method="POST" enctype="multipart/form-data" class="form mb-2">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-center">
+                    <button class="btn btn-black rounded mb-4" type="submit">Delete BlogPost</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container p-3">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <h2 class="mb-4">Order Management</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="d-flex col-12 text-center col-md-6">
+            <!-- Create Blog -->
+            <form action="{% url 'order_list' %}" method="POST" enctype="multipart/form-data" class="form mb-2">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-center">
+                    <button class="btn btn-black rounded mb-4" type="submit">Order List</button>
                 </div>
             </form>
         </div>
