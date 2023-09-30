@@ -10,9 +10,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    productImageName = models.ImageField(upload_to='full/')
-    productImageNameFull = models.ImageField(upload_to='full/')
-    productImageNameSmall = models.ImageField(upload_to='small/')
+    productImageName = models.ImageField(upload_to='full/', default='noimage.png',blank=True)
+    productImageNameFull = models.ImageField(upload_to='full/', default='noimage.png',blank=True)
+    productImageNameSmall = models.ImageField(upload_to='small/', default='noimage.png',blank=True)
     titleHTML = models.CharField(max_length=2000)
     title = models.CharField(max_length=200)
     priceHTML = models.CharField(max_length=2000)
