@@ -15,13 +15,13 @@
 
     {% if grand_total and not on_profile_page %}
     <div class="cart-summary bg-white text-black py-2">
-        <h2 class="logo-font">Your Bag:</h2>
+        <h2 class="logo-font">Your Cart:</h2>
         <div class="bag-notification-wrapper">
             <div class="cart-items">
                 {% for item in cart_items %}
                     <div class="row cart-item">
                         <div class="col-3 item-image my-2">
-                            <img class="w-100" src="/media/small/{{ item.product.productImageName }}" alt="{{ item.product.title }}">
+                            <img class="w-100" src="{{ MEDIA_URL }}small/{{item.product.productImageName}}" alt="{{ item.product.title }}">
                         </div>
                         <div class="col-9 item-details">
                             <p class="item-name mb-1"><strong>{{ item.product.title }}</strong></p>
