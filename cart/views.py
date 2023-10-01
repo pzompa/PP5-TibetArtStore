@@ -34,7 +34,6 @@ def add_to_cart(request, product_id):
     redirect_url = request.POST.get('redirect_url', '/')
     
     request.session['cart'] = cart
-    print(request.session['cart'])
 
     return redirect('products')
 

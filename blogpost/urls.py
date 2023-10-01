@@ -13,5 +13,4 @@ urlpatterns = [
     path('edit/<int:blogpost_id>/', views.edit_blogpost, name='edit_blogpost'),
     path('delete-list/', views.delete_list_blogpost, name='delete_list_blogpost'),
     path('delete/<int:blogpost_id>/', views.delete_blogpost, name='delete_blogpost'),
-    path('list/', views.list_blogposts, name='list_blogposts'),
 ]

@@ -96,7 +96,6 @@ def delete_blogpost(request, blogpost_id):
 
 # List BlogPost
 def save_blogpost(request, blogpost_id=None):
-    print(f"I should see a pk here: {blogpost_id}")
     if request.method == 'POST':
         instance = BlogPost.objects.get(pk=blogpost_id) if blogpost_id else None
         form = BlogPostForm(request.POST, request.FILES, instance=instance)
