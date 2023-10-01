@@ -19,7 +19,7 @@
           <h5>Join Our Newsletter</h5>
           <p>GET 10% OFF when you sign up to our newsletter
           Plus stay up to date with new arrivals, offers events and lots more!</p>
-          <form action="" method="post" class="text-center text-lg-left my-2">
+          <form action="{% url 'newsletter' %}" method="post" class="text-center text-lg-left my-2">
               {% csrf_token %}
             <input type="email" name="email"placeholder="Your email address"><input type="submit" class="btn btn-sm rounded ml-2 " value="Subscribe">
           </form>
