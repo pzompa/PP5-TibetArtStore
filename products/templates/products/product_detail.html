@@ -19,7 +19,7 @@
         <!-- Product Image -->
         <div class="col-lg-6 col-md-12">
             <a href="{{ MEDIA_URL }}full/{{ product_image_name }}" data-lightbox="product-image">
-                <img src="{{ MEDIA_URL }}full/{{ product_image_name }}" alt="Product Image" class="img-fluid">
+                <img src="{{ MEDIA_URL }}full/{{ product_image_name }}" alt="Painting" class="img-fluid">
             </a>
             
         </div>
@@ -30,6 +30,16 @@
             <h3 class="lead mb-2 font-weight-bold">Price: USD$ {{ product.price }}</h3>
             <h4 class="lead mb-2 text-left font-weight-bold">SKU: {{ product.sku }}</h4>
             <br>
+            {% if request.user.is_superuser %}
+                <small class="ml-3">
+                    <i class="fas fa-edit mr-1"></i>
+                    <a href="{% url 'edit_product' product.id %}">Edit  </a>
+                </small>
+                <small class="ml-3">
+                    <i class="fas fa-trash mr-1"></i>
+                    <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                </small>
+            {% endif %}
             <p>{{ product.descriptionHTML|safe }}</p>
             <br>
             <p>{{ product.liquidHTML|safe }}</p>
