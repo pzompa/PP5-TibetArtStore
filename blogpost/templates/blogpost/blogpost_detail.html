@@ -29,6 +29,9 @@
                 <a href="{% url 'new_blogpost_comment' blogpost_id=article.pk %}">Comments ({{ article.comment_count }})</a>
             </small>
         </div>
+        <div class="text-center my-5">
+            <a href="{% url 'blogpost_list' %}" class="btn btn-sm">Back to Bloglist</a>
+        </div>
     </div>
 </div>
 {% endblock %}

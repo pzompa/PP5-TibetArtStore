@@ -7,10 +7,11 @@
 {% endblock %}
 
 {% block page_header %}
-<div >
-    <div>
-        <div >
-            <h1 class="text-center mx-5">Create Blog Post</h1>
+<div class="container header-container">
+    <div class="row">
+        <div class="col-12 text-center text-uppercase logo-font pb-2 my-5">
+            <div class="header-text">Product Management</div>
+            <div class="text-muted text-center mt-3">Add a Blogpost</div>
         </div>
     </div>
 </div>
@@ -18,13 +19,18 @@
 
 {% block content %}
 <div class="overlay"></div>
-<div>
-    <div class="col-md-6">
-        <form method="post" enctype="multipart/form-data" action="{% url 'save_new_blogpost' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-        </form>
-    </div>
+<div class="container p-3">
+    <div class="row">
+        <div class="col-12 mb-3">
+            <form method="post" enctype="multipart/form-data" action="{% url 'save_new_blogpost' %}" class="form mb-2">
+                {% csrf_token %}
+                {{ form | crispy }}
+
+                <div class="text-center">
+                    <a class="btn btn-outline-black rounded" href="{% url 'product_management' %}">Cancel</a>
+                    <button class="btn btn-black rounded" type="submit" >Add Blogpost</button>
+                </div>
+            </form>
+        </div>
 </div>
 {% endblock %}

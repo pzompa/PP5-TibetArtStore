@@ -18,9 +18,11 @@
       <tr>
         <th class="px-1">Delete</th>
         <th class="px-1">Edit</th>
+        <th class="px-3">Customer</th>
         <th class="px-3">Order Number</th>
         <th class="px-3">Date</th>
         <th class="px-3">Grand Total</th>
+        
       </tr>
     </thead>
     <tbody>
@@ -28,9 +30,11 @@
       <tr>
         <td style="text-align: center"><a href="{% url 'delete_order' order.id %}"><i class="fas fa-trash mr-1"></i></a></td>
         <td style="text-align: center"><a href="{% url 'delete_order' order.id %}"><i class="fas fa-edit mr-1"></i></a></td>
+        <td class="px-3">{{ order.full_name }}</td>
         <td class="px-3">{{ order.order_number }}</td>
         <td class="px-3">{{ order.date }}</td>
         <td class="px-3">{{ order.grand_total }}</td>
+       
       </tr>
       {% endfor %}
     </tbody>
