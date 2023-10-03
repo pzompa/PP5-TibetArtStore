@@ -15,19 +15,19 @@
    
 <div class="container p-3">
     <div class="row justify-content-center">
-        <div class="col-12 text-center">
+        <div class="col-12 text-center ">
             <h2 class="mb-3">Product Management</h2>
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-12 ">
+        <div class="col-12">
             <form enctype="multipart/form-data" method="POST" action="{% url 'create_product' %}" class="form">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <div class="text-center">
-                    <button class="btn btn-black rounded" type="submit">Create Product</button>
+                <div class="d-flex flex-column flex-md-row justify-content-center mt-2">
+                    <button class="btn btn-black rounded w-100 mb-2 mr-2 mr-md-2" type="submit">Create Product</button>
                
-                    <a href="{% url 'products_list' %}" class="btn btn-black">Edit/Delete</a>
+                    <a href="{% url 'products_list' %}" class="btn btn-black rounded w-100 mb-2 mr-2 mr-md-2">Edit/Delete</a>
                 </div>
             </form>
         </div>
@@ -41,31 +41,33 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="d-flex col-12 text-center col-md-6">
-            <!-- Create Blog -->
-            <form action="{% url 'create_blogpost' %}" method="POST" enctype="multipart/form-data" class="form mb-2">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <div class="text-center">
-                    <button class="btn btn-black rounded mb-4" type="submit">Create BlogPost</button>
-                </div>
-            </form>
-            <!-- Edit a Blog -->
-            <form action="{% url 'edit_list_blogpost' %}" method="POST" enctype="multipart/form-data" class="form mb-2">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <div class="text-center">
-                    <button class="btn btn-black rounded mb-4" type="submit">Edit BlogPost</button>
-                </div>
-            </form>
-            <!-- Delete a Blog-->
-            <form action="{% url 'delete_list_blogpost' %}" method="POST" enctype="multipart/form-data" class="form mb-2">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <div class="text-center">
-                    <button class="btn btn-black rounded mb-4" type="submit">Delete BlogPost</button>
-                </div>
-            </form>
+        <div class="col-12 col-md-8">
+            <div class="d-flex flex-column flex-md-row justify-content-center">
+                <!-- Create Blog -->
+                <form action="{% url 'create_blogpost' %}" method="POST" enctype="multipart/form-data" class="form mb-2">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="text-center mr-2">
+                        <button class="btn btn-black rounded w-100 w-md-auto" type="submit">Create Blog</button>
+                    </div>
+                </form>
+                <!-- Edit a Blog -->
+                <form action="{% url 'edit_list_blogpost' %}" method="POST" enctype="multipart/form-data" class="form mb-2">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="text-center mr-2">
+                        <button class="btn btn-black rounded w-100 w-md-auto" type="submit">Edit Blog</button>
+                    </div>
+                </form>
+                <!-- Delete a Blog-->
+                <form action="{% url 'delete_list_blogpost' %}" method="POST" enctype="multipart/form-data" class="form mb-2">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="text-center mr-2">
+                        <button class="btn btn-black rounded w-100 w-md-auto" type="submit">Delete Blog</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

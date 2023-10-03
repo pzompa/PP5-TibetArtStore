@@ -13,7 +13,6 @@
     </div>
 </div>
 {% endblock %}
-<div></div>
 {% block content %}
 <div class="overlay"></div>
 <!-- sorting functionality -->
@@ -35,37 +34,33 @@
         </div>
     </form>
 </div>
-    <div class="row mx-3">
-        {% for entry in products %}
-        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
-            <div class="card h-100 border-0">
-                <a href="{% url 'product_detail' entry.product.id %}">
-                    <img src="{{ MEDIA_URL }}small/{{ entry.image_name }}" alt="Product Image" width="300px" class="centered-image" onerror="this.onerror=null; this.src='{{ MEDIA_URL }}noimage.png';">
-                </a>
-                <div class="card-body pb-0">
-                    <p class="mb-0">{{ entry.product.title }}</p>
-                </div>
-                <div class="card-footer bg-white pt-0 border-0 text-left">
-                    <div class="row">
-                        <div class="col">
-                            <p class="lead mb-0 text-left font-weight-bold">USD$ {{ entry.product.price }}</p>
-                            {% if entry.product.productCategory %}
-                            <p class="small mt-1 mb-0">
-                                <a class="text-muted" 
-                                    href="{% url 'products' %}?category={{ entry.product.productCategory.id }}">
-                                    <i class="fas fa-tag mr-1"></i>Category: {{ entry.product.productCategory.name }}
-                                </a>
-                            </p>
-                            {% endif %}
-                            {% if product.rating %}
-                            <small class="text-muted"><i class="fas fa-star mr-1"></i>Comments (0) Likes (0) {{ product.rating }} /
-                                5</small>
-                            {% else %}
+<div class="row mx-3">
+    {% for entry in products %}
+    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
+        <div class="card h-100 border-0">
+            <a href="{% url 'product_detail' entry.product.id %}">
+                <img src="{{ MEDIA_URL }}small/{{ entry.image_name }}" alt="Product Image" width="300px" class="centered-image" onerror="this.onerror=null; this.src='{{ MEDIA_URL }}noimage.png';">
+            </a>
+            <div class="card-body pb-0">
+                <p class="mb-0">{{ entry.product.title }}</p>
+            </div>
+            <div class="card-footer bg-white pt-0 border-0 text-left">
+                <div class="row">
+                    <div class="col">
+                        <p class="lead mb-0 text-left font-weight-bold">USD$ {{ entry.product.price }}</p>
+                        {% if entry.product.productCategory %}
+                        <p class="small mt-1 mb-0">
+                            <a class="text-muted" 
+                                href="{% url 'products' %}?category={{ entry.product.productCategory.id }}">
+                                <i class="fas fa-tag mr-1"></i>Category: {{ entry.product.productCategory.name }}
+                            </a>
+                        </p>
+                        {% endif %}
+                        <div class="mb-3">
                             <small class="text-muted">
                                 <i class="fas fa-comment mr-1"></i>
                                 <a href="{% url 'enter_comment' entry.product.id %}">Comments ({{ entry.comment_count }})</a>
                             </small>
-                            {% endif %}
                             {% if request.user.is_superuser %}
                             <small class="ml-3">
                                 <i class="fas fa-edit mr-1"></i>
@@ -76,91 +71,92 @@
                                 <a class="text-danger" href="{% url 'delete_product' entry.product.id %}">Delete</a>
                             </small>
                             {% endif %}
-                            <div class="d-flex">
-                                <form method="POST" action="{% url 'add_to_cart' entry.product.id %}" style="display: inline;">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="product_id" value="{{ entry.product.id }}">
-                                    <input type="hidden" name="quantity" value="1">
-                                    <button type="submit" class="btn btn-primary btn-sm mr-2">Add to Cart</button>
-                                </form>
-                                {% is_favorited_by_user entry.product request.user as is_favorited %}
-                                <form method="POST" style="display: inline;">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="product_id" value="{{ entry.product.id }}">
-                                    {% if is_favorited %}
-                                        <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'remove_from_favorites' entry.product.id %}">Remove from Favorites</button>
-                                    {% else %}
-                                        <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'add_to_favorites' entry.product.id %}">Add to Favorites</button>
-                                    {% endif %}
-                                </form>
-                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <form method="POST" action="{% url 'add_to_cart' entry.product.id %}" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ entry.product.id }}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn btn-primary btn-sm mr-2">Add to Cart</button>
+                            </form>
+                            {% is_favorited_by_user entry.product request.user as is_favorited %}
+                            <form method="POST" style="display: inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ entry.product.id }}">
+                                {% if is_favorited %}
+                                    <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'remove_from_favorites' entry.product.id %}">Remove from Favorites</button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'add_to_favorites' entry.product.id %}">Add to Favorites</button>
+                                {% endif %}
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        {% if forloop.counter|divisibleby:1 %}
-        <div class="col-12 d-sm-none mb-5">
-            <hr>
-        </div>
-        {% endif %}
-        {% if forloop.counter|divisibleby:2 %}
-        <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-            <hr>
-        </div>
-        {% endif %}
-        {% if forloop.counter|divisibleby:3 %}
-        <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-            <hr>
-        </div>
-        {% endif %}
-        {% if forloop.counter|divisibleby:4 %}
-        <div class="col-12 d-none d-xl-block mb-5">
-            <hr>
-        </div>
-        {% endif %}
-        {% endfor %}
     </div>
-    <div class="pagination-container adjusted-pag">
-        <div class="pagination">
-            <span class="step-links">
-                {% if products.has_previous %}
-                    <a href="?page=1{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">First</a>
-                    <a href="?page={{ products.previous_page_number }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">Previous</a>
-                {% endif %}
-    
-                <!-- Display limited number of  pages -->
-                {% if products.number != 1 %}
-                    <a href="?page=1{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">1</a>
-                {% endif %}
-    
-                {% if products.number|add:"-2" > 1 %}
-                    <span>...</span>
-                {% endif %}
-    
-                {% if products.number|add:"-1" > 1 %}
-                    <a href="?page={{ products.number|add:"-1" }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">{{ products.number|add:"-1" }}</a>
-                {% endif %}
-    
-                <span class="current">{{ products.number }}</span>
-    
-                {% if products.number|add:"1" < products.paginator.num_pages %}
-                    <a href="?page={{ products.number|add:"1" }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">{{ products.number|add:"1" }}</a>
-                {% endif %}
-    
-                {% if products.number|add:"2" < products.paginator.num_pages %}
-                    <span>...</span>
-                {% endif %}
-    
-                {% if products.number != products.paginator.num_pages %}
-                    <a href="?page={{ products.paginator.num_pages }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">{{ products.paginator.num_pages }}</a>
-                {% endif %}
-    
-                {% if products.has_next %}
-                    <a href="?page={{ products.next_page_number }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">Next</a>
-                    <a href="?page={{ products.paginator.num_pages }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">Last</a>
-                {% endif %}
-            </span>
-        </div>
+    {% if forloop.counter|divisibleby:1 %}
+    <div class="col-12 d-sm-none mb-5">
+        <hr>
     </div>
-    {% endblock %}
+    {% endif %}
+    {% if forloop.counter|divisibleby:2 %}
+    <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+        <hr>
+    </div>
+    {% endif %}
+    {% if forloop.counter|divisibleby:3 %}
+    <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+        <hr>
+    </div>
+    {% endif %}
+    {% if forloop.counter|divisibleby:4 %}
+    <div class="col-12 d-none d-xl-block mb-5">
+        <hr>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+<div class="pagination-container adjusted-pag">
+    <div class="pagination">
+        <span class="step-links">
+            {% if products.has_previous %}
+                <a href="?page=1{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">First</a>
+                <a href="?page={{ products.previous_page_number }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">Previous</a>
+            {% endif %}
+
+            <!-- Display limited number of  pages -->
+            {% if products.number != 1 %}
+                <a href="?page=1{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">1</a>
+            {% endif %}
+
+            {% if products.number|add:"-2" > 1 %}
+                <span>...</span>
+            {% endif %}
+
+            {% if products.number|add:"-1" > 1 %}
+                <a href="?page={{ products.number|add:"-1" }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">{{ products.number|add:"-1" }}</a>
+            {% endif %}
+
+            <span class="current">{{ products.number }}</span>
+
+            {% if products.number|add:"1" < products.paginator.num_pages %}
+                <a href="?page={{ products.number|add:"1" }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">{{ products.number|add:"1" }}</a>
+            {% endif %}
+
+            {% if products.number|add:"2" < products.paginator.num_pages %}
+                <span>...</span>
+            {% endif %}
+
+            {% if products.number != products.paginator.num_pages %}
+                <a href="?page={{ products.paginator.num_pages }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">{{ products.paginator.num_pages }}</a>
+            {% endif %}
+
+            {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">Next</a>
+                <a href="?page={{ products.paginator.num_pages }}{% if category %}&category={{ category }}{% endif %}{% if sorting %}&sorting={{ sorting }}{% endif %}">Last</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}
