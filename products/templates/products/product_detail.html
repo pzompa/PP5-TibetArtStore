@@ -59,7 +59,7 @@
                         </a>
                     </div>
                     <!-- Add to Favorites Button -->
-                    <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
+                    <div class="col-12 mb-2 d-flex justify-content-center">
                         {% is_favorited_by_user product request.user as is_favorited %}
                         <form method="POST">
                             {% csrf_token %}
