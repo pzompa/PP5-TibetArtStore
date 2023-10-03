@@ -22,3 +22,7 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
     path('comment/', include('comment.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'tibet_art_store.views.handler404'
+handler500 = 'tibet_art_store.views.handler500'
+
