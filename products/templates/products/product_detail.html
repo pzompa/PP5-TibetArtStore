@@ -17,18 +17,18 @@
     <div class="row">
 
         <!-- Product Image -->
-        <div class="col-lg-6 col-md-12">
+        <div class="col-lg-6 col-md-12 mb-3">
             <a href="{{ MEDIA_URL }}full/{{ product_image_name }}" data-lightbox="product-image">
-                <img src="{{ MEDIA_URL }}full/{{ product_image_name }}" alt="Painting" class="img-fluid">
+                <img src="{{ MEDIA_URL }}full/{{ product_image_name }}" alt="Painting" class="img-fluid img-size">
             </a>
             
         </div>
 
         <!-- Product Details -->
-        <div class="col-lg-6 col-md-12">
-            <h2 class="mb-2">{{ product.title }}</h2>
-            <h3 class="lead mb-2 font-weight-bold">Price: USD$ {{ product.price }}</h3>
-            <h4 class="lead mb-2 text-left font-weight-bold">SKU: {{ product.sku }}</h4>
+        <div class="col-lg-6 col-md-12 text-center text-lg-left">
+            <h2 class="h4 mb-2">{{ product.title }}</h2>
+            <h3 class="h5 lead mb-2 font-weight-bold">Price: USD$ {{ product.price }}</h3>
+            <h4 class="h6 lead mb-2 font-weight-bold">SKU: {{ product.sku }}</h4>
             <br>
             {% if request.user.is_superuser %}
                 <small class="ml-3">
@@ -40,32 +40,34 @@
                     <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
                 </small>
             {% endif %}
-            <p>{{ product.descriptionHTML|safe }}</p>
+            <p class="lead">{{ product.descriptionHTML|safe }}</p>
             <br>
             <p>{{ product.liquidHTML|safe }}</p>
-            <div class="d-flex justify-content-center flex-wrap">
-                <div class="action-btn row w-100 my-3 mx-auto">
+            <div class="d-flex justify-content-center">
+                <div class="row w-100 my-3 mx-auto">
                     <!-- Add to Cart Button -->
-                        <div class="col-auto">
-                        <form class="d-inline-block me-2" action="{% url 'add_to_cart' product.id %}" method="POST">
+                    <div class="col-12 col-md-4 mb-2">
+                        <form action="{% url 'add_to_cart' product.id %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-sm rounded text">Add to Cart</button>
+                            <button type="submit" class="btn btn-sm rounded">Add to Cart</button>
                         </form>
                     </div>
-                    <div class="col-auto">
-                        <a href="{% url 'products_list' %}" class="d-inline-block btn btn-sm rounded">
+                     <!-- Continue Shopping Button -->
+                    <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
+                        <a href="{% url 'products_list' %}" class="btn btn-sm rounded">
                             <span class="text">Continue Shopping</span>
                         </a>
                     </div>
-                    <div class="col-auto mb-3">
+                    <!-- Add to Favorites Button -->
+                    <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
                         {% is_favorited_by_user product request.user as is_favorited %}
-                        <form style="display: inline;" method="POST">
+                        <form method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="product_id" value="{{ product.id }}">
                             {% if is_favorited %}
-                                <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'remove_from_favorites' product.id %}">Remove from Favorites</button>
+                                <button type="submit" class="btn btn-sm rounded" formaction="{% url 'remove_from_favorites' product.id %}">Remove from Favorites</button>
                             {% else %}
-                                <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'add_to_favorites' product.id %}">Add to Favorites</button>
+                                <button type="submit" class="btn btn-sm rounded" formaction="{% url 'add_to_favorites' product.id %}">Add to Favorites</button>
                             {% endif %}
                         </form>
                     </div>

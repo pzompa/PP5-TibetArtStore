@@ -1,8 +1,9 @@
 html {
     height: 100%;
+    
 }
+
 body {
-    /* background: url('/media/small/GT-CB-8_5-4.jpg'); */
     height: 100vh;
     width: 100%;
     background-size: cover;
@@ -12,17 +13,25 @@ body {
     min-height: 100%;
     margin: 0;
 }
-
 main {
-    flex-grow: 1; 
-    /* adjusted footer at bottom and at footer id also*/
+    flex-grow: 1;
     padding-bottom: 150px; 
-    /* height: 200%; footer showing in the middle of page and  pb change from 310 to 150*/
-    /*  */
+}
+.index-background {
+    background-image: url('https://pp5-tibetartstore.s3.amazonaws.com/media/home.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: rgba(255, 255, 255, 0.8);    
+    max-width: 100%;
 }
 .header-container {
     z-index: 10;
     position: relative;
+}
+.title-text {
+    padding-top: 100px;
+    background-color: rgba(255, 255, 255, 0.4);
 }
 .header-text {
     display: inline-block;
@@ -50,6 +59,7 @@ main {
 .main-logo-link img {
     height: 110px;
 }
+
 
 .overlay {
     height: 100%;
@@ -194,10 +204,6 @@ Bulma **** */
     height: 1.5rem;
     width: 1.5rem;
 }
-.logo-font {
-    text-transform: uppercase;
-    color: black;
-}
 
 /* Button smooth transition for hover effects */
 button,
@@ -226,7 +232,6 @@ button:hover,
     top: 72px;
     right: 15px;
     z-index: 99999999;
-    /* transition: transform 0.3s ease-in-out; */
 }
 
 .custom-toast {
@@ -255,8 +260,8 @@ button:hover,
 
 .table-bg {
     background-color:  #ede8dc;
-    /* box-shadow: 0px 4px 6px rgba(242, 166, 166, 0.1); */
 }
+
 .product-form {
     max-width: 600px;
     margin: 0 auto;
@@ -288,7 +293,6 @@ button:hover,
 }
 .adjusted-pag {
     color: #000;
-    /* margin-top: -60px; removed to show paginator*/
     margin-bottom: 20px;
 }
 
@@ -314,6 +318,7 @@ button:hover,
     margin-bottom: 20px;
     font-weight: 700;
     color: #343a40;
+    text-transform: uppercase;
 }
 
 .cart-items {
@@ -362,88 +367,133 @@ button:hover,
     align-items: center;
     justify-content: center;
     font-size: 16px;
-    color: #ffffff;
+    color: #ffff;
     border: none;
 }
 
 .checkout-icon {
     margin-left: 10px;
 }
- 
+
 /*--- Media Queries--- */
 
-/* xmall devices 355px and up */
-@media (min-width: 355px) {
-    body {
-        background-size: cover;
-        background-position: center top;
-        background-repeat: no-repeat;
-        background-color:  #ede8dc;;
+/* Extra Small Devices */
+@media (min-width: 1px) and (max-width: 355px) {
+    .img-size {
+        width: 80%;
+        height: auto;
     }
-    footer {
+    .main-log-link {
+        max-width: 80px;
+    }
+/*    
+    .img-fluid {
+        max-width: 10px;
+    } */
+/*       
+    .action-btn {
+        flex-direction: column;
+        font-size: 8rem;
+    }
+        */
+    /* .action-btn .col-auto {
+        margin-bottom: 5px; 
+    }
+     */
+    .btn {
         font-size: .8rem;
     }
-    footer ul {
-        list-style-type: none;
+
+    main{
+        padding-bottom: 100px;
+    }
+    #footer{
+        margin-top: -100px;
+    }
+
+    footer h5 {
+        font-size: 14px;
+    }
+    
+    footer p, footer li {
+        font-size: 12px;
     }
 }
+
+/* Small screen adjustments */
+@media (min-width: 355px) and (max-width: 576px) {
+    .img-size {
+        width: 100%;
+        height: auto;
+    }
    
-
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) { 
-    body {
-      background-size: contain;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-color:  #ede8dc;;
-    }
-    footer {
-        font-size: 1rem;
-    }
-    footer ul {
-        list-style-type: none;
-    }
-}
-  
-  /* Medium devices (tablets, 768px and up) */
-  @media (min-width: 768px) { 
-    body {
-      background-size: cover;
-      background-position: center top;
+    .table-responsive {
+        width: 100%;
     }
 
-  }
-  
-  /* Large devices (desktops, 992px and up) */
-  @media (min-width: 992px) { 
-    body {
-      background-size: cover;
-      background-position: center top;
+    
+    .action-btn {
+        flex-direction: column;
     }
-  }
-  
-  /* Extra large devices (large desktops, 1200px and up) */
-  @media (min-width: 1200px) { 
-    body {
-      background-size: cover;
-      background-position: center center;
+    
+    .action-btn .col-auto {
+        margin-bottom: 5px; 
     }
-  }
-
-@media (max-width: 576px) {
+    
+    .custom-text {
+        font-size: 24px;
+        margin-top: 250px;
+    }
+   
+    
+    footer h5 {
+        font-size: 14px;
+    }
+    
+    footer p, footer li {
+        font-size: 12px;
+    }
+    
     .custom-heading {
         font-size: 1rem;
     }
+    
+    .btn-responsive {
+        width: 100%;
+    }
 }
 
-@media (min-width: 577px) and (max-width: 768px) {
+/* Medium Devices - Small Tablets */
+@media (min-width: 577px) and (max-width: 767px) {
     .custom-heading {
         font-size: 1.5rem;
     }
-}
-/* 
-@media (min-width: 376px) and (max-width: 768px) {
-    .action-btn {
-        margin-top: 20px;
+    .home-text {
+        margin-top: 250px;
     }
-} */
+}
+
+/* Medium Devices - Larger Tablets and small desktops */
+@media (min-width: 768px) {
+    body {
+        background-size: cover;
+        background-position: center top;
+    }
+    .home-text {
+        margin-top: 250px;
+    }
+
+    footer h5 {
+        font-size: 15px;
+    }
+    
+    footer p, footer li {
+        font-size: 12px;
+    }
+    
+    .btn-responsive {
+        width: auto;
+    }
+}
+
+

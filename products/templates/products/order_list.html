@@ -29,7 +29,7 @@
       {% for order in orders %}
       <tr>
         <td style="text-align: center"><a href="{% url 'delete_order' order.id %}"><i class="fas fa-trash mr-1"></i></a></td>
-        <td style="text-align: center"><a href="{% url 'delete_order' order.id %}"><i class="fas fa-edit mr-1"></i></a></td>
+        <td style="text-align: center"></td>
         <td class="px-3">{{ order.full_name }}</td>
         <td class="px-3">{{ order.order_number }}</td>
         <td class="px-3">{{ order.date }}</td>
