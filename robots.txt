@@ -1,0 +1,4 @@
+user-agent: *
+Disallow: /accounts/
+Disallow: /cart/
+Sitemap: https://tibetartstore-0faa2ebe064c.herokuapp.com/sitemap.xml
