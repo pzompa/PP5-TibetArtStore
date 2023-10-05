@@ -25,4 +25,5 @@ urlpatterns = [
 
 handler404 = 'tibet_art_store.views.handler404'
 handler500 = 'tibet_art_store.views.handler500'
+handler403 = 'tibet_art_store.views.handler403'
 

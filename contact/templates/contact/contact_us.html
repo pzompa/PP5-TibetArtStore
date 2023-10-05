@@ -2,7 +2,7 @@
 {% load static %}
 {% load template_tag %}
 {% load crispy_forms_tags %}
-<!-- Load the crispy_forms_tags -->
+
 
 {% block extra_title %}Products{% endblock %}
 
@@ -24,7 +24,6 @@
             <form method="post" action="{% url 'contact_view' %}">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <!-- Use the |crispy filter to style the form -->
                 <button type="submit" class="btn btn-black mb-2">Submit</button>
             </form>
         </div>

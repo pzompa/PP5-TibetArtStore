@@ -7,11 +7,6 @@ from products.models import Product
 register = template.Library()
 
 @register.simple_tag
-# def is_favorited_by_user(product, user):
-#     if user.is_authenticated:
-#         return Favorite.objects.filter(product=product, user=user).exists()
-#     else:
-#         return False
 
 def is_favorited_by_user(product, user):
     if not product or not user:

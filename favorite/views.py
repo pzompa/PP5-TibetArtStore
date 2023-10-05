@@ -9,7 +9,6 @@ from django.urls import reverse
 
 
 # Product Detail page
-
 def add_to_favorites(request, product_id):
     if not request.user.is_authenticated:
         return redirect_to_login(next=reverse('product_detail', args=[product_id]))
@@ -20,8 +19,6 @@ def add_to_favorites(request, product_id):
     return redirect(reverse('product_detail', args=[product_id]))
  
 
-
-
 @login_required
 def remove_from_favorites(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -31,7 +28,6 @@ def remove_from_favorites(request, product_id):
 
 
 # Product List page
-
 def add_to_favorites_product_list(request, product_id):
     if not request.user.is_authenticated:
         return redirect_to_login(next=reverse('product_detail', args=[product_id]))

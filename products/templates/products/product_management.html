@@ -79,7 +79,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="d-flex col-12 text-center col-md-6">
-            <!-- Create Blog -->
+            <!-- Order List -->
             <form action="{% url 'order_list' %}" method="POST" enctype="multipart/form-data" class="form mb-2">
                 {% csrf_token %}
                 {{ form|crispy }}

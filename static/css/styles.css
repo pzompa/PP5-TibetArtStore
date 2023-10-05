@@ -13,10 +13,12 @@ body {
     min-height: 100%;
     margin: 0;
 }
+
 main {
     flex-grow: 1;
     padding-bottom: 150px; 
 }
+
 .index-background {
     background-image: url('https://pp5-tibetartstore.s3.amazonaws.com/media/home.jpeg');
     background-size: cover;
@@ -25,22 +27,25 @@ main {
     background-color: rgba(255, 255, 255, 0.8);    
     max-width: 100%;
 }
+
 .header-container {
     z-index: 10;
     position: relative;
 }
+
 .title-text {
     padding-top: 100px;
     background-color: rgba(255, 255, 255, 0.4);
 }
+
 .header-text {
     display: inline-block;
     position: relative;
 }
+
 .text-info {
     color: #000!important;
 }
-
 .header-text::after {
     content: "";
     position: absolute;
@@ -62,7 +67,6 @@ main {
 .main-logo-link img {
     height: 110px;
 }
-
 
 .overlay {
     height: 100%;
@@ -108,11 +112,13 @@ main {
 .quick-link {
     color: black;
 }
+
 footer {
     min-height: 60px;
     flex-shrink: 0;
 
 }
+
 footer p {
     margin: 0; 
     padding: 5px;
@@ -121,7 +127,6 @@ footer p {
 footer a {
     margin: 0 5px;
 }
-
 
 #footer {
     display: flex;
@@ -142,6 +147,7 @@ footer a {
     height: auto;
     margin: 5px 5px 5px;
 }
+
 .social-links {
     display: flex;
     justify-content: center;
@@ -149,8 +155,8 @@ footer a {
     padding: 10px;
     margin-top: 25px;
 }
-/*--- Forms--- */
 
+/*--- Forms--- */
 .form {
     margin: 3% auto;
     width: 60%;
@@ -173,7 +179,6 @@ footer a {
 }
 
 /*--- Info banner--- */
-
 .delivery-banner {
     background-color: #b4963c;
     padding: 0;
@@ -194,9 +199,9 @@ input.form-control:hover,
 input.form-control:focus {
     background-color: rgba(155, 129, 129, 0.2);
 }
+
 /* **** Icon styles from Code Institute's 'Boutique Ado' code-along project/
 Bulma **** */
-
 .icon {
     align-items: center;
     display: inline-flex;
@@ -213,6 +218,7 @@ button,
     border: none;
     transition: all 0.3s ease-in-out;
 }
+
 .update-link,
 .remove-item {
     cursor: pointer;
@@ -223,6 +229,7 @@ button:hover,
     background-color: rgb(81, 79, 79);
     color: white;
 }
+
 .message-container-parent {
     position: relative;
 }
@@ -285,7 +292,6 @@ button:hover,
 }
 
 /*-----pagination---*/
-
 .pagination-container {
     display: flex;
     justify-content: center; 
@@ -308,11 +314,13 @@ button:hover,
     font-family: 'Arial, sans-serif';
     max-width: 350px;
 }
+
 .bag-notification-wrapper {
     height: 250px;
     overflow-x: hidden;
     overflow-y: auto;
 }
+
 .logo-font {
     font-size: 18px;
     margin-bottom: 20px;
@@ -376,7 +384,6 @@ button:hover,
 }
 
 /*--- Media Queries--- */
-
 /* Extra Small Devices */
 @media (min-width: 1px) and (max-width: 355px) {
     .img-size {
@@ -432,7 +439,6 @@ button:hover,
         margin-top: 100px;
     }
    
-    
     footer h5 {
         font-size: 14px;
     }

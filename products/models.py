@@ -23,8 +23,8 @@ class Product(models.Model):
     description = models.TextField()
     liquidHTML = models.TextField(blank=True)
     liquid = models.TextField(blank=True)
-    productImageLink = models.TextField(blank=True, null=True)  # Primary image link
-    productImageLinks = models.TextField(blank=True, null=True)  # Serialized list for additional images
+    productImageLink = models.TextField(blank=True, null=True)
+    productImageLinks = models.TextField(blank=True, null=True)
     productKey = models.CharField(max_length=250, blank=True, null=True)
     productCategory = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products")
     favorited_by = models.ManyToManyField(User, related_name='favorite_products', blank=True)
