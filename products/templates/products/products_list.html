@@ -106,9 +106,9 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="product_id" value="{{ entry.product.id }}">
                                     {% if is_favorited %}
-                                        <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'remove_from_favorites_product_list' entry.product.id %}">Remove from Favorites</button>
+                                        <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'remove_from_favorites_product_list' entry.product.id %}">Remove Favorite</button>
                                     {% else %}
-                                        <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'add_to_favorites_product_list' entry.product.id %}">Add to Favorites</button>
+                                        <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'add_to_favorites_product_list' entry.product.id %}">Add to Favorite</button>
                                     {% endif %}
                                 </form>
                         </div>

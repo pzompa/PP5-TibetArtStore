@@ -491,6 +491,27 @@ button:hover,
     .btn-responsive {
         width: auto;
     }
+
+    #action_btns .btn{
+        width: 165px;
+    }
 }
 
+@media (min-width: 992px) {
+    .btn-responsive {
+        width: auto;
+    }
 
+    footer h5 {
+        font-size: 18px;
+    }
+    
+    footer p, footer li {
+        font-size: 15px;
+    }
+
+    #action_btns .btn{
+        width: 120px;
+        height: 50px;
+    }
+}
