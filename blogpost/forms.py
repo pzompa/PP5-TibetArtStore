@@ -13,8 +13,6 @@ class BlogPostForm(forms.ModelForm):
             'active',
             'article_image_name'
         ]
-
-        # Optionally, you can add widgets for specific fields if you want custom styling or attributes:
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'writer_name': forms.TextInput(attrs={'class': 'form-control'}),

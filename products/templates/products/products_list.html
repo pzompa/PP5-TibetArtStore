@@ -4,11 +4,7 @@
 {% load template_tag %}
 
 {% block extra_title %}Products{% endblock %}
-<!-- <div class="container header-container">
-    <div class="row header-text ">
-        <div class="linebreak col-12 text-center text-uppercase logo-font my-3">Our Products</div>
-    </div>
-</div> -->
+
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -106,15 +102,15 @@
                                 <button type="submit" class="btn btn-primary btn-sm mr-2">Add to Cart</button>
                             </form>
                             {% is_favorited_by_user entry.product request.user as is_favorited %}
-                            <form method="POST" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="product_id" value="{{ entry.product.id }}">
-                                {% if is_favorited %}
-                                    <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'remove_from_favorites_product_list' entry.product.id %}">Remove from Favorites</button>
-                                {% else %}
-                                    <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'add_to_favorites_product_list' entry.product.id %}">Add to Favorites</button>
-                                {% endif %}
-                            </form>
+                                <form method="POST" style="display: inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_id" value="{{ entry.product.id }}">
+                                    {% if is_favorited %}
+                                        <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'remove_from_favorites_product_list' entry.product.id %}">Remove from Favorites</button>
+                                    {% else %}
+                                        <button type="submit" class="btn btn-secondary btn-sm" formaction="{% url 'add_to_favorites_product_list' entry.product.id %}">Add to Favorites</button>
+                                    {% endif %}
+                                </form>
                         </div>
                     </div>
                 </div>

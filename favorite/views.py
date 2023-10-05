@@ -4,10 +4,9 @@ from products.models import Product
 from django.contrib import messages
 from favorite.models import Favorite
 from django.contrib.auth.views import redirect_to_login
-# from django.contrib.auth.models import User
-# from django.http import HttpResponseRedirect
+
 from django.urls import reverse
-# from products.urls import product_detail
+
 
 # Product Detail page
 

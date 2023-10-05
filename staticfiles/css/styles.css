@@ -212,6 +212,9 @@ button,
     cursor: pointer;
 }
 
+.home-text {
+    background-color: rgba(255, 255, 255, 0.6);
+}
 button:hover,
 .btn:hover {
     background-color: rgb(81, 79, 79);
@@ -372,8 +375,8 @@ button:hover,
  
 /*--- Media Queries--- */
 
-/* xmall devices 355px and up */
-@media (min-width: 355px) {
+/* xmall devices 300px and up */
+@media (min-width: 300px) {
     body {
         background-size: cover;
         background-position: center top;
@@ -386,6 +389,16 @@ button:hover,
     footer ul {
         list-style-type: none;
     }
+    .main-logo-link {
+        height: 60px; /* could be img:60px*/
+    }
+    .navbar {
+        font-size: 12px;
+    }
+    .shop-now-button {
+        font-size: 13px;
+    }
+    
 }
    
 
@@ -441,9 +454,3 @@ button:hover,
         font-size: 1.5rem;
     }
 }
-/* 
-@media (min-width: 376px) and (max-width: 768px) {
-    .action-btn {
-        margin-top: 20px;
-    }
-} */

@@ -40,10 +40,10 @@
         <div class="col-12">
             <div class="comment-detail-card">
                 <h5 class="comment-detail-background m-3">Comments: {{ comments.count }}</h5>
-                <button class="btn btn-outline-dark m-2" type="button" data-bs-toggle="collapse" data-bs-target="#commentsCollapse" aria-expanded="false" aria-controls="commentsCollapse">
+                <button class="btn btn-outline-dark mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#commentsCollapse" aria-expanded="false" aria-controls="commentsCollapse">
                     Show/Hide Comments
                 </button>
-                <a href="{% url 'products_list' %}" class="btn btn-black">To product List</a>
+                <a href="{% url 'products_list' %}" class="btn btn-black mb-3">Product List</a>
                 
                 <div class="collapse" id="commentsCollapse">
                     <div class="comment-detail-card">
@@ -64,7 +64,7 @@
                             <form method="post" action="{% if edit_mode %}{% url 'save_comment_edit' product.id comment.id %}{% else %}{% url 'save_comment_new' product.id %}{% endif %}">
                                 {% csrf_token %}
                                 {{ form|crispy }}
-                                <input type="submit" value="Submit Comment" class="btn btn-primary mt-2">
+                                <input type="submit" value="Submit Comment" class="btn btn-primary my-3">
                             </form>
                         </div>
                     </div>
