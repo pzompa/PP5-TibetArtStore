@@ -1,21 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
 from products.models import Product
 from django.contrib import messages
 from favorite.models import Favorite
-from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.contrib.auth.views import redirect_to_login
+# from django.contrib.auth.models import User
+# from django.http import HttpResponseRedirect
 from django.urls import reverse
 # from products.urls import product_detail
 
 # Product Detail page
-@login_required
+
 def add_to_favorites(request, product_id):
+    if not request.user.is_authenticated:
+        return redirect_to_login(next=reverse('product_detail', args=[product_id]))
+
     product = get_object_or_404(Product, id=product_id)
     Favorite.objects.get_or_create(user=request.user, product=product)
     messages.success(request, f'Added to Favorite')
     return redirect(reverse('product_detail', args=[product_id]))
+ 
+
 
 
 @login_required
@@ -27,8 +32,11 @@ def remove_from_favorites(request, product_id):
 
 
 # Product List page
-@login_required
+
 def add_to_favorites_product_list(request, product_id):
+    if not request.user.is_authenticated:
+        return redirect_to_login(next=reverse('product_detail', args=[product_id]))
+
     product = get_object_or_404(Product, id=product_id)
     Favorite.objects.get_or_create(user=request.user, product=product)
     messages.success(request, f'Added to Favorite')

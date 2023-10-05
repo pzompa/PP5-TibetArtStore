@@ -59,8 +59,9 @@
                         </a>
                     </div>
                     <!-- Add to Favorites Button -->
-                    <div class="col-12 mb-2 d-flex justify-content-center">
+                    <div class="col-12 col-md-4 mb-2 d-flex justify-content-center">
                         {% is_favorited_by_user product request.user as is_favorited %}
+                        {% if request.user.is_authenticated %}
                         <form method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="product_id" value="{{ product.id }}">
@@ -70,6 +71,9 @@
                                 <button type="submit" class="btn btn-sm rounded" formaction="{% url 'add_to_favorites' product.id %}">Add to Favorites</button>
                             {% endif %}
                         </form>
+                    {% else %}
+                        <a href="{% url 'add_to_favorites' product.id %}" class="btn btn-sm rounded">Add to Favorites</a>
+                    {% endif %}
                     </div>
                 </div>
             </div>
