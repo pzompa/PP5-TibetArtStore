@@ -57,9 +57,8 @@
         <div class="card h-100 border-0">
             <a href="{% url 'product_detail' entry.product.id %}">
                 <img src="{{ MEDIA_URL }}small/{{ entry.image_name }}" 
-                    alt="Product Image" width="300px"
-                    
-                    class="centered-image" 
+                    alt="Product Image" width="300px"                    
+                    class="centered-image"
                     onerror="this.onerror=null; this.src='{{ MEDIA_URL }}noimage.png';">
             </a>
             <div class="card-body pb-0">

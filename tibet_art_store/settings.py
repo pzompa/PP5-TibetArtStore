@@ -33,7 +33,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'tibetartstore-0faa2ebe064c.herokuapp.com',    
-    '9000-pzompa-pp5tibetartstore-gplv5kfei63.ws-eu105.gitpod.io'
+    '9000-pzompa-pp5tibetartstore-gplv5kfei63.ws-eu105.gitpod.io',
+    '8000-pzompa-pp5tibetartstore-gplv5kfei63.ws-eu105.gitpod.io'
 ]
 
 

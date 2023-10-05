@@ -7,13 +7,13 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="toast-body bg-white ml-2">
+    <div class="toast-body bg-white mx-2">
         <div class="row">
         {{ message }} 
         </div>       
     </div>
 
-    {% if grand_total and not on_profile_page %}
+    {% if grand_total and not on_profile_page and "True" in message.tags %} 
     <div class="cart-summary bg-white text-black py-2">
         <h2 class="logo-font">Your Cart:</h2>
         <div class="bag-notification-wrapper">

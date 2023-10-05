@@ -24,7 +24,7 @@ def remove_from_favorites(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     Favorite.objects.filter(user=request.user, product=product).delete()
     messages.success(request, f'Removed from Favorite')
-    return redirect(reverse('product_detail', args=[product_id]))
+    return redirect(reverse('product_detail', args=[product_id]))    
 
 
 # Product List page
