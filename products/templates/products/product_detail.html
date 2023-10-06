@@ -30,14 +30,14 @@
             <h4 class="h6 lead mb-2 font-weight-bold">SKU: {{ product.sku }}</h4>
             <br>
             {% if request.user.is_superuser %}
-                <small class="ml-3">
+                <strong class="ml-3">
                     <i class="fas fa-edit mr-1"></i>
-                    <a href="{% url 'edit_product' product.id %}">Edit  </a>
-                </small>
-                <small class="ml-3">
+                    <a href="{% url 'edit_product' product.id %}" style="color: darkblue;">Edit  </a>
+                </strong>
+                <strong class="ml-3">
                     <i class="fas fa-trash mr-1"></i>
                     <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
-                </small>
+                </strong>
             {% endif %}
             {{ product.descriptionHTML|safe }}
             {{ product.liquidHTML|safe }}

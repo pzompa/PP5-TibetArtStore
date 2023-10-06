@@ -7,7 +7,7 @@
 <div class="container header-container">
     <div class="row">
         <div class="col-12 text-center text-uppercase logo-font pb-2 my-5">
-            <div class="header-text">Blog</div>
+            <h1 class="header-text">Blog</h1>
         </div>
     </div>
 </div>
@@ -28,11 +28,13 @@
                         <p class="mb-1">By: <span class="font-weight-bold">{{ article.writer_name }}</span></p>
                         <p class="mb-1">Published on: <span class="font-italic">{{ article.published_date }}</span></p>
                         {{ article.article_text_short|safe }}
-                        <a href="{% url 'blogpost_detail' pk=article.pk %}">...continue reading</a>
-                        <small class="text-muted">
+                        <strong>                        
+                            <a href="{% url 'blogpost_detail' pk=article.pk %}" style="color: darkblue;">...continue reading</a>
+                        </strong>
+                        <strong class="text-muted">
                             <i class="fas fa-comment mr-1"></i>
-                            <a href="{% url 'new_blogpost_comment' blogpost_id=article.pk %}">Comments ({{ article.comment_count }})</a>
-                        </small>
+                            <a href="{% url 'new_blogpost_comment' blogpost_id=article.pk %}" style="color: darkblue;">Comments ({{ article.comment_count }})</a>
+                        </strong>
                     </li>
                 
                 {% endfor %}

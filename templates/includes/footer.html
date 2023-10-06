@@ -20,11 +20,12 @@
           <h5>Join Our Newsletter</h5>
           <p>GET 10% OFF when you sign up to our newsletter!</p>
           <form action="{% url 'newsletter' %}" method="post" class="text-center text-lg-left my-2">
-              {% csrf_token %}
-            <input type="email" name="email" placeholder="Your email address"><input type="submit" class="btn btn-sm rounded ml-2 my-2 " value="Subscribe">
+            {% csrf_token %}
+            <label for="z" class="d-none visually-hidden">sort by</label>
+            <input type="email" id="z" name="email" placeholder="Your email address"><input type="submit" class="btn btn-sm rounded ml-2 my-2 " value="Subscribe">
           </form>
           <p>Plus stay up to date with new arrivals, offers events and lots more!</p>
-          <a href="https://www.facebook.com/profile.php?id=61551754485242" target="_blank"><i class="fab fa-facebook-square"></i> Follow us on Facebook!</a>
+          <strong><a href="https://www.facebook.com/profile.php?id=61551754485242" target="_blank" style="color: black;"><i class="fab fa-facebook-square"></i> Follow us on Facebook!</a></strong>
         </div>
 
         <div class="col-lg-4 col-md-6">

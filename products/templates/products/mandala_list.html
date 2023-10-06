@@ -8,7 +8,7 @@
 <div class="container header-container">
     <div class="row">
         <div class="col-12 text-center logo-font pb-2 my-5">
-            <div class="header-text">Mandalas</div>
+            <h1 class="header-text">Mandalas</h1>
         </div>
     </div>
 </div>
@@ -21,7 +21,8 @@
         <div class="row justify-content-left mx-1 mb-3">
             <div class="col-12 col-md-3 col-lg-3 py-1 pr-1">
                 <div class="sort-select-wrapper d-flex align-items-center">
-                    <select name="sorting" class="custom-select-md p-1 custom-select-sm rounded-2">
+                    <label for="m1" class="d-none visually-hidden">sort by</label>
+                    <select name="sorting" id="m1" class="custom-select-md p-1 custom-select-sm rounded-2">
                         <option value="" disabled selected>Sort by</option>
                         <option value="name_asc" {% if sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
                         <option value="name_desc" {% if sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
@@ -39,7 +40,7 @@
     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
         <div class="card h-100 border-0">
             <a href="{% url 'product_detail' entry.product.id %}">
-                <img src="{{ MEDIA_URL }}small/{{ entry.image_name }}" alt="Product Image" width="300" class="centered-image" onerror="this.onerror=null; this.src='{{ MEDIA_URL }}noimage.png';">
+                <img src="{{ MEDIA_URL }}small/{{ entry.image_name }}" alt="Product: {{ entry.product.sku }}" width="300" class="centered-image" onerror="this.onerror=null; this.src='{{ MEDIA_URL }}noimage.png';">
             </a>
             <div class="card-body pb-0">
                 <p class="mb-0">{{ entry.product.title }}</p>
@@ -47,7 +48,7 @@
             <div class="card-footer bg-white pt-0 border-0 text-left">
                 <div class="row">
                     <div class="col">
-                        <p class="lead mb-0 text-left font-weight-bold">USD$ {{ entry.product.price }}</p>
+                        <h4 class="lead mb-0 text-left font-weight-bold">USD$ {{ entry.product.price }}</h4>
                         {% if entry.product.productCategory %}
                         <p class="small mt-1 mb-0">
                             <a class="text-muted" 
@@ -57,20 +58,20 @@
                         </p>
                         {% endif %}
                         <div class="mb-3">
-                            <small class="text-muted">
+                            <strong class="text-muted">
                                 <i class="fas fa-comment mr-1"></i>
-                                <a href="{% url 'enter_comment' entry.product.id %}">Comments ({{ entry.comment_count }})</a>
-                            </small>
+                                <a href="{% url 'enter_comment' entry.product.id %}" style="color: darkblue;">Comments ({{ entry.comment_count }})</a>
+                            </strong>
         
                             {% if request.user.is_superuser %}
-                            <small class="ml-3">
+                            <strong class="ml-3">
                                 <i class="fas fa-edit mr-1"></i>
-                                <a href="{% url 'edit_product' entry.product.id %}">Edit  </a>
-                            </small>
-                            <small class="ml-3">
+                                <a href="{% url 'edit_product' entry.product.id %}"  style="color: darkblue;">Edit  </a>
+                            </strong>
+                            <strong class="ml-3">
                                 <i class="fas fa-trash mr-1"></i>
                                 <a class="text-danger" href="{% url 'delete_product' entry.product.id %}">Delete</a>
-                            </small>
+                            </strong>
                             {% endif %}
                         </div>
                         <div class="d-flex">

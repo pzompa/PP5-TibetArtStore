@@ -63,16 +63,16 @@
             </div>
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-flex">
                 <form method="GET" action="/search/">
+                    <label class="d-none visually-hidden" for="q">Search</label>
                     <div class="input-group w-100">
-                        <input type="text" class="form-control border border-black" name="q" placeholder="Search our store">
-
+                        <input type="text" class="form-control border border-black" id="q" name="q" placeholder="Search our store">
                         <div class="input-group-append">
                             <button class="form-control btn btn-dark" type="submit">
                                 <span class="icon">
-                                    <i class="fas fa-search"></i>
+                                    <i class="fas fa-search" aria-hidden="true"></i>
                                 </span>
+                                <span class="visually-hidden">Search</span>
                             </button>
-
                         </div>
                     </div>
                 </form>
@@ -106,7 +106,7 @@
                     <li class="list-inline-item">
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
                             href="{% url 'view_cart' %}">
-                            <div class="text-center">
+                            <div class="text-center text-black">
                                 <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                                 <p class="my-0">
                                     {% if grand_total %}
@@ -135,7 +135,9 @@
     
         <div class="row text-center">
             <div class="delivery-banner col">
-                <p class="text-white my-1"> Free delivery on orders over ${{ free_delivery_threshold }}!</p>
+                <strong>
+                    <p class="text-black my-1"> Free delivery on orders over ${{ free_delivery_threshold }}!</p>
+                </strong>
             </div>
         </div>
     </header>

@@ -10,7 +10,7 @@
 <div class="container header-container">
     <div class="row">
         <div class="col-12 text-center text-uppercase logo-font my-5">
-            <div class="header-text">My Favorite List</div>
+            <h1 class="header-text">My Favorite List</h1>
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-1">
         <div class="card h-100 border-0">
             <a href="{% url 'product_detail' product.id %}">
-                <img src="{{ MEDIA_URL }}{{ product.productImageNameSmall }}" alt="Product Image" width="300" class="centered-image" 
+                <img src="{{ MEDIA_URL }}{{ product.productImageNameSmall }}" alt="Product: {{ product.sku }}" width="300" class="centered-image" 
                 onerror="this.onerror=null; this.src='{{ MEDIA_URL }}noimage.png';">
             </a>
             <div class="card-body pb-0">
@@ -32,7 +32,7 @@
             <div class="card-footer bg-white pt-0 border-0 text-left">
                 <div class="row">
                     <div class="col">
-                        <p class="lead mb-0 text-left font-weight-bold">USD$ {{ product.price }}</p>
+                        <h4 class="lead mb-0 text-left font-weight-bold">USD$ {{ product.price }}</h4>
                         {% if product.productCategory %}
                         <p class="small mt-1 mb-0">
                             <a class="text-muted" 

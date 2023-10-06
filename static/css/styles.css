@@ -19,6 +19,10 @@ main {
     padding-bottom: 150px; 
 }
 
+.visually-hidden {
+    display: none!important;
+}
+ 
 .index-background {
     background-image: url('https://pp5-tibetartstore.s3.amazonaws.com/media/home.jpeg');
     background-size: cover;
@@ -44,7 +48,7 @@ main {
 }
 
 .text-info {
-    color: #000!important;
+    color: black!important;
 }
 .header-text::after {
     content: "";
@@ -88,6 +92,8 @@ main {
     max-width: 100%;
     height: auto;
 }
+
+
 
 .card-padding {
     padding: 0 10px;
