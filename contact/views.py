@@ -14,6 +14,7 @@ def contact_us(request):
 
 
 def contact_view(request):
+    
     if request.method == "POST":
         form = ContactForm(request.POST, user=request.user)
         if form.is_valid():

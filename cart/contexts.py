@@ -3,11 +3,12 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product
 
+
 def cart_contents(request):
-    """ 
-    Permits other apps to access cart contents 
     """
-    
+    Permits other apps to access cart contents
+    """
+
     cart_items = []
     total = 0
     item_count = 0
@@ -23,7 +24,6 @@ def cart_contents(request):
             'product': product,
         })
 
-
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
@@ -34,7 +34,7 @@ def cart_contents(request):
     grand_total = delivery + total
 
     context = {
-        'cart_items' : cart_items,
+        'cart_items': cart_items,
         'total': total,
         'item_count': item_count,
         'delivery': delivery,

@@ -1,4 +1,7 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render, redirect, reverse,
+    get_object_or_404, HttpResponse
+)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -12,6 +15,7 @@ from profiles.forms import UserProfileForm
 from django.template.loader import render_to_string
 import stripe
 import json
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -28,12 +32,17 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, 'Sorry, your payment cannot be processed right now.Please try again later.')
+        messages.error(
+            request,
+            'Sorry, your payment cannot be processed right now.'
+            'Please try again later.')
         return HttpResponse(content=e, status=400)
+
 
 def checkout(request):
     """
-    Handle the checkout process including the form submission and Stripe payment intent creation.
+    Handle the checkout process including the form submission
+    and Stripe payment intent creation.
     """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -69,15 +78,17 @@ def checkout(request):
                     )
                     order_line_item.save()
                 except Product.DoesNotExist:
-                    messages.error(request, (
-                        " One of the products in your cart wasn't found in our database."
-                        "Please call us for assistance!")
+                    messages.error(
+                        request, (
+                            " One of the products in your cart"
+                            "wasn't found in our database."
+                            "Please call us for assistance!"
+                        )
                     )
                     order.delete()
                     return redirect(reverse('view_cart'))
 
             order.update_total()
-
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(
@@ -85,7 +96,7 @@ def checkout(request):
         else:
             messages.error(request, 'There was an error with your form. \
                 Please check your information.')
-            
+
     else:
 
         cart = request.session.get('cart', {})
@@ -102,7 +113,7 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-        
+
         # Prefills the Profile form with saved default info#
         if request.user.is_authenticated:
             try:
@@ -122,9 +133,13 @@ def checkout(request):
                 order_form = OrderForm()
         else:
             order_form = OrderForm()
-            
+
     if not stripe_public_key:
-        messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment')
+        messages.warning(
+            request,
+            'Stripe public key is missing.'
+            'Did you forget to set it in your environment'
+        )
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
@@ -133,6 +148,7 @@ def checkout(request):
     }
     return render(request, template, context)
 
+
 def checkout_success(request, order_number):
     """
     Handle successful checkout process
@@ -140,7 +156,6 @@ def checkout_success(request, order_number):
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
-    
 
     if request.user.is_authenticated:
         # Get user profile and update with order details
@@ -151,20 +166,31 @@ def checkout_success(request, order_number):
         if save_info:
             # Update user profile defaults with order details
             profile_data = {
-            'default_phone_number': order.phone_number,
-            'default_country': order.country,
-            'default_postcode': order.postcode,
-            'default_town_or_city': order.town_or_city,
-            'default_street_address1':order.street_address1,
-            'default_street_address2':order.street_address2,
-            'default_county': order.county,
+                'default_phone_number': order.phone_number,
+                'default_country': order.country,
+                'default_postcode': order.postcode,
+                'default_town_or_city': order.town_or_city,
+                'default_street_address1': order.street_address1,
+                'default_street_address2': order.street_address2,
+                'default_county': order.county,
             }
             user_profile_form = UserProfileForm(profile_data, instance=profile)
             if user_profile_form.is_valid():
                 user_profile_form.save()
-            email_content = render_to_string('checkout/confirmation_email.html', {'order': order})
-            send_mail('Order Confirmation','','info@tibetartberlin.com',[order.email],html_message=email_content)
-        messages.success(request, f'Order successfully processed!\n A confirmation email will be sent to {order.email}.')
+            email_content = render_to_string(
+                'checkout/confirmation_email.html',
+                {'order': order})
+            send_mail(
+                'Order Confirmation',
+                '',
+                'info@tibetartberlin.com',
+                [order.email],
+                html_message=email_content)
+        messages.success(
+            request,
+            f'Order successfully processed!\n'
+            ' A confirmation email will be sent to {order.email}.'
+        )
 
     if 'cart' in request.session:
         del request.session['cart']
