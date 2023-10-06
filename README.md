@@ -56,7 +56,6 @@
    21. [Error Pages](#404-error-page-2)
           1. [500 error Page]()
           2. [404 error Page](#404-error-page-2)
-          3. [500 error Page]()
    22. [Toast Messages](#toas)
 10. [Deployment](#deployment-1)
     1. [Creating a Database](#creating-a-database)
@@ -70,10 +69,7 @@
 
     6. [Fork Project](#fork-project)
     7. [Credits](#credits)
-  []()
-  []()
-  []()
-  []()
+ 
 
 
 
@@ -680,10 +676,29 @@ A user-friendly search feature for quick and efficient product searches within t
 #### 404 Error Page
 <img src="docs/readme-img/website-img/404 page.png" alt="404 error Page" width="75%"/>
 
+## Bugs
+1. Unexpected Cart content behavior
+- When a user favorites/unfavorites a product , a successful addition/removal message along **with the content of the cart** was shown. 
+This could be highly confusing to the customer.
+
+- After researching and I went back to the walkthrough project videos, since I remembered that Boutique Ado walkthrough had a similar issue. I fixed this by adding this code in the toast.success.html.
+
+ ``` {% if grand_total and not on_profile_page and "True" in message.tags %}```
+
+2. Screen freeze issues
+-  If an unauthenticated user tries to favorite a product, he is prompted to log in or register to do the action as intented.
+-  But as soon as he logs in, 2 success messages are displayed for login success and favorite success, which freezes the screen.
+-  I fixed this by changing the authentication logic by making it more explicit inside the view.
+since @login required decorator seems to behave unexpectly this time.
+<img src="docs/readme-img/Bugs2.png" alt="Code snippet of bugs" width="75%"/>
+
+
+
 ## Deployment
 
 ### Creating a Database
 - A Postgres database was set up on ElephantSQL website
+
 - Navigate to the dashboard and click on ‘Create New Instance’ button
 - Name your database and select Tiny Turtle payment plan.
 - Then click on ‘Select Region.’
@@ -697,6 +712,7 @@ The site was deployed early on in the development phase  to Heroku.
 The steps to deploy are as follows:
 
 - Navigate to heroku and create an account
+
 - Click the new button in the top right corner
 - Select create new app
 - Enter your new app name
@@ -718,6 +734,7 @@ The steps to deploy are as follows:
 ### Stripe
 
 - Open a Stripe Account
+
 - Log in and click on Developers
 - Navigate to API Keys
 - Copy the publishable and secret keys
@@ -759,22 +776,24 @@ The steps to deploy are as follows:
 - Select 'Create new fork' from the drop-down menu.
 - A copy of the repository is now created in your GitHub Repository.
 
-To do still-----
 
 ## Credits
 
-Many elements of the the e-commerce part of this project have been adapted from the Code Institute's "Boutique Ado" Code-through Project.
+- Many elements of the the e-commerce part of this project have been adapted from the Code Institute's "Boutique Ado" Code-through Project.
+- I went to many tutorials on You tube in understanding the logics and relied on them throughout the project
 
 
-Bugs --- Add to favorite and log in --- screen freeze
-Add to favorite… bag shows up
+- (https://www.youtube.com/watch?v=7VEveJz7hdM)
 
 
-https://www.youtube.com/watch?v=7VEveJz7hdM
+- https://www.youtube.com/watch?v=rHux0gMZ3Eg&t=2020s
 
-https://www.youtube.com/watch?v=PqCleUTwYa8
+- https://www.youtube.com/watch?v=w6TcS6F-k6E&list=PLDLLuBZ1-EtuigxD03yZlO2GQBPciR2Nt&index=2
 
 
+The relied on this video for the AWS SES email services
+
+https://www.youtube.com/watch?v=QJ3WwJsbkIQ&t=918s
 
 Testing:
 CSS- Jigsaw W3 Validator

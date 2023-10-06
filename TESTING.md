@@ -1095,97 +1095,97 @@ For each of the 6 MODELS the relevant negative test were done for CRUD operation
 <img src="docs/readme-img/Linter/checkout-webhooks-l.png" alt="" width="75%"/>
 
 ### 6.19 Comment-admin.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/comment-admin-l.png" alt="" width="75%"/>
 
 ### 6.20 Comment-forms.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/comment-forms-l.png" alt="" width="75%"/>
 
 ### 6.21 Comment-models.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/comment-models-l.png" alt="" width="75%"/>
 
 ### 6.22 Comment-urls.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/comment-urls-l.png" alt="" width="75%"/>
 
 ### 6.23 Comment-views.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/comment-views-l.png" alt="" width="75%"/>
 
 ### 6.24 Contact-admin.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/contact-admin-l.png" alt="" width="75%"/>
 
 ### 6.25 Contact-forms.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/contact-forms-l.png" alt="" width="75%"/>
 
 ### 6.26 Contact-models.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/contact-models-l.png" alt="" width="75%"/>
 
 ### 6.27 Contact-urls.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/contact-urls-l.png" alt="" width="75%"/>
 
 ### 6.28 Contact-views.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/contact-views-l.png" alt="" width="75%"/>
 
 ### 6.29 Favorite-admin.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/favorite-admin-l.png" alt="" width="75%"/>
 
 ### 6.30 Favorite-models.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/favorite-models-l.png" alt="" width="75%"/>
 
 ### 6.31 Favorite-urls.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/favorite-urls-l.png" alt="" width="75%"/>
 
 ### 6.32 Favorite-views.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/favorite-views-l.png" alt="" width="75%"/>
 
 ### 6.33 Home-urls.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/home-urls-l.png" alt="" width="75%"/>
 
 ### 6.34 Home-views.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/home-views-l.png" alt="" width="75%"/>
 
 ### 6.35 Products-admin.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/products-admin-l.png" alt="" width="75%"/>
 
 ### 6.36 Products-forms.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/products-forms-l.png" alt="" width="75%"/>
 
 ### 6.37 Products-models.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/products-models-l.png" alt="" width="75%"/>
 
 ### 6.38 Products-urls.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/products-urls-l.png" alt="" width="75%"/>
 
 ### 6.39 Products-views.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/products-views-l.png" alt="" width="75%"/>
 
 ### 6.40 Profiles-admin.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/profiles-admin-l.png" alt="" width="75%"/>
 
 ### 6.41 Profiles-forms.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/profiles-forms-l.png" alt="" width="75%"/>
 
 ### 6.42 Profiles-models.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/profiles-models-l.png" alt="" width="75%"/>
 
 ### 6.43 Profiles-urls.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/profiles-urls-l.png" alt="" width="75%"/>
 
 ### 6.44 Profiles-views.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/profiles-views-l.png" alt="" width="75%"/>
 
 ### 6.45 Tibet_art_store-asgi.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/tibet_art_store-asgi-l.png" alt="" width="75%"/>
 
 ### 6.46 Tibet_art_store-settings.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/tibet_art_store-settings-l.png" alt="" width="75%"/>
 
 ### 6.47 Tibet_art_store-urls.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/tibet_art_store-urls-l.png" alt="" width="75%"/>
 
 ### 6.48 Tibet_art_store-views.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/tibet_art_store-views-l.png" alt="" width="75%"/>
 
 ### 6.49 Tibet_art_store-wsgi.py test
-<img src="docs/readme-img/Linter/" alt="" width="75%"/>
+<img src="docs/readme-img/Linter/tibet_art_store-wsgi-l.png" alt="" width="75%"/>
 
 
 
