@@ -27,7 +27,7 @@ class ContactForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
-        
+
     def save(self, commit=True):
         instance = super().save(commit=True)
         if self.user and self.user.is_authenticated:

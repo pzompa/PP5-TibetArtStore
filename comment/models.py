@@ -3,12 +3,14 @@ from django.contrib.auth.models import User
 from products.models import Product
 from blogpost.models import BlogPost
 
+
 class Comment(models.Model):
     blogpost = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
     comment_text = models.TextField()
     name = models.CharField(max_length=255)
     email = models.EmailField()
     category = models.CharField(max_length=255, null=True, blank=True)
+
 
 class ProductComment(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -19,6 +21,7 @@ class ProductComment(models.Model):
 
     def __str__(self):
         return f"{self.user.username}: {self.comment_text[:50]}"
+
 
 class BlogPostComment(models.Model):
     blogpost = models.ForeignKey(BlogPost, on_delete=models.CASCADE)

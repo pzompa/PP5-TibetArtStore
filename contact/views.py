@@ -9,12 +9,12 @@ from django.template.loader import render_to_string
 
 
 def contact_us(request):
-    form = ContactForm() 
+    form = ContactForm()
     return render(request, 'contact/contact_us.html', {'form': form})
 
 
 def contact_view(request):
-    
+
     if request.method == "POST":
         form = ContactForm(request.POST, user=request.user)
         if form.is_valid():
@@ -43,7 +43,14 @@ def contact_view(request):
                 fail_silently=False,
                 html_message=message
             )
-            return render(request, 'contact/thank_you_contact.html', {'name': instance.name, 'comment': instance.comment})
+            return render(
+                request,
+                'contact/thank_you_contact.html',
+                {
+                    'name': instance.name,
+                    'comment': instance.comment
+                }
+            )
     else:
         form = ContactForm()
 
@@ -57,7 +64,12 @@ def newsletter(request):
 
         body = render_to_string('email_templates/subscription_email.txt')
 
-        send_mail(subject, body, 'newsletter-service@tibetartberlin.com', [subscriber_email])
+        send_mail(
+            subject,
+            body,
+            'newsletter-service@tibetartberlin.com',
+            [subscriber_email]
+        )
         messages.info(request, 'Thank you for subscribing to our Newsletter')
 
         return redirect('home')

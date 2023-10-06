@@ -9,7 +9,6 @@ from django.contrib import messages
 from django.db.models import Count
 
 
-
 def products_list_filter(request):
     """ view to display all products"""
     # GET DATA from DB
@@ -28,11 +27,11 @@ def products_list_filter(request):
         'price_asc': 'price',
         'price_desc': '-price',
     }
-    sort_key = sort_map.get(sorting, 'title') 
+    sort_key = sort_map.get(sorting, 'title')
     products = products.order_by(sort_key)
 
     modified_products = []
-     # remove full/ string
+    # remove full/ string
     for product in products:
         image_name = str(product.productImageName)
         if image_name.startswith('full/'):
@@ -43,7 +42,7 @@ def products_list_filter(request):
             'image_name': image_name,
             'comment_count': product.comment_count
         })
-        paginator = Paginator(modified_products, 20) 
+        paginator = Paginator(modified_products, 20)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
@@ -75,12 +74,11 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
-
 def thangka_paintings_view(request):
     """ view to display only Thangka paintings"""
     category = get_object_or_404(Category, name="thangka-paintings")
-    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
-    
+    products = (Product.objects.filter(productCategory=category)
+                .annotate(comment_count=Count('productcomment')))
 
     # Sort DATA
     sorting = request.GET.get('sorting')
@@ -90,7 +88,7 @@ def thangka_paintings_view(request):
         'price_asc': 'price',
         'price_desc': '-price',
     }
-    sort_key = sort_map.get(sorting, 'title') 
+    sort_key = sort_map.get(sorting, 'title')
     products = products.order_by(sort_key)
 
     modified_products = []
@@ -105,10 +103,10 @@ def thangka_paintings_view(request):
             'comment_count': product.comment_count
         })
 
-    paginator = Paginator(modified_products, 20) 
+    paginator = Paginator(modified_products, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-        
+
     context = {
         'products': page_obj,
     }
@@ -119,9 +117,10 @@ def thangka_paintings_view(request):
 def mandala_view(request):
     """ view to display all mandala Paintings"""
     category = Category.objects.get(name="mandalas")
-    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
+    products = (Product.objects.filter(productCategory=category)
+                .annotate(comment_count=Count('productcomment')))
 
-        # Sort DATA
+    # Sort DATA
     sorting = request.GET.get('sorting')
     sort_map = {
         'name_asc': 'title',
@@ -129,11 +128,11 @@ def mandala_view(request):
         'price_asc': 'price',
         'price_desc': '-price',
     }
-    sort_key = sort_map.get(sorting, 'title') 
+    sort_key = sort_map.get(sorting, 'title')
     products = products.order_by(sort_key)
 
     modified_products = []
-    
+
     for product in products:
         image_name = str(product.productImageName)
         if image_name.startswith('full/'):
@@ -145,7 +144,7 @@ def mandala_view(request):
             'comment_count': product.comment_count
         })
 
-    paginator = Paginator(modified_products, 20) 
+    paginator = Paginator(modified_products, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -155,11 +154,13 @@ def mandala_view(request):
 
     return render(request, 'products/mandala_list.html', context)
 
+
 def gods_goddesses_view(request):
     category = Category.objects.get(name="gods-goddesses")
-    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
+    products = (Product.objects.filter(productCategory=category)
+                .annotate(comment_count=Count('productcomment')))
 
-        # Sort DATA
+    # Sort DATA
     sorting = request.GET.get('sorting')
     sort_map = {
         'name_asc': 'title',
@@ -167,11 +168,11 @@ def gods_goddesses_view(request):
         'price_asc': 'price',
         'price_desc': '-price',
     }
-    sort_key = sort_map.get(sorting, 'title') 
+    sort_key = sort_map.get(sorting, 'title')
     products = products.order_by(sort_key)
 
     modified_products = []
-    
+
     for product in products:
         image_name = str(product.productImageName)
         if image_name.startswith('full/'):
@@ -183,7 +184,7 @@ def gods_goddesses_view(request):
             'comment_count': product.comment_count
         })
 
-    paginator = Paginator(modified_products, 20) 
+    paginator = Paginator(modified_products, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -197,9 +198,10 @@ def gods_goddesses_view(request):
 def singing_bowls_view(request):
     """ view to display all singing bowls"""
     category = Category.objects.get(name="singing-bowls")
-    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
+    products = (Product.objects.filter(productCategory=category)
+                .annotate(comment_count=Count('productcomment')))
 
-        # Sort DATA
+    # Sort DATA
     sorting = request.GET.get('sorting')
     sort_map = {
         'name_asc': 'title',
@@ -207,11 +209,11 @@ def singing_bowls_view(request):
         'price_asc': 'price',
         'price_desc': '-price',
     }
-    sort_key = sort_map.get(sorting, 'title') 
+    sort_key = sort_map.get(sorting, 'title')
     products = products.order_by(sort_key)
 
     modified_products = []
-    
+
     for product in products:
         image_name = str(product.productImageName)
         if image_name.startswith('full/'):
@@ -223,7 +225,7 @@ def singing_bowls_view(request):
             'comment_count': product.comment_count
         })
 
-    paginator = Paginator(modified_products, 20) 
+    paginator = Paginator(modified_products, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -237,9 +239,10 @@ def singing_bowls_view(request):
 def crafts_view(request):
     """ view to display all the crafts products"""
     category = Category.objects.get(name="crafts")
-    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
+    products = (Product.objects.filter(productCategory=category)
+                .annotate(comment_count=Count('productcomment')))
 
-        # Sort DATA
+    # Sort DATA
     sorting = request.GET.get('sorting')
     sort_map = {
         'name_asc': 'title',
@@ -247,11 +250,11 @@ def crafts_view(request):
         'price_asc': 'price',
         'price_desc': '-price',
     }
-    sort_key = sort_map.get(sorting, 'title') 
+    sort_key = sort_map.get(sorting, 'title')
     products = products.order_by(sort_key)
 
     modified_products = []
-    
+
     for product in products:
         image_name = str(product.productImageName)
 
@@ -265,7 +268,7 @@ def crafts_view(request):
             'comment_count': product.comment_count
         })
 
-    paginator = Paginator(modified_products, 20) 
+    paginator = Paginator(modified_products, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -279,9 +282,10 @@ def crafts_view(request):
 def specials_view(request):
     """ view to display all special products"""
     category = Category.objects.get(name="specials")
-    products = Product.objects.filter(productCategory=category).annotate(comment_count=Count('productcomment'))
+    products = (Product.objects.filter(productCategory=category)
+                .annotate(comment_count=Count('productcomment')))
 
-        # Sort DATA
+    # Sort DATA
     sorting = request.GET.get('sorting')
     sort_map = {
         'name_asc': 'title',
@@ -289,11 +293,11 @@ def specials_view(request):
         'price_asc': 'price',
         'price_desc': '-price',
     }
-    sort_key = sort_map.get(sorting, 'title') 
+    sort_key = sort_map.get(sorting, 'title')
     products = products.order_by(sort_key)
 
     modified_products = []
-    
+
     for product in products:
         image_name = str(product.productImageName)
         if image_name.startswith('full/'):
@@ -305,7 +309,7 @@ def specials_view(request):
             'comment_count': product.comment_count
         })
 
-    paginator = Paginator(modified_products, 20) 
+    paginator = Paginator(modified_products, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -333,13 +337,13 @@ def search_view(request):
         results = Product.objects.filter(query_set)
     else:
         results = Product.objects.all()
-    
+
     modified_products = []
     for product in results:
         image_name = str(product.productImageName)
         if image_name.startswith('full/'):
             image_name = image_name[5:]
-        
+
         modified_products.append({
             'product': product,
             'image_name': image_name
@@ -350,6 +354,7 @@ def search_view(request):
     }
 
     return render(request, 'products/search_results.html', context)
+
 
 @login_required
 def create_product(request):
@@ -372,13 +377,13 @@ def create_product(request):
     }
     return render(request, 'products/create_product.html', context)
 
+
 @login_required
 def update_product(request, product_id):
     """ view to update a product """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')
-
 
     product = get_object_or_404(Product, id=product_id)
     if request.method == "POST":
@@ -388,7 +393,10 @@ def update_product(request, product_id):
             messages.success(request, 'Updated successfully!')
             return redirect('product_detail', product_id=product.id)
         else:
-            messages.error(request, 'Failed to update the product. Please try again.')
+            messages.error(
+                request,
+                'Failed to update the product. Please try again.'
+            )
     else:
         form = ProductForm(instance=product)
     context = {
@@ -396,6 +404,7 @@ def update_product(request, product_id):
         'product': product
     }
     return render(request, 'products/update_product.html', context)
+
 
 @login_required
 def delete_product(request, product_id):
@@ -409,6 +418,7 @@ def delete_product(request, product_id):
     messages.success(request, 'Product successfully deleted!')
     return redirect('products_list')
 
+
 @login_required
 def product_management(request):
     if not request.user.is_superuser:
@@ -416,6 +426,7 @@ def product_management(request):
         return redirect('home')
 
     return render(request, 'products/product_management.html')
+
 
 @login_required
 def order_list(request):
@@ -427,6 +438,7 @@ def order_list(request):
         'orders': orders,
     }
     return render(request, 'products/order_list.html', context)
+
 
 @login_required
 def delete_order(request, order_id):

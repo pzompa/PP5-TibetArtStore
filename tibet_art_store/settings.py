@@ -29,10 +29,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    'tibetartstore-0faa2ebe064c.herokuapp.com',    
+    'tibetartstore-0faa2ebe064c.herokuapp.com',
     '9000-pzompa-pp5tibetartstore-gplv5kfei63.ws-eu105.gitpod.io',
     '8000-pzompa-pp5tibetartstore-gplv5kfei63.ws-eu105.gitpod.io'
 ]
@@ -96,14 +96,14 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',  # required by allauth
-                'django.template.context_processors.media',    # make MEDIA_URL available in templates
+                # required by allauth
+                'django.template.context_processors.request',
+                # make MEDIA_URL available in templates
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.contexts.cart_contents'
-               
             ],
-            
         },
     },
 ]
@@ -189,8 +189,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files (Uploaded files)
-#MEDIA_URL = '/media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # cache control
 AWS_S3_OBJECT_PARAMETERS = {
@@ -219,7 +219,7 @@ MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
 
-#Stripe
+# Stripe
 FREE_DELIVERY_THRESHOLD = 350
 STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'usd'
