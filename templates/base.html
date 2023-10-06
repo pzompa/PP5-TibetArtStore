@@ -4,11 +4,10 @@
 <html lang="en">
 
 <head>
-
-    {% block meta %}
     <!-- Required meta tags -->
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block meta %}
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Tibet Art Store Buddhist Thangka painting and Sculptures">
     <meta name="keywords"
@@ -48,14 +47,13 @@
 
     {% block extra_js %}
     {% endblock %}
-    <!-- Favicon link -->
     <link rel="shortcut icon" href="https://pp5-tibetartstore.s3.eu-central-1.amazonaws.com/static/favicon/favicon.png">
 
     <title>Tibet Art Store {% block extra_title %}{% endblock %}</title>
 </head>
 <body>
     <header class="container-fluid fix-top">
-        <!----Top Nav---->
+        <!-- Top Nav -->
         <div id="topnav" class="row bg-white pt-lg-2 d-flex">
         
             <div class="col-12 col-sm-6 col-md-4 my-auto py-1 py-lg-0 d-none d-md-block">
@@ -143,23 +141,23 @@
     </header>
     <main>
     {% if messages %}
-    <div class="message-container-parent">
-        <div class="message-container">
-            {% for message in messages %}
-            {% with message.level as level %}
-            {% if level == 40 %}
-                {% include 'includes/toasts/toast_error.html' %}
-            {% elif level == 30 %}
-                {% include 'includes/toasts/toast_warning.html' %}
-            {% elif level == 25 %}
-                {% include 'includes/toasts/toast_success.html' %}
-            {% else %}
-                {% include 'includes/toasts/toast_info.html' %}
-            {% endif %}
-            {% endwith %}
-            {% endfor %}
+        <div class="message-container-parent">
+            <div class="message-container">
+                {% for message in messages %}
+                {% with message.level as level %}
+                {% if level == 40 %}
+                    {% include 'includes/toasts/toast_error.html' %}
+                {% elif level == 30 %}
+                    {% include 'includes/toasts/toast_warning.html' %}
+                {% elif level == 25 %}
+                    {% include 'includes/toasts/toast_success.html' %}
+                {% else %}
+                    {% include 'includes/toasts/toast_info.html' %}
+                {% endif %}
+                {% endwith %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
     {% endif %}
 
     {% block page_header %}
@@ -173,7 +171,7 @@
     {% include 'includes/footer.html' %}
 
     {% block postloadjs %}
-    <script type="text/javascript">
+    <script>
         $('.toast').toast('show');
     </script>
     {% endblock %}

@@ -40,9 +40,8 @@
                     <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
                 </small>
             {% endif %}
-            <p class="lead">{{ product.descriptionHTML|safe }}</p>
-            <br>
-            <p>{{ product.liquidHTML|safe }}</p>
+            {{ product.descriptionHTML|safe }}
+            {{ product.liquidHTML|safe }}
             <div class="d-flex justify-content-center">
                 <div id="action_btns" class="row w-100 my-3 mx-auto">
                     <!-- Add to Cart Button -->
