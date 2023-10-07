@@ -65,7 +65,7 @@
     8. [Search field](#search-field)
     9. [Policy page](#policy-page)
     10. [Custom Error Pages](#custom-error-pages)
-    11. [404 Error Page](#404-error-page)
+    11. [Error Pages](#404-error-page)
 11. [Bugs](#bugs)
 12. [Deployment](#deployment)
      1. [Creating a Database](#creating-a-database)
@@ -354,9 +354,6 @@ The Lato font is the used for throughout the website with Sans Serif is the back
 
 #### Product Management Page
 <img src="docs/readme-img/wireframe-img/Product management page.png" alt="Product Management Page" width="75%"/>
-
-#### 404 error Page
-<img src="docs/readme-img/wireframe-img/404 error page.png" alt="404 error Page" width="75%"/>
 
 #### 404 error Page
 <img src="docs/readme-img/wireframe-img/404 error page.png" alt="404 error Page" width="75%"/>
