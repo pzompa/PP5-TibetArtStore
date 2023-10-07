@@ -536,7 +536,7 @@ Django's LoginRequired is used to restrict any not authenticated users from acce
 
 
 ### Footer:
-<img src="docs/readme-img/website-img/Footer.png.png" alt="Footer" width="75%"/>
+<img src="docs/readme-img/website-img/Footer.png" alt="Footer" width="75%"/>
 
 - The footer section includes Address of the business, link to follow the business on facebook marketplace page
 - The footer also has a newsletter sign-up form to capture user information and allow customers to subscribe for updates and promotions.
