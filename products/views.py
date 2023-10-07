@@ -10,17 +10,16 @@ from django.db.models import Count
 
 
 def products_list_filter(request):
-    """ view to display all products"""
-    # GET DATA from DB
+    """
+    view to display all products
+    """
     category = request.GET.get('category')
     sorting = request.GET.get('sorting')
     products = Product.objects.annotate(comment_count=Count('productcomment'))
 
-    # Filter DATA
     if category and category != 'all':
         products = products.filter(productCategory_id=category)
 
-    # Sort DATA
     sort_map = {
         'name_asc': 'title',
         'name_desc': '-title',
@@ -57,7 +56,9 @@ def products_list_filter(request):
 
 
 def product_detail(request, product_id):
-    """ view to display details of a particular product"""
+    """
+    view to display details of a particular product
+    """
     product = get_object_or_404(Product, id=product_id)
 
     image_name = str(product.productImageName)
@@ -75,12 +76,13 @@ def product_detail(request, product_id):
 
 
 def thangka_paintings_view(request):
-    """ view to display only Thangka paintings"""
+    """
+    view to display only Thangka paintings
+    """
     category = get_object_or_404(Category, name="thangka-paintings")
     products = (Product.objects.filter(productCategory=category)
                 .annotate(comment_count=Count('productcomment')))
 
-    # Sort DATA
     sorting = request.GET.get('sorting')
     sort_map = {
         'name_asc': 'title',
@@ -115,12 +117,13 @@ def thangka_paintings_view(request):
 
 
 def mandala_view(request):
-    """ view to display all mandala Paintings"""
+    """
+    view to display all mandala Paintings
+    """
     category = Category.objects.get(name="mandalas")
     products = (Product.objects.filter(productCategory=category)
                 .annotate(comment_count=Count('productcomment')))
 
-    # Sort DATA
     sorting = request.GET.get('sorting')
     sort_map = {
         'name_asc': 'title',
@@ -156,11 +159,13 @@ def mandala_view(request):
 
 
 def gods_goddesses_view(request):
+    """
+    view to display all gods and goddesses Paintings
+    """
     category = Category.objects.get(name="gods-goddesses")
     products = (Product.objects.filter(productCategory=category)
                 .annotate(comment_count=Count('productcomment')))
 
-    # Sort DATA
     sorting = request.GET.get('sorting')
     sort_map = {
         'name_asc': 'title',
@@ -196,12 +201,13 @@ def gods_goddesses_view(request):
 
 
 def singing_bowls_view(request):
-    """ view to display all singing bowls"""
+    """
+    view to display all singing bowls
+    """
     category = Category.objects.get(name="singing-bowls")
     products = (Product.objects.filter(productCategory=category)
                 .annotate(comment_count=Count('productcomment')))
 
-    # Sort DATA
     sorting = request.GET.get('sorting')
     sort_map = {
         'name_asc': 'title',
@@ -237,7 +243,9 @@ def singing_bowls_view(request):
 
 
 def crafts_view(request):
-    """ view to display all the crafts products"""
+    """
+    view to display all the crafts products
+    """
     category = Category.objects.get(name="crafts")
     products = (Product.objects.filter(productCategory=category)
                 .annotate(comment_count=Count('productcomment')))
@@ -280,12 +288,13 @@ def crafts_view(request):
 
 
 def specials_view(request):
-    """ view to display all special products"""
+    """
+    view to display all special products
+    """
     category = Category.objects.get(name="specials")
     products = (Product.objects.filter(productCategory=category)
                 .annotate(comment_count=Count('productcomment')))
 
-    # Sort DATA
     sorting = request.GET.get('sorting')
     sort_map = {
         'name_asc': 'title',
@@ -321,6 +330,9 @@ def specials_view(request):
 
 
 def search_view(request):
+    """
+    view to display search
+    """
     query = request.GET.get('q')
     if query:
         query_set = (
@@ -358,7 +370,9 @@ def search_view(request):
 
 @login_required
 def create_product(request):
-    """ view to add a product """
+    """
+    view to add a product
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')
@@ -380,7 +394,9 @@ def create_product(request):
 
 @login_required
 def update_product(request, product_id):
-    """ view to update a product """
+    """
+    view to update a product
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')
@@ -408,7 +424,9 @@ def update_product(request, product_id):
 
 @login_required
 def delete_product(request, product_id):
-    """ View to delete a product from the store """
+    """
+    View to delete a product from the store
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')
@@ -421,6 +439,9 @@ def delete_product(request, product_id):
 
 @login_required
 def product_management(request):
+    """
+    view to display product management page
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')
@@ -430,6 +451,9 @@ def product_management(request):
 
 @login_required
 def order_list(request):
+    """
+    view to display order list
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')
@@ -442,7 +466,9 @@ def order_list(request):
 
 @login_required
 def delete_order(request, order_id):
-    """ delete order """
+    """
+    delete order
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')

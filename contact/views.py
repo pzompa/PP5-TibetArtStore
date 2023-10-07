@@ -9,12 +9,17 @@ from django.template.loader import render_to_string
 
 
 def contact_us(request):
+    """
+    Display contact_us template
+    """
     form = ContactForm()
     return render(request, 'contact/contact_us.html', {'form': form})
 
 
 def contact_view(request):
-
+    """
+    Display contact message
+    """
     if request.method == "POST":
         form = ContactForm(request.POST, user=request.user)
         if form.is_valid():
@@ -58,6 +63,9 @@ def contact_view(request):
 
 
 def newsletter(request):
+    """
+    Newsletter subscribtion
+    """
     if request.method == 'POST':
         subscriber_email = request.POST.get('email')
         subject = 'Welcome to Tibet Art Shop Newsletter!'

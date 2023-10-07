@@ -6,11 +6,17 @@ from django.contrib import messages
 
 
 def blogpost_list(request):
+    """
+    Display the blogpost list
+    """
     active_articles = BlogPost.objects.filter(active=True).annotate(comment_count=Count('blogpostcomment'))
 
     return render(request, 'blogpost/blogpost_list.html', {'articles': active_articles})
 
 def blogpost_detail(request, pk):
+    """
+    Display a blogpost articel detail
+    """
     article = BlogPost.objects.filter(pk=pk).annotate(comment_count=Count('blogpostcomment')).first()
     if not article:
         raise Http404("BlogPost not found")
@@ -19,6 +25,9 @@ def blogpost_detail(request, pk):
 
 # Create BlogPost
 def create_blogpost(request):
+    """
+    Create a new blogpost object
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')
@@ -36,6 +45,9 @@ def create_blogpost(request):
 
 # Edit BlogPost
 def edit_list_blogpost(request):
+    """
+    Display a blogpost article list for edit operation
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')
@@ -47,6 +59,9 @@ def edit_list_blogpost(request):
     return render(request, 'blogpost/edit_list_blogpost.html', context)
 
 def edit_blogpost(request, blogpost_id):
+    """
+    Edit a blogpost article object
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')
@@ -66,6 +81,9 @@ def edit_blogpost(request, blogpost_id):
 
 # Delete BlogPost
 def delete_list_blogpost(request):
+    """
+    Display a blogpost article list for delete operation
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')
@@ -77,6 +95,9 @@ def delete_list_blogpost(request):
     return render(request, 'blogpost/delete_list_blogpost.html', context)
 
 def delete_blogpost(request, blogpost_id):
+    """
+    Delete a blogpost article
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store Admin can do this action.')
         return redirect('home')
@@ -90,6 +111,9 @@ def delete_blogpost(request, blogpost_id):
 
 # List BlogPost
 def save_blogpost(request, blogpost_id=None):
+    """
+    Save blogpost article
+    """
     if request.method == 'POST':
         instance = BlogPost.objects.get(pk=blogpost_id) if blogpost_id else None
         form = BlogPostForm(request.POST, request.FILES, instance=instance)

@@ -8,8 +8,10 @@ from django.contrib.auth.views import redirect_to_login
 from django.urls import reverse
 
 
-# Product Detail page
 def add_to_favorites(request, product_id):
+    """
+    Add favorite object
+    """
     if not request.user.is_authenticated:
         return redirect_to_login(
             next=reverse(
@@ -26,6 +28,9 @@ def add_to_favorites(request, product_id):
 
 @login_required
 def remove_from_favorites(request, product_id):
+    """
+    Remove favorite object
+    """
     product = get_object_or_404(Product, id=product_id)
     Favorite.objects.filter(user=request.user, product=product).delete()
     messages.success(request, f'Removed from Favorite')
@@ -37,8 +42,10 @@ def remove_from_favorites(request, product_id):
     )
 
 
-# Product List page
 def add_to_favorites_product_list(request, product_id):
+    """
+    Display favorite list
+    """
     if not request.user.is_authenticated:
         return redirect_to_login(
             next=reverse(
@@ -55,24 +62,31 @@ def add_to_favorites_product_list(request, product_id):
 
 @login_required
 def remove_from_favorites_product_list(request, product_id):
+    """
+    Remove favorite object - product list page
+    """
     product = get_object_or_404(Product, id=product_id)
     Favorite.objects.filter(user=request.user, product=product).delete()
     messages.success(request, f'Removed from Favorite')
     return redirect('products')
 
 
-# Favorite List page
 @login_required
 def remove_from_favorites_list(request, product_id):
+    """
+    Remove favorite object - favorite list page
+    """
     product = get_object_or_404(Product, id=product_id)
     Favorite.objects.filter(user=request.user, product=product).delete()
     messages.success(request, f'Removed from Favorite')
     return redirect('favorite_products')
 
 
-# Generate Favorite page
 @login_required
 def favorite_products(request):
+    """
+    Display favorite page
+    """
     user = request.user
     favorites = Favorite.objects.filter(user=user)
     favorite_products = [favorite.product for favorite in favorites]

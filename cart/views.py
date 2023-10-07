@@ -7,14 +7,16 @@ from products.models import Product
 
 
 def view_cart(request):
-    """ A view to return the cart page """
-
+    """
+    A view to return the cart page
+    """
     return render(request, 'cart/cart.html')
 
 
 def add_to_cart(request, product_id):
-    """ Add a quantity of the specified product to the shopping cart """
-
+    """
+    Add a quantity of the specified product to the shopping cart
+    """
     cart = request.session.get('cart', {})
     product = get_object_or_404(Product, pk=product_id)
 
@@ -49,8 +51,9 @@ def add_to_cart(request, product_id):
 
 
 def update_cart(request, product_id):
-    """ Update quantities in the cart """
-
+    """
+    Update quantities in the cart
+    """
     if request.method == 'POST':
         product = get_object_or_404(Product, pk=product_id)
         quantity = int(request.POST.get('quantity'))
@@ -76,6 +79,9 @@ def update_cart(request, product_id):
 
 
 def delete_from_cart(request, product_id):
+    """
+    Delete item from the cart
+    """
     try:
         product = get_object_or_404(Product, pk=product_id)
         cart = request.session.get('cart', {})

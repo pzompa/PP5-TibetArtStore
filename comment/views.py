@@ -26,7 +26,7 @@ def enter_comment(request, product_id):
 
 def new_blogpost_comment(request, blogpost_id):
     """
-    Get Product and Comment, and generate the form.
+    Get Blogpost and Comment, and generate the form.
     """
     blogpost = BlogPost.objects.get(pk=blogpost_id)
     comments = BlogPostComment.objects.filter(blogpost=blogpost)
