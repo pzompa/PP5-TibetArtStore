@@ -460,6 +460,13 @@ button:hover,
     .btn-responsive {
         width: 100%;
     }
+    .delivery-banner h3 {
+        font-size: 18px;
+    }
+    
+    .header-tx h1 {
+        font-size: 18px;
+    }
 }
 
 /* Medium Devices - Small Tablets */
@@ -501,6 +508,9 @@ button:hover,
     #action_btns .btn{
         width: 165px;
     }
+    .header-tx h1 {
+        font-size: 22px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -519,5 +529,8 @@ button:hover,
     #action_btns .btn{
         width: 120px;
         height: 50px;
+    }
+    .header-tx h1 {
+        font-size: 18px;
     }
 }
