@@ -782,28 +782,31 @@ The steps to deploy are as follows:
 ## Credits
 
 - Many elements of the the e-commerce part of this project have been adapted from the Code Institute's "Boutique Ado" Code-through Project.
+
+- All the Product images and Detail texts are used with permission from the craftsoftibet owner.
+- All rights of the product images and texts remain with craftsoftibet website owner.
+
 - I went to many tutorials on You tube in understanding the logics and relied on them throughout the project
+  - https://codewithmosh.com/
+
+  - (https://www.youtube.com/watch?v=7VEveJz7hdM)
 
 
-- (https://www.youtube.com/watch?v=7VEveJz7hdM)
+  - https://www.youtube.com/watch?v=rHux0gMZ3Eg&t=2020s
+
+  - https://www.youtube.com/watch?v=w6TcS6F-k6E&list=PLDLLuBZ1-EtuigxD03yZlO2GQBPciR2Nt&index=2
 
 
-- https://www.youtube.com/watch?v=rHux0gMZ3Eg&t=2020s
 
-- https://www.youtube.com/watch?v=w6TcS6F-k6E&list=PLDLLuBZ1-EtuigxD03yZlO2GQBPciR2Nt&index=2
+- The relied on this video for the AWS SES email services
 
+   - https://www.youtube.com/watch?v=QJ3WwJsbkIQ&t=918s
 
-The relied on this video for the AWS SES email services
+-  Django Documentation
+-  python official docs
+- google 
 
-https://www.youtube.com/watch?v=QJ3WwJsbkIQ&t=918s
-
-Testing:
-CSS- Jigsaw W3 Validator
-
-Html- WC3 Validator
-
-Javascript- JShint
-
-Python- CI Python Linter
-Lighthouse Test
-Wave Validator
+## Acknowledgement
+- My mentor Gereth McGirr has been very helpful throughout my fullstack course at the code institute.
+- My Family for their patience and support.
+- Craftsoftibet owner for allowing me to use their images and texts for my project.
