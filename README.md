@@ -39,42 +39,43 @@
    7. [Homepage](#homepage)
    8. [Signup Page](#signup-page-1)
    9. [Login Page](#login-page-1)
-   10. [Product List Page](#product-list-page-1)
-   11. [Product Detail Page](#product-detail-page-1)
-   12. [Shopping Cart Page](#shopping-cart-page-1)
-   13. [Checkout Page](#checkout-page-1)
-   14. [Profile Page](#my-profile-page)
-   15. [Blog Page](#blogpost-list-page)
-   16. [Blog Detail Page](#blogpost-detail-page)
-   17. [About Us Page](#about-us-page-1)
-   18. [Contact Us Page](#contact-us-page-1)
-   19. [Favorite Page](#my-favorite-page)
-   20. [Comment Page](#product-comment)
-[Product Management Page]()
+   10. [Logout Page](#logout-page)
+   11. [Product List Page](#product-list-page-1)
+   12. [Product Detail Page](#product-detail-page-1)
+   13. [Product comment](#product-comment)
+   14. [Blogpost List page](#blogpost-list-page)
+   15. [Blogpost Detail page](#blogpost-detail-page)
+   16. [Add Blog page](#add-blog-page)
+   17. [Edit Blog page](#edit-blog-page)
+   18. [Blog Comment page](#blog-comment-page)
+   19. [My profile page](#my-profile-page)
+   20. [My favorite page](#my-favorite-page)
+   21. [Checkout page](#checkout-page)
+   22. [Checkout success page](#checkout-success-page)
+   23. [Cart page](#cart-page)
 
-
-   21. [Error Pages](#404-error-page-2)
-          1. [500 error Page]()
-          2. [404 error Page](#404-error-page-2)
-   22. [Toast Messages](#toas)
-10. [Deployment](#deployment-1)
-    1. [Creating a Database](#creating-a-database)
-    2. [Heroku Deployment](#heroku-deployment)
-    3. [Stripe](#stripe)
-
-
-
-    4. [Version Control](#version-control)
-    5. [Cloning a GitHub Repository](#cloning-a-github-repository)
-
-    6. [Fork Project](#fork-project)
-    7. [Credits](#credits)
- 
-
-
-
-
-
+10. [Product management page](#product-management-page)
+    1. [Product Management Order List](#product-management-order-list)
+    2. [Add Product page](#add-product-page)
+    3. [Edit Product page](#edit-product-page)
+    4. [Shopping Cart page](#shopping-cart-page)
+    5. [Empty Shopping Cart](#empty-shopping-cart)
+    6. [About us page](#about-us-page-1)
+    7. [Contact Us page](#contact-us-page-1)
+    8. [Search field](#search-field)
+    9. [Policy page](#policy-page)
+    10. [Custom Error Pages](#custom-error-pages)
+    11. [404 Error Page](#404-error-page)
+11. [Bugs](#bugs)
+12. [Deployment](#deployment)
+     1. [Creating a Database](#creating-a-database)
+     2. [Heroku Deployment](#heroku-deployment)
+     3. [Stripe](#stripe)
+     4. [Version Control](#version-control)
+     5. [Cloning a GitHub Repository](#cloning-a-github-repository)
+     6. [To clone a Repository to use locally](#to-clone-a-repository-to-use-locally)
+     7. [Fork Project](#fork-project)
+ 13. [Credits](#credits)
 
 
 
@@ -164,8 +165,9 @@ I realize the importance and effectiveness of using this methodology while worki
 - A Github issue was created for each User Story where each user story was assigned with clear acceptance criteria.
 - These were then assigned to Epics and prioritized with labels like must have, should have, and could have.
 - The Epics were documented within the Github Project as Milestones.
+<img src="docs/readme-img/Agile/kanbanboard.png" alt="kanbanboard Page" width="75%"/>
 
-The Kanban board was created using Github project and can be located [here](https://github.com/users/pzompa/projects/14).
+The project board was created using Github project and can be located [here](https://github.com/users/pzompa/projects/14).
 
 All the Epics were assigned to the following 8 milestones:
 
@@ -488,8 +490,8 @@ The Checkout app has a Order model. All transactions are saved automatically int
 
 The Contact app has one Contact model. When the a website visitor fills out the contact us form, the information will be saved into the Contact model and a copy is send to the user email address. Only a superuser can read, update and delete the objects in the Contact model. The Contact model has a foreign key to the User model.
 
-#### The diagram below details the database schema:
-<img src="docs/readme-img/db-img/db-schema.jpeg" alt="Toast Messages" width="100%"/>
+### The diagram below details the database schema:
+<img src="docs/readme-img/db-img/PP5 DB Schema.png" alt="Toast Messages" width="100%"/>
 
 ## Testing Documentation
 - Testing a results can be found [here](TESTING.md)

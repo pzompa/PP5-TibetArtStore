@@ -1,8 +1,120 @@
+# Testing - Tibet Art Store
+1. [Backend Testing]()
+   1. [Reverse URL Pattern Generation Testing](#11-reverse-url-pattern-generation-testing)
+   2. [URL Pattern Testing](#12-url-pattern-testing)
+   3. [CRUD MODEL Testing](#13-crud-model-testing)
+   4. [Template Link Testing](#14-template-link-testing)
+   5. [Permission Testing - Security](#15-permission-testing---security)
+   6. [Netative Testing](#16-netative-testing)
 
+2. [W3C Validator](#2-w3c-validator)
+   1. [Homepage](#21-homepage)
+   2. [Product list](#22-product-list)
+   3. [Bloglist](#23-bloglist)
+   4. [Product detail](#24-product-detail)
+   5. [Blog detail](#25-blog-detail)
+   6. [Contact us](#26-contact-us)
+
+3. [Lighthouse](#3-lighthouse)
+   1. [Home Page test](#31-home-page-test)
+   2. [Product List Page test](#32-product-list-page-test)
+   3. [Product Detail Page test](#33-product-detail-page-test)
+   4. [Blog List Page test](#34-blog-list-page-test)
+   5. [Blog Detail Page test](#35-blog-detail-page-test)
+   6. [Favorite Page test](#36-favorite-page-test)
+   7. [My Profile Page test](#37-my-profile-page-test)
+   8. [Contact Us Page test](#38-contact-us-page-test)
+   9. [Product Management Page test](#39-product-management-page-test)
+
+4. [CSS Jigsaw W3 Validator](#4-css-jigsaw-w3-validator)
+   1. [Home Page CSS test](#41-home-page-css-test)
+   2. [Product List Page CSS test](#42-product-list-page-css-test)
+   3. [Product Detail Page CSS test](#43-product-detail-page-css-test)
+   4. [Blog List Page test](#44-blog-list-page-test)
+   5. [Blog Detail Page test](#45-blog-detail-page-test)
+   6. [Contact Us Page test](#46-contact-us-page-test)
+   7. [Favorite Page test](#47-favorite-page-test)
+   8. [Cart Page test](#48-cart-page-test)
+   9. [Checkout Page test](#49-checkout-page-test)
+   10. [My Profile Page test](#410-my-profile-page-test)
+
+5. [Javascript- JShint](#5-javascript--jshint)
+
+6. [CI Python Linter](#6-ci-python-linter)
+   1. [AboutUs-urls.py test](#61-aboutus-urlspy-test)
+   2. [AboutUs-views.py test](#62-aboutus-viewspy-test)
+   3. [Blogpost-admin.py test](#63-blogpost-adminpy-test)
+   4. [Blogpost-forms.py test](#64-blogpost-formspy-test)
+   5. [Blogpost-models.py test](#65-blogpost-modelspy-test)
+   6. [Blogpost-urls.py test](#66-blogpost-urlspy-test)
+   7. [Blogpost-views.py test](#67-blogpost-viewspy-test)
+   8. [Cart-contexts.py test](#68-cart-contextspy-test)
+   9. [Cart-urls.py test](#69-cart-urlspy-test)
+   10. [Cart-views.py test](#610-cart-viewspy-test)
+   11. [Checkout-admin.py test](#611-checkout-adminpy-test)
+   12. [Checkout-forms.py test](#612-checkout-formspy-test)
+   13. [Checkout-models.py test](#613-checkout-modelspy-test)
+   14. [Chechout-signals.py test](#614-chechout-signalspy-test)
+   15. [Checkout-urls.py test](#615-checkout-urlspy-test)
+   16. [Checkout-views.py test](#616-checkout-viewspy-test)
+   17. [Checkout-webhook_handler.py test](#617-checkout-webhook_handlerpy-test)
+   18. [Checkout-webhooks.py test](#618-checkout-webhookspy-test)
+   19. [Comment-admin.py test](#619-comment-adminpy-test)
+   20. [Comment-forms.py test](#620-comment-formspy-test)
+   21. [Comment-models.py test](#621-comment-modelspy-test)
+   22. [Comment-urls.py test](#622-comment-urlspy-test)
+   23. [Comment-views.py test](#623-comment-viewspy-test)
+   24. [Contact-admin.py test](#624-contact-adminpy-test)
+   25. [Contact-forms.py test](#625-contact-formspy-test)
+   26. [Contact-models.py test](#626-contact-modelspy-test)
+   27. [Contact-urls.py test](#627-contact-urlspy-test)
+   28. [Contact-views.py test](#628-contact-viewspy-test)
+   29. [Favorite-admin.py test](#629-favorite-adminpy-test)
+   30. [Favorite-models.py test](#630-favorite-modelspy-test)
+   31. [Favorite-urls.py test](#631-favorite-urlspy-test)
+   32. [Favorite-views.py test](#632-favorite-viewspy-test)
+   33. [Home-urls.py test](#633-home-urlspy-test)
+   34. [Home-views.py test](#634-home-viewspy-test)
+   35. [Products-admin.py test](#635-products-adminpy-test)
+   36. [Products-forms.py test](#636-products-formspy-test)
+   37. [Products-models.py test](#637)
+   38. [Products-urls.py test](#638-products-urlspy-test)
+   39. [Products-views.py test](#639-products-viewspy-test)
+   40. [Profiles-admin.py test](#640-profiles-adminpy-test)
+   41. [Profiles-forms.py test](#641-profiles-formspy-test)
+   42. [Profiles-models.py test](#642-profiles-modelspy-test)
+   43. [Profiles-urls.py test](#643-profiles-urlspy-test)
+   44. [Profiles-views.py test](#644-profiles-viewspy-test)
+   45. [Tibet_art_store-asgi.py test](#645-tibet_art_store-asgipy-test)
+   46. [Tibet_art_store-settings.py test](#646-tibet_art_store-settingspy-test)
+   47. [Tibet_art_store-urls.py test](#647-tibet_art_store-urlspy-test)
+   48. [Tibet_art_store-views.py test](#648-tibet_art_store-viewspy-test)
+   49. [Tibet_art_store-wsgi.py test](#649-tibet_art_store-wsgipy-test)
+
+7. [Wave Validator](#7-wave-validator)
+   1. [Home Page](#71-home-page)
+   2. [Product List Page](#72-product-list-page)
+   3. [Product Detail Page](#73-product-detail-page)
+   4. [Thanka Page](#74-thanka-page)
+   5. [Mandala Page](#75-mandala-page)
+   6. [Gods Page](#76-gods-page)
+   7. [Singing Bowls Page](#77-singing-bowls-page)
+   8. [Craft Page](#78-craft-page)
+   9. [Specials Page](#79-specials-page)
+   10. [Blog List Page](#710-blog-list-page)
+   11. [Blog Detail Page](#711-blog-detail-page)
+   12. [Blog Detail Comment Page](#712-blog-detail-comment-page)
+   13. [Contact Us Page](#713-contact-us-page)
+   14. [Product Management Page](#714-product-management-page)
+   15. [Favorite List Page](#715-favorite-list-page)
+
+
+
+# 1. Backend Application Testing
 ## 1.1 Reverse URL Pattern Generation Testing
 38 Templates with 165 URL Patterns where tested manually. Each URL Pattern was tested on its expected URL. All tests where successful.
 
-Reverse URL Pattern shows the tested pattern. Generated URL is the expected URL. Test shows test result.
+"Reverse URL Pattern" shows the tested template and pattern. "Generated URL" is the expected URL. "Test" shows test result.
 
 | Reverse URL Pattern                                                  | Generated URL:                          | Test |
 | -------------------------------------------------------------------- | --------------------------------------- | ---- |
@@ -111,7 +223,7 @@ Reverse URL Pattern shows the tested pattern. Generated URL is the expected URL.
 | {% url 'products_list' %}                                            | /product/                               | PASS |
 |                                                                      |                                         |      |
 |                                                                      |                                         |      |
-| Papg:   products/gods_goddesses_list.html                            |                                         |      |
+| Pape:   products/gods_goddesses_list.html                            |                                         |      |
 | {% url 'gods_goddesses_list' %}                                      | /product/gods-goddesses-list/           | PASS |
 | {% url 'product_detail' entry.product.id %}                          | /product/1/detail/                      | PASS |
 | {% url 'products' %}?category={{ entry.product.productCategory.id }} | /products/                              | PASS |
@@ -572,15 +684,21 @@ Where applicable, I gave special attention to the correctness of the captured ar
 |                                                                                                                                                     | View Function: search_view                                     | PASS |
 
 ## 1.3 CRUD MODEL Testing
-Tibet Art Store Django project has 6 Models (not including django MODELS). Create, Read, Update, and Delete (CRUD) has been implemented wherever applicable. All tests were successful.
+Tibet Art Store Django project has 7 Models (not including django MODELS). Create, Read, Update, and Delete (CRUD) has been implemented wherever applicable. All tests were successful.
 
 ProductComment Model and BlogPostComment Model does not have "update" because its not applicable for the feature. For the Order Model, the update feature has not been implemented because of security concerns. But cloud be added on a later date with proper security messures.
+
+Database Schema:
+
+<img src="docs/readme-img/db-img/PP5 DB Schema.png" alt="database schema" width="50%"/>
 
 "CRUD MODEL Test" shows the django app and its MODEL. The test value is shown, wherever applicable. 
 
 "URL" shows the url that has been used for the test. Values are used, wherever applicable. 
 
 "Test" shows the test result.
+
+
 
 | CRUD MODEL Test               | URL                              | TEST Result |
 | ----------------------------- | -------------------------------- | ----------- |
@@ -870,8 +988,8 @@ Many times, users are limited to CRUD operation on their own objects, but the su
 | DELETE                        | Login Required                 | PASS        |
 |                               | (only the owner of the object) |             |
 
-## 1.6 Netative Testing
-For each of the 6 MODELS the relevant negative test were done for CRUD operation.
+## 1.6 Negative Testing
+For each MODEL the relevant negative test were done for CRUD operation.
 
 
 | CRUD Permission               | Negative Testing    | TEST Result |
@@ -975,6 +1093,13 @@ For each of the 6 MODELS the relevant negative test were done for CRUD operation
 
 ### 2.6 Contact us
 <img src="docs/readme-img/W3C/Contact us page.png" alt="Contact us Page" width="75%"/>
+
+### 2.7. Cart page
+<img src="docs/readme-img/W3C/CartW3C.png" alt="Cart Page" width="75%"/>
+
+### 2.8. Checkout page
+<img src="docs/readme-img/W3C/checkoutpage.png" alt="Checkout Page" width="75%"/>
+
 
 ## 3. Lighthouse
 ### 3.1 Home Page test
@@ -1187,8 +1312,49 @@ For each of the 6 MODELS the relevant negative test were done for CRUD operation
 ### 6.49 Tibet_art_store-wsgi.py test
 <img src="docs/readme-img/Linter/tibet_art_store-wsgi-l.png" alt="" width="75%"/>
 
-
-
-
 ## 7. Wave Validator
+### 7.1 Home Page
+<img src="docs/readme-img/WAVE/Home Page - WAVE test.png" alt="" width="40%"/>
+
+### 7.2 Product List Page
+<img src="docs/readme-img/WAVE/Product List - WAVE test.png" alt="" width="40%"/>
+
+### 7.3 Product Detail Page
+<img src="docs/readme-img/WAVE/Product Detail - WAVE test.png" alt="" width="40%"/>
+
+### 7.4 Thanka Page
+<img src="docs/readme-img/WAVE/Thanka Page - WAVE test.png" alt="" width="40%"/>
+
+### 7.5 Mandala Page
+<img src="docs/readme-img/WAVE/Mandala Page - WAVE test.png" alt="" width="40%"/>
+
+### 7.6 Gods Page
+<img src="docs/readme-img/WAVE/Gods Page - WAVE test.png" alt="" width="40%"/>
+
+### 7.7 Singing Bowls Page
+<img src="docs/readme-img/WAVE/Singing Bowls Page - WAVE test.png" alt="" width="40%"/>
+
+### 7.8 Craft Page
+<img src="docs/readme-img/WAVE/Craft Page - WAVE  test.png" alt="" width="40%"/>
+
+### 7.9 Specials Page
+<img src="docs/readme-img/WAVE/Specials Page - WAVE test.png" alt="" width="40%"/>
+
+### 7.10 Blog List Page
+<img src="docs/readme-img/WAVE/Blog list page - WAVE test.png" alt="" width="40%"/>
+
+### 7.11 Blog Detail Page
+<img src="docs/readme-img/WAVE/Blog detail page - WAVE test.png" alt="" width="40%"/>
+
+### 7.12 Blog Detail Comment Page
+<img src="docs/readme-img/WAVE/Blog detail comment page - WAVE test.png" alt="" width="40%"/>
+
+### 7.13 Contact Us Page
+<img src="docs/readme-img/WAVE/Contact Us Page - WAVE test.png" alt="" width="40%"/>
+
+### 7.14 Product Management Page
+<img src="docs/readme-img/WAVE/Product Management Page - WAVE test.png" alt="" width="40%"/>
+
+### 7.15 Favorite List Page
+<img src="docs/readme-img/WAVE/Favorite List page - WAVE test.png" alt="" width="40%"/>
 
